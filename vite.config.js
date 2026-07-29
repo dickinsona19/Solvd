@@ -1,8 +1,17 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { fileURLToPath } from 'node:url'
 
-// https://vite.dev/config/
+// Static multi-page site: all copy ships in the initial HTML, no client
+// rendering. Crawlers and link previews get the full page with JS disabled.
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        custom: fileURLToPath(
+          new URL('./custom/index.html', import.meta.url),
+        ),
+      },
+    },
+  },
 })

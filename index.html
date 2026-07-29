@@ -2,31 +2,540 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070E1C" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>The Gym Portal — Growth, Churn &amp; Member Inbox Software | SOLVD Charlotte</title>
     <meta
       name="description"
-      content="SOLVD is an AI consulting and implementation firm in Charlotte, NC. We build custom AI automation that ships inside the systems mid-sized companies actually run on."
+      content="One login for gym owners: see which Instagram posts make members, catch cancellations early, and clear member email in minutes. Built in Charlotte, NC."
     />
-    <meta property="og:title" content="SOLVD — AI Consulting & Implementation, Charlotte NC" />
+    <link rel="canonical" href="https://getsolvd.io/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SOLVD" />
+    <meta property="og:title" content="The Gym Portal — Growth, Churn &amp; Member Inbox Software | SOLVD Charlotte" />
     <meta
       property="og:description"
-      content="Custom AI automation that ships inside the systems mid-sized companies actually run on."
+      content="One portal. Three gym problems, solved. Growth analytics, churn prediction, and an AI-assisted member inbox for gym operators."
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:url" content="https://getsolvd.io/" />
+    <meta property="og:image" content="https://getsolvd.io/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Gym Portal | SOLVD Charlotte" />
+    <meta
+      name="twitter:description"
+      content="One portal. Three gym problems, solved. Growth analytics, churn prediction, and an AI-assisted member inbox for gym operators."
+    />
+    <meta name="twitter:image" content="https://getsolvd.io/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..500&family=Geist:wght@400..600&family=Geist+Mono:wght@400..500&display=swap"
       rel="stylesheet"
     />
-    <title>SOLVD — AI Consulting &amp; Implementation, Charlotte NC</title>
+    <link rel="stylesheet" href="/src/site.css" />
+    <script>
+      // Gate reveal-hiding styles on JS actually being able to reveal them.
+      if ('IntersectionObserver' in window)
+        document.documentElement.classList.add('js')
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "The Gym Portal",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Gym analytics software in one portal: fitness studio growth dashboard, gym churn prediction, and gym CRM automation with an AI-assisted member inbox.",
+        "offers": {
+          "@type": "Offer",
+          "price": "500",
+          "priceCurrency": "USD",
+          "description": "Founding rate: $2,500 setup + $500/month, locked for life"
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "SOLVD",
+          "email": "contact@getsolvd.io",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Charlotte",
+            "addressRegion": "NC",
+            "addressCountry": "US"
+          }
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What gym software do you integrate with?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Mindbody, Zen Planner, PushPress, and Instagram through the official Meta API. Integration depth varies by platform: some give us full booking history, others only member lists. We tell you exactly what your setup supports before you pay anything."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long is setup?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The portal is live on your full Instagram-to-member pipeline within 30 days of data access. That's the guarantee. Most of the buffer is waiting on API approvals; the build itself is usually faster."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What data access do you need?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Read access to your member and booking data, a connection to your gym's Instagram account, and access to the inbox you want the smart replies in. We walk through all of it on the setup call. You never hand us passwords."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my member data private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Your member data is never sold or shared, and it is only used to run your own portal. One of us spent a decade building banking infrastructure, and we treat member data with the same care. If you leave, we delete it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you build custom features beyond the portal?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Founding partners drive the roadmap, and we take on select custom builds and technical partnerships."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
+
+  <!--
+    Two things to replace before launch:
+    1. The form action (search for formspree.io) — point it at your real
+       form endpoint (Formspree, Basin, your own API, etc.).
+    2. The LinkedIn URL in the footer.
+  -->
+
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- Brand intro: mounted only by JS, plays once per session -->
+    <div id="intro" hidden aria-hidden="true">
+      <div class="intro-stage">
+        <span class="intro-line"></span>
+        <img
+          class="intro-mark"
+          src="/solvd-wordmark.png"
+          alt=""
+          width="292"
+          height="56"
+        />
+        <span class="intro-sweep"></span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <nav aria-label="Main">
+        <a href="#top" class="wordmark" aria-label="SOLVD home">
+          <img src="/solvd-wordmark.png" alt="SOLVD" width="292" height="56" />
+        </a>
+        <div class="links">
+          <a href="#portal">The Portal</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="btn btn-signal" href="#get-portal">Get the portal</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <h1 class="display-xl">
+            <span class="w"><span class="wi">One</span></span>
+            <span class="w"><span class="wi">portal.</span></span>
+            <span class="w"><span class="wi">Three</span></span>
+            <span class="w"><span class="wi">gym</span></span>
+            <span class="w"><span class="wi">problems,</span></span>
+            <span class="w"><span class="wi">solved.</span></span>
+          </h1>
+          <p class="lead">
+            Know which Instagram posts actually make you members. Catch
+            cancellations before they happen. Answer every member email with
+            one click. Built by gym owners who run 400 members on software we
+            made ourselves.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-signal" href="#get-portal">Get your gym's portal</a>
+            <p class="cta-note">
+              Short form, five fields. We reply within one business day.
+            </p>
+          </div>
+
+          <!-- One window, three panes: the whole pitch at a glance -->
+          <div class="portal" role="img" aria-label="Preview of the Gym Portal showing growth, churn radar, and smart inbox panes">
+            <div class="portal-bar">
+              <span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>
+              <span class="label-mono">The Gym Portal</span>
+              <span class="label-mono">CLT Lifting Club</span>
+            </div>
+            <div class="panes">
+              <div class="pane">
+                <span class="pane-label label-mono">Growth</span>
+                <p class="stat" data-count="38" data-prefix="$">$38</p>
+                <p class="stat-sub">cost per member, best post this month</p>
+                <ul class="rows">
+                  <li><span>"PR Friday" reel</span> <span class="val">9 members</span></li>
+                  <li><span>Coach intro post</span> <span class="val">6 members</span></li>
+                </ul>
+              </div>
+              <div class="pane">
+                <span class="pane-label label-mono">Churn Radar</span>
+                <p class="stat" data-count="6">6</p>
+                <p class="stat-sub">members flagged at risk this week</p>
+                <ul class="rows">
+                  <li><span>K.R. · 14 days since visit</span> <span class="val">reach out</span></li>
+                  <li><span>J.M. · booking streak broken</span> <span class="val">reach out</span></li>
+                </ul>
+              </div>
+              <div class="pane">
+                <span class="pane-label label-mono">Smart Inbox</span>
+                <p class="stat" data-count="9">9</p>
+                <p class="stat-sub">replies drafted, waiting on your approve</p>
+                <ul class="rows">
+                  <li><span>Freeze request · draft + CRM action</span> <span class="val">review</span></li>
+                  <li><span>Free-pass lead · drafted in 2 min</span> <span class="val">review</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section class="problem" aria-labelledby="problem-heading">
+        <div class="container">
+          <h2 id="problem-heading" class="display" data-reveal="wipe">
+            Three problems every gym owner knows by heart.
+          </h2>
+          <ul class="pains" data-stagger>
+            <li>
+              <strong>You post every day</strong> but can't connect content to
+              actual signed members.
+            </li>
+            <li>
+              <strong>Churn is invisible</strong> until the cancellation email
+              arrives.
+            </li>
+            <li>
+              <strong>Member emails eat hours,</strong> and slow replies cost
+              memberships.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- THE PORTAL -->
+      <section class="pillars" id="portal" aria-labelledby="portal-heading">
+        <div class="container">
+          <div class="pillars-head" data-stagger>
+            <p class="label-mono">The flagship</p>
+            <h2 id="portal-heading" class="display" style="margin-top: 0.9rem">
+              The Gym Portal
+            </h2>
+            <p class="lead">
+              One login. A fitness studio growth dashboard, gym churn
+              prediction, and an AI-assisted member inbox, built into the same
+              portal your front desk already has open. The right column is what
+              each piece costs when you buy it on its own.
+            </p>
+          </div>
+
+          <div class="stack" data-stagger>
+            <div class="pillar">
+              <span class="num" aria-hidden="true">1</span>
+              <h3>Growth</h3>
+              <p class="what">
+                Every post tracked from view to link click to free-pass claim
+                to signed member. Cost per member by post, not vibes. You see
+                which content pays and which just gets likes.
+              </p>
+              <p class="worth">Agencies charge $5,000+ for attribution like this alone</p>
+            </div>
+
+            <div class="pillar">
+              <span class="num" aria-hidden="true">2</span>
+              <h3>Retention</h3>
+              <p class="what">
+                Churn Radar: a weekly list of members whose attendance and
+                booking patterns say "about to cancel," before they cancel.
+                Names, not averages, so you know exactly who to walk over to.
+              </p>
+              <p class="worth">Saving two members a month pays for the whole portal</p>
+            </div>
+
+            <div class="pillar">
+              <span class="num" aria-hidden="true">3</span>
+              <h3>Response</h3>
+              <p class="what">
+                The smart inbox reads member emails, drafts the reply, and
+                suggests the action in your CRM. You review and click approve.
+                Ten minutes of admin instead of two hours.
+              </p>
+              <p class="worth">Speed-to-lead that used to take a hire</p>
+            </div>
+
+            <div class="stack-total">
+              <p class="sum">One login, one price</p>
+              <a class="btn btn-ghost" href="#pricing">See pricing</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GUARANTEE -->
+      <section class="guarantee" aria-labelledby="guarantee-heading">
+        <div class="container" data-stagger>
+          <p class="label-mono">The guarantee</p>
+          <h2 id="guarantee-heading" style="margin-top: 1rem">
+            Live in 30 days, or setup is free.
+          </h2>
+          <p>
+            Your portal is running on your full Instagram-to-member pipeline
+            within 30 days of giving us data access. If it isn't, your setup
+            fee is $0. No fine print to read because there isn't any.
+          </p>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="pricing" id="pricing" aria-labelledby="pricing-heading">
+        <div class="container">
+          <h2 id="pricing-heading" class="display" data-reveal="wipe">Pricing</h2>
+
+          <div class="plans" data-stagger>
+            <div class="plan plan-founding">
+              <span class="tag">First two Charlotte gyms</span>
+              <h3>Founding rate</h3>
+              <p class="price">$2,500 <small>setup</small> + $500<small>/mo</small></p>
+              <ul class="terms">
+                <li>Rate locked for life</li>
+                <li>Direct line to both founders</li>
+                <li>Your requests drive the roadmap</li>
+                <li>30-day guarantee applies</li>
+              </ul>
+              <a class="btn btn-signal" href="#get-portal">Claim a founding spot</a>
+            </div>
+
+            <div class="plan">
+              <span class="tag">After founding spots fill</span>
+              <h3>Standard rate</h3>
+              <p class="price">$5,000 <small>setup</small> + $750<small>/mo</small></p>
+              <ul class="terms">
+                <li>Same portal, same guarantee</li>
+                <li>Next onboarding slot by waitlist</li>
+              </ul>
+              <a class="btn btn-ghost" href="#get-portal">Join the waitlist</a>
+            </div>
+          </div>
+
+          <p class="capacity" data-reveal>
+            Why only two spots: <strong>we're a two-person team, and two
+            onboardings per quarter is our real capacity.</strong> We'd rather
+            cap it honestly than onboard badly.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROOF / ABOUT -->
+      <section class="about" id="about" aria-labelledby="about-heading">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-copy" data-stagger>
+              <h2 id="about-heading" class="display">
+                We got fed up with gym software, so we built our own.
+              </h2>
+              <p>
+                We co-own <strong>CLT Lifting Club</strong>, a 400-member gym in
+                Charlotte, NC. Every piece of software it runs on, from booking
+                to billing to the portal on this page, we wrote ourselves after
+                the off-the-shelf tools kept failing us.
+              </p>
+              <p>
+                We're gym operators, not an agency. When Churn Radar flags a
+                member at our gym, one of us is the person walking over to say
+                hi. The Gym Portal is the exact system our own business runs on
+                every day, packaged for yours.
+              </p>
+              <p>
+                SOLVD is two senior software engineers: one spent a decade in
+                banking infrastructure, the other builds AI and machine
+                learning systems.
+              </p>
+            </div>
+            <figure class="about-photo" data-reveal>
+              <img
+                src="/clt-lifting-club.png"
+                alt="Members of CLT Lifting Club gathered on the outdoor turf field in Charlotte"
+                width="682"
+                height="1024"
+                loading="lazy"
+              />
+              <figcaption class="label-mono">CLT Lifting Club · Charlotte, NC</figcaption>
+            </figure>
+          </div>
+
+          <!-- Placeholder frames: swap for real portal captures -->
+          <div class="shots" aria-label="Portal screenshots coming soon" data-stagger>
+            <div class="shot"><span class="label-mono">Portal — Growth view</span></div>
+            <div class="shot"><span class="label-mono">Portal — Churn Radar</span></div>
+            <div class="shot"><span class="label-mono">Portal — Smart Inbox</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq" id="faq" aria-labelledby="faq-heading">
+        <div class="container">
+          <h2 id="faq-heading" class="display" data-reveal="wipe">Questions gym owners ask us</h2>
+          <div class="faq-list" data-stagger>
+            <details>
+              <summary>What gym software do you integrate with?</summary>
+              <div class="answer">
+                <p>
+                  Mindbody, Zen Planner, PushPress, and Instagram through the
+                  official Meta API. Honest caveat: integration depth varies by
+                  platform. Some give us full booking history, others only
+                  member lists. We'll tell you exactly what your setup supports
+                  before you pay anything.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>How long is setup?</summary>
+              <div class="answer">
+                <p>
+                  The portal is live on your full Instagram-to-member pipeline
+                  within 30 days of data access. That's the guarantee. Most of
+                  the buffer is waiting on API approvals; the build itself is
+                  usually faster.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>What data access do you need?</summary>
+              <div class="answer">
+                <p>
+                  Read access to your member and booking data, a connection to
+                  your gym's Instagram account, and access to the inbox you
+                  want the smart replies in. We walk through all of it on the
+                  setup call. You never hand us passwords.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Is my member data private?</summary>
+              <div class="answer">
+                <p>
+                  Yes. Your member data is never sold or shared, and it's only
+                  used to run your own portal. One of us spent a decade
+                  building banking infrastructure, and we treat member data
+                  with the same care. If you leave, we delete it.
+                </p>
+              </div>
+            </details>
+            <details>
+              <summary>Can you build custom features beyond the portal?</summary>
+              <div class="answer">
+                <p>
+                  Yes. Founding partners drive the roadmap, and we take on
+                  select custom builds. See
+                  <a href="/custom/">custom builds &amp; partnerships</a>.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT FORM -->
+      <section class="get-portal" id="get-portal" aria-labelledby="form-heading">
+        <div class="container">
+          <h2 id="form-heading" class="display" data-reveal="wipe">Get your gym's portal</h2>
+          <p class="lead" data-reveal>
+            Five fields, one business day. We'll reply with a walkthrough of
+            the portal running live on our own gym's numbers.
+          </p>
+
+          <form
+            class="portal-form"
+            action="https://formspree.io/f/REPLACE_ME"
+            method="POST"
+            data-stagger
+          >
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="f-gym">Gym name</label>
+              <input id="f-gym" name="gym" type="text" autocomplete="organization" required />
+            </div>
+            <div class="field">
+              <label for="f-locations">Number of locations</label>
+              <select id="f-locations" name="locations" required>
+                <option value="1">1</option>
+                <option value="2-4">2 to 4</option>
+                <option value="5+">5 or more</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-software">Current gym software</label>
+              <input
+                id="f-software"
+                name="software"
+                type="text"
+                placeholder="Mindbody, Zen Planner, spreadsheets..."
+                required
+              />
+            </div>
+            <div class="field field-wide">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <button class="btn btn-signal" type="submit">Get your gym's portal</button>
+            <p class="form-note">
+              Prefer email? <a href="mailto:contact@getsolvd.io">contact@getsolvd.io</a>
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <img src="/solvd-wordmark.png" alt="SOLVD" width="292" height="56" />
+        <div class="meta">
+          <span>Charlotte, NC</span>
+          <a href="mailto:contact@getsolvd.io">contact@getsolvd.io</a>
+          <a href="https://www.linkedin.com/company/solvd-clt" rel="noopener">LinkedIn</a>
+          <a href="/custom/">Custom builds &amp; partnerships</a>
+          <span>&copy; 2026 SOLVD</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/site.js"></script>
   </body>
 </html>

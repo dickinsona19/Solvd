@@ -1,0 +1,1476 @@
+/* ============================================================
+   SOLVD — The Gym Portal
+   Static site stylesheet. No framework, no build-time magic.
+   Brand: layered navy surfaces, one signal-blue accent,
+   Archivo display + Geist body + Geist Mono annotations.
+   ============================================================ */
+
+:root {
+  --void: #070e1c;
+  --panel: #0d1728;
+  --panel-2: #132036;
+  --line: #1b2a42;
+  --line-strong: #2a3d5c;
+  --ink: #eaf0f8;
+  --body: #a9b7cc;
+  --muted: #7c8ba3;
+  --signal: #3d7bfd;
+  --signal-bright: #5b90ff;
+  --signal-core: #9cc2ff;
+  /* dark text used on top of the signal-drenched band */
+  --on-signal: #071023;
+  --on-signal-soft: #142650;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Archivo", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --container: 68rem;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(61, 123, 253, 0.28);
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* ---------- type voices ---------- */
+
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-stretch: 118%;
+  letter-spacing: 0.005em;
+  font-size: clamp(2.35rem, 6.4vw, 4.5rem);
+  line-height: 1.06;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 340;
+  font-stretch: 115%;
+  letter-spacing: 0.01em;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.12;
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+.lead {
+  color: var(--body);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+/* ---------- layout primitives ---------- */
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .container {
+    padding-inline: 2rem;
+  }
+}
+
+section {
+  scroll-margin-top: 4.5rem;
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 8px;
+  font: 600 1rem/1.2 var(--font-sans);
+  text-decoration: none;
+  padding: 1rem 1.65rem;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn-signal {
+  background: var(--signal);
+  color: var(--on-signal);
+}
+
+.btn-signal:hover {
+  background: var(--signal-bright);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: var(--void);
+}
+
+.btn-ink:hover {
+  background: #ffffff;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+}
+
+.btn-ghost:hover {
+  border-color: var(--muted);
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 14, 28, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header nav {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 0 1.25rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .site-header nav {
+    padding-inline: 2rem;
+  }
+}
+
+.site-header .wordmark img {
+  height: 1rem;
+  width: auto;
+}
+
+.site-header .links {
+  display: none;
+  gap: 2rem;
+}
+
+@media (min-width: 840px) {
+  .site-header .links {
+    display: flex;
+  }
+}
+
+.site-header .links a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--body);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-header .links a:hover {
+  color: var(--ink);
+}
+
+.site-header .btn {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9375rem;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding: 4.5rem 0 4rem;
+}
+
+@media (min-width: 720px) {
+  .hero {
+    padding: 7rem 0 5.5rem;
+  }
+}
+
+.hero h1 {
+  max-width: 15ch;
+  color: var(--ink);
+}
+
+.hero .lead {
+  margin-top: 1.5rem;
+  max-width: 58ch;
+  font-size: 1.125rem;
+}
+
+.hero .cta-row {
+  margin-top: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.hero .cta-note {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* structural hooks for the hero choreography (motion itself lives
+   in the motion layer at the bottom of this file) */
+.hero {
+  position: relative;
+}
+
+.hero > .container {
+  position: relative;
+}
+
+/* ambient signal glow behind the hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -10rem;
+  left: 50%;
+  width: min(62rem, 94vw);
+  height: 36rem;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse closest-side,
+    rgba(61, 123, 253, 0.13),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* headline word masks: each word rises out of its own slot */
+.hero h1 .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* room for descenders inside the mask */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.hero h1 .wi {
+  display: inline-block;
+  transform-origin: 0 100%;
+}
+
+/* ---------- portal window mock ---------- */
+
+.portal {
+  margin-top: 3.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+.portal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel-2);
+}
+
+.portal-bar .dots {
+  display: flex;
+  gap: 6px;
+}
+
+.portal-bar .dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.portal-bar .label-mono {
+  color: var(--signal-core);
+}
+
+.panes {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  position: relative;
+}
+
+@media (min-width: 720px) {
+  .panes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pane {
+  background: var(--panel);
+  padding: 1.4rem 1.25rem 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .pane {
+    padding: 1.75rem 1.5rem 1.9rem;
+  }
+}
+
+.pane .pane-label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.pane .pane-label::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--signal);
+  flex-shrink: 0;
+}
+
+.pane .stat {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-stretch: 114%;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.pane .stat-sub {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--body);
+}
+
+.pane .rows {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pane .rows li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--body);
+}
+
+.pane .rows .val {
+  font-family: var(--font-mono);
+  color: var(--signal-core);
+  white-space: nowrap;
+}
+
+/* ---------- problem ---------- */
+
+.problem {
+  padding: 5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .problem {
+    padding: 7rem 0;
+  }
+}
+
+.problem h2 {
+  max-width: 18ch;
+}
+
+.pains {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 46rem;
+}
+
+.pains li {
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 1.125rem;
+  color: var(--body);
+  text-wrap: pretty;
+}
+
+.pains li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.pains strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- the portal: three numbered pillars ---------- */
+
+.pillars {
+  padding: 5rem 0;
+}
+
+@media (min-width: 720px) {
+  .pillars {
+    padding: 7rem 0;
+  }
+}
+
+.pillars-head {
+  max-width: 46rem;
+}
+
+.pillars-head .lead {
+  margin-top: 1.25rem;
+}
+
+.stack {
+  margin-top: 3rem;
+  border-top: 2px solid var(--line-strong);
+}
+
+.pillar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.25rem;
+  padding: 1.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 840px) {
+  .pillar {
+    grid-template-columns: auto minmax(0, 7fr) minmax(0, 3fr);
+    gap: 3rem;
+    padding: 2.5rem 0;
+  }
+}
+
+/* the one legitimate numbered sequence on the page:
+   three problems, three pillars */
+.pillar .num {
+  font-family: var(--font-display);
+  font-stretch: 116%;
+  font-weight: 250;
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  line-height: 0.9;
+  color: var(--signal);
+  min-width: 2ch;
+}
+
+.pillar h3 {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 420;
+  font-size: 1.375rem;
+  color: var(--ink);
+  align-self: center;
+}
+
+.pillar .what {
+  grid-column: 1 / -1;
+  color: var(--body);
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+
+@media (min-width: 840px) {
+  .pillar h3 {
+    align-self: start;
+    padding-top: 0.45rem;
+  }
+
+  .pillar .what {
+    grid-column: 2;
+    margin-top: -1.4rem;
+  }
+}
+
+.pillar .worth {
+  grid-column: 1 / -1;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--signal-core);
+  text-wrap: pretty;
+}
+
+@media (min-width: 840px) {
+  .pillar .worth {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
+    padding-top: 0.55rem;
+  }
+}
+
+.stack-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.75rem 0 0;
+  border-top: 2px solid var(--line-strong);
+  margin-top: -1px;
+}
+
+.stack-total .sum {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 350;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+/* ---------- guarantee: the one drenched band ---------- */
+
+.guarantee {
+  background: var(--signal);
+  color: var(--on-signal);
+  padding: 4.5rem 0;
+}
+
+@media (min-width: 720px) {
+  .guarantee {
+    padding: 6rem 0;
+  }
+}
+
+.guarantee h2 {
+  font-family: var(--font-display);
+  font-stretch: 116%;
+  font-weight: 380;
+  font-size: clamp(1.9rem, 4.4vw, 3.2rem);
+  line-height: 1.1;
+  max-width: 20ch;
+}
+
+.guarantee p {
+  margin-top: 1.4rem;
+  max-width: 58ch;
+  font-size: 1.125rem;
+  color: var(--on-signal-soft);
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+.guarantee .label-mono {
+  color: var(--on-signal-soft);
+}
+
+/* ---------- pricing ---------- */
+
+.pricing {
+  padding: 5rem 0;
+}
+
+@media (min-width: 720px) {
+  .pricing {
+    padding: 7rem 0;
+  }
+}
+
+.plans {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 840px) {
+  .plans {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: start;
+  }
+}
+
+.plan {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 1.75rem 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .plan {
+    padding: 2.25rem 2rem;
+  }
+}
+
+.plan-founding {
+  border-color: var(--signal);
+  background: var(--panel-2);
+  box-shadow: 0 0 0 1px rgba(61, 123, 253, 0.35),
+    0 20px 50px -25px rgba(61, 123, 253, 0.25);
+}
+
+.plan .tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--signal-core);
+  background: rgba(61, 123, 253, 0.14);
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+}
+
+.plan h3 {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.plan .price {
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-stretch: 114%;
+  font-weight: 300;
+  font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.plan .price small {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--body);
+}
+
+.plan .terms {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  color: var(--body);
+}
+
+.plan .terms li {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.plan .btn {
+  margin-top: 1.75rem;
+  width: 100%;
+}
+
+.capacity {
+  margin-top: 2.25rem;
+  max-width: 56ch;
+  color: var(--body);
+  text-wrap: pretty;
+}
+
+.capacity strong {
+  color: var(--ink);
+}
+
+/* ---------- about / proof ---------- */
+
+.about {
+  padding: 5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .about {
+    padding: 7rem 0;
+  }
+}
+
+.about-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 840px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: center;
+  }
+}
+
+.about-copy p + p {
+  margin-top: 1.1rem;
+}
+
+.about-copy p {
+  color: var(--body);
+  text-wrap: pretty;
+}
+
+.about-copy .display {
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.about-copy strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.about-photo img {
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.about-photo figcaption {
+  margin-top: 0.8rem;
+}
+
+/* screenshot placeholder row: swap for real portal captures */
+.shots {
+  margin-top: 3.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 720px) {
+  .shots {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.shot {
+  aspect-ratio: 16 / 10;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: repeating-linear-gradient(
+      -45deg,
+      transparent 0 14px,
+      rgba(42, 61, 92, 0.14) 14px 15px
+    ),
+    var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.shot .label-mono {
+  color: var(--signal-core);
+}
+
+/* ---------- FAQ ---------- */
+
+.faq {
+  padding: 5rem 0;
+}
+
+@media (min-width: 720px) {
+  .faq {
+    padding: 7rem 0;
+  }
+}
+
+.faq-list {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--line);
+  max-width: 48rem;
+}
+
+.faq-list details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.35rem 0;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1.0625rem;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faq-list details[open] summary::after {
+  transform: rotate(45deg);
+  color: var(--signal-core);
+}
+
+.faq-list .answer {
+  padding: 0 0 1.5rem;
+  color: var(--body);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.faq-list .answer p + p {
+  margin-top: 0.75rem;
+}
+
+.faq-list .answer a {
+  color: var(--signal-core);
+}
+
+/* ---------- contact form ---------- */
+
+.get-portal {
+  padding: 5rem 0 6rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .get-portal {
+    padding: 7rem 0 7.5rem;
+  }
+}
+
+.get-portal .lead {
+  margin-top: 1.25rem;
+}
+
+.portal-form {
+  margin-top: 2.75rem;
+  max-width: 40rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .portal-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .portal-form .field-wide,
+  .portal-form button {
+    grid-column: 1 / -1;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--body);
+}
+
+.field input,
+.field select {
+  appearance: none;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink);
+  font: 400 1rem/1.4 var(--font-sans);
+  padding: 0.85rem 1rem;
+  width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' stroke='%237C8BA3' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.field input::placeholder {
+  color: var(--muted);
+}
+
+.field input:hover,
+.field select:hover {
+  border-color: var(--muted);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--signal);
+}
+
+.portal-form button {
+  justify-self: start;
+  cursor: pointer;
+}
+
+.form-note {
+  grid-column: 1 / -1;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0 3rem;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .site-footer .container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.site-footer img {
+  height: 0.875rem;
+  width: auto;
+}
+
+.site-footer .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+@media (min-width: 720px) {
+  .site-footer .meta {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.site-footer .meta a {
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-footer .meta a:hover {
+  color: var(--ink);
+}
+
+/* ---------- /custom page ---------- */
+
+.page-hero {
+  padding: 5rem 0 3.5rem;
+}
+
+.page-hero h1 {
+  max-width: 20ch;
+}
+
+.page-hero .lead {
+  margin-top: 1.4rem;
+}
+
+.consult-list {
+  padding: 1rem 0 5rem;
+}
+
+.consult-item {
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--line);
+  max-width: 46rem;
+}
+
+.consult-item h2 {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 420;
+  font-size: 1.375rem;
+}
+
+.consult-item p {
+  margin-top: 0.75rem;
+  color: var(--body);
+  text-wrap: pretty;
+}
+
+.consult-item .label-mono {
+  margin-top: 1rem;
+  display: block;
+}
+
+.back-link {
+  font-size: 0.9375rem;
+  color: var(--body);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
+/* ============================================================
+   Motion layer. Everything below is progressive enhancement:
+   the intro overlay only mounts via JS, and reveal states only
+   apply under html.js inside a no-preference media query.
+   ============================================================ */
+
+/* ---------- brand intro overlay ---------- */
+
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* above sticky header (50) */
+  background: var(--void);
+  display: grid;
+  place-items: center;
+}
+
+#intro.done {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.68s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+
+.intro-stage {
+  position: relative;
+}
+
+/* soft signal glow that breathes in behind the mark */
+.intro-stage::before {
+  content: "";
+  position: absolute;
+  inset: -90% -40%;
+  background: radial-gradient(
+    closest-side,
+    rgba(61, 123, 253, 0.22),
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro.play .intro-stage::before {
+  animation: intro-glow 1.5s ease-out 0.25s forwards;
+}
+
+@keyframes intro-glow {
+  to {
+    opacity: 1;
+  }
+}
+
+/* the wordmark: develops left to right behind the light sweep,
+   settling from a blur like a lens pulling focus */
+.intro-mark {
+  height: clamp(2.75rem, 10vw, 5.25rem);
+  width: auto;
+  clip-path: inset(-20% 101% -20% -1%);
+  filter: blur(12px);
+  transform: scale(1.08);
+}
+
+#intro.play .intro-mark {
+  animation:
+    intro-mark-clip 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards,
+    intro-mark-focus 1.05s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+@keyframes intro-mark-clip {
+  to {
+    clip-path: inset(-20% -1% -20% -1%);
+  }
+}
+
+@keyframes intro-mark-focus {
+  to {
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+/* the vertical light bar riding the reveal edge */
+.intro-sweep {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  width: 2px;
+  background: var(--signal-core);
+  box-shadow: 0 0 18px 3px rgba(61, 123, 253, 0.85);
+  opacity: 0;
+}
+
+#intro.play .intro-sweep {
+  animation: intro-sweep 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+@keyframes intro-sweep {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* the signal line that draws in first, under the mark */
+.intro-line {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: -1.5rem;
+  height: 2px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  filter: drop-shadow(0 0 8px rgba(61, 123, 253, 0.6));
+}
+
+#intro.play .intro-line {
+  animation: intro-line 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes intro-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* hold the hero's entire choreography until the overlay lifts */
+html.intro-playing .hero *,
+html.intro-playing .hero::before,
+html.intro-playing .panes::after {
+  animation-play-state: paused !important;
+}
+
+/* ---------- hero choreography ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1 · ambient glow blooms in */
+  html.js .hero::before {
+    animation: hero-glow 1.6s ease-out 0.25s both;
+  }
+
+  @keyframes hero-glow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* 2 · headline words swing up out of their masks */
+  html.js .hero h1 .wi {
+    transform: translateY(130%) rotate(4deg);
+    animation: word-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  html.js .hero h1 .w:nth-child(1) .wi {
+    animation-delay: 0.05s;
+  }
+  html.js .hero h1 .w:nth-child(2) .wi {
+    animation-delay: 0.12s;
+  }
+  html.js .hero h1 .w:nth-child(3) .wi {
+    animation-delay: 0.19s;
+  }
+  html.js .hero h1 .w:nth-child(4) .wi {
+    animation-delay: 0.26s;
+  }
+  html.js .hero h1 .w:nth-child(5) .wi {
+    animation-delay: 0.33s;
+  }
+  html.js .hero h1 .w:nth-child(6) .wi {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes word-rise {
+    to {
+      transform: none;
+    }
+  }
+
+  /* 3 · supporting copy follows */
+  html.js .hero .lead {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hero-el 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+  }
+
+  html.js .hero .cta-row {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: hero-el 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.66s forwards;
+  }
+
+  @keyframes hero-el {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* 4 · the portal window lands in 3D and blooms as it powers on */
+  html.js .portal {
+    opacity: 0;
+    transform: perspective(1100px) translateY(48px) rotateX(9deg) scale(0.975);
+    animation: portal-enter 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+  }
+
+  @keyframes portal-enter {
+    55% {
+      opacity: 1;
+    }
+    70% {
+      box-shadow:
+        0 24px 70px -28px rgba(0, 0, 0, 0.75),
+        0 0 70px -12px rgba(61, 123, 253, 0.45);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(1100px) translateY(0) rotateX(0) scale(1);
+      box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  /* after landing, the window tilts gently toward the pointer */
+  html.js .portal.landed {
+    animation: none;
+    opacity: 1;
+    transform: perspective(1100px) rotateX(var(--rx, 0deg))
+      rotateY(var(--ry, 0deg));
+    transition: transform 0.3s ease-out;
+  }
+
+  /* 5 · a comet of signal sweeps across, igniting the panes */
+  html.js .panes::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -35%;
+    width: 32%;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--signal) 55%,
+      var(--signal-core)
+    );
+    filter: drop-shadow(0 0 8px rgba(61, 123, 253, 0.8));
+    opacity: 0;
+    animation: pane-sweep 0.85s cubic-bezier(0.4, 0, 0.2, 1) 1.85s forwards;
+    pointer-events: none;
+  }
+
+  @keyframes pane-sweep {
+    0% {
+      left: -35%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      left: 103%;
+      opacity: 0;
+    }
+  }
+
+  /* 6 · pane contents ignite left to right behind the sweep */
+  html.js .pane > * {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: hero-el 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  html.js .pane:nth-child(1) > * {
+    animation-delay: 1.95s;
+  }
+  html.js .pane:nth-child(2) > * {
+    animation-delay: 2.12s;
+  }
+  html.js .pane:nth-child(3) > * {
+    animation-delay: 2.29s;
+  }
+}
+
+/* ---------- scroll reveals ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.js [data-reveal].in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* headings wipe in left to right, echoing the intro sweep */
+  html.js [data-reveal="wipe"] {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(-5% 101% -5% -1%);
+    transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.js [data-reveal="wipe"].in {
+    clip-path: inset(-5% -1% -5% -1%);
+  }
+
+  /* containers whose children cascade in */
+  html.js [data-stagger] > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html.js [data-stagger].in > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  html.js [data-stagger].in > *:nth-child(2) {
+    transition-delay: 90ms;
+  }
+  html.js [data-stagger].in > *:nth-child(3) {
+    transition-delay: 180ms;
+  }
+  html.js [data-stagger].in > *:nth-child(4) {
+    transition-delay: 270ms;
+  }
+  html.js [data-stagger].in > *:nth-child(5) {
+    transition-delay: 360ms;
+  }
+  html.js [data-stagger].in > *:nth-child(6) {
+    transition-delay: 450ms;
+  }
+  html.js [data-stagger].in > *:nth-child(7) {
+    transition-delay: 540ms;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .faq-list summary::after {
+    transition: none;
+  }
+
+  #intro {
+    display: none;
+  }
+}
