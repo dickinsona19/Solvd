@@ -1,0 +1,86 @@
+[
+  {
+    "id": "post_2200",
+    "channel": "instagram",
+    "permalink": "https://example.com/instagram/post_2200",
+    "caption": "PR Friday: Simone pulls 315 for the first time",
+    "published_at": "2026-07-11T11:30:00Z",
+    "insights": {
+      "reach": 38400,
+      "link_clicks": 902
+    },
+    "spend_cents": 12000
+  },
+  {
+    "id": "post_2207",
+    "channel": "instagram",
+    "permalink": "https://example.com/instagram/post_2207",
+    "caption": "Meet the 6am crew",
+    "published_at": "2026-07-03T11:30:00Z",
+    "insights": {
+      "reach": 21100,
+      "link_clicks": 588
+    },
+    "spend_cents": 0
+  },
+  {
+    "id": "post_2214",
+    "channel": "instagram",
+    "permalink": "https://example.com/instagram/post_2214",
+    "caption": "Marcus dropped 40 lbs in a year. Here is what he actually did",
+    "published_at": "2026-07-18T11:30:00Z",
+    "insights": {
+      "reach": 29700,
+      "link_clicks": 813
+    },
+    "spend_cents": 9000
+  },
+  {
+    "id": "post_2221",
+    "channel": "instagram",
+    "permalink": "https://example.com/instagram/post_2221",
+    "caption": "Barbell club, Tuesday 7pm, all levels",
+    "published_at": "2026-07-22T11:30:00Z",
+    "insights": {
+      "reach": 17500,
+      "link_clicks": 366
+    },
+    "spend_cents": 0
+  },
+  {
+    "id": "post_2228",
+    "channel": "facebook",
+    "permalink": "https://example.com/facebook/post_2228",
+    "caption": "Free week giveaway, tag a friend",
+    "published_at": "2026-07-07T11:30:00Z",
+    "insights": {
+      "reach": 11400,
+      "link_clicks": 494
+    },
+    "spend_cents": 15000
+  },
+  {
+    "id": "post_2235",
+    "channel": "instagram",
+    "permalink": "https://example.com/instagram/post_2235",
+    "caption": "Saturday 9am is our beginner class. No experience needed",
+    "published_at": "2026-07-26T11:30:00Z",
+    "insights": {
+      "reach": 9200,
+      "link_clicks": 205
+    },
+    "spend_cents": 0
+  },
+  {
+    "id": "post_2242",
+    "channel": "tiktok",
+    "permalink": "https://example.com/tiktok/post_2242",
+    "caption": "Gym tour: 6,000 sq ft, 14 platforms",
+    "published_at": "2026-07-15T11:30:00Z",
+    "insights": {
+      "reach": 26300,
+      "link_clicks": 271
+    },
+    "spend_cents": 0
+  }
+]

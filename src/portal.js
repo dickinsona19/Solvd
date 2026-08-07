@@ -1,23 +1,75 @@
-/* The Gym Portal demo.
+/* The Gym Portal dashboard, rendered for /demo/ and for /app/.
 
-   Every number, row and message on the page comes from demo/data/*.json.
-   This module's only jobs are turning that data into DOM and wiring the
-   interactions, so tailoring the demo means editing JSON, not markup.
+   Every number, row and message comes from data. This module's only jobs are
+   turning that data into DOM and wiring the interactions, so no content lives
+   in markup and there is one dashboard rather than two.
 
-   Scope note: only behaviour that follows directly from the data lives
-   here. The Smart Inbox is the one view with an AI layer behind it, and even
-   that reads a file: ai/run.py does the thinking offline and writes
+   Scope note: only behaviour that follows directly from the data lives here.
+   The Smart Inbox is the one view with an AI layer behind it, and even that
+   reads a file: ai/run.py does the thinking offline and writes
    demo/data/inbox-ai.json, so this module never calls a model. The churn and
    growth views still prescribe nothing. */
 
-import portal from '../demo/data/portal.json'
-import overviewData from '../demo/data/overview.json'
-import growthData from '../demo/data/growth.json'
-import churnData from '../demo/data/churn.json'
-import inboxData from '../demo/data/inbox.json'
-import inboxAi from '../demo/data/inbox-ai.json'
-import membersData from '../demo/data/members.json'
-import integrationsData from '../demo/data/integrations.json'
+import { deriveBundle } from './derive.js'
+import { mountSprite } from './icons.js'
+import { currentSession, signOut } from './session.js'
+
+/* Two data sources, one renderer. /demo/ loads the authored view models in
+   demo/data/*.json. /app/ loads a tenant's raw records from accounts/<id>/
+   and runs them through derive.js first. The page says which it wants with
+   data-portal, so neither HTML file carries any content.
+
+   Both are lazy: /app/ has no reason to ship the demo's numbers, and /demo/
+   has no reason to ship a megabyte of somebody's check-in log. */
+
+const CANNED = import.meta.glob('../demo/data/*.json', { import: 'default' })
+const RAW = import.meta.glob('../accounts/*/*.json', { import: 'default' })
+
+const CANNED_FILES = [
+  ['portal', 'portal'],
+  ['overview', 'overview'],
+  ['growth', 'growth'],
+  ['churn', 'churn'],
+  ['inbox', 'inbox'],
+  ['inboxAi', 'inbox-ai'],
+  ['members', 'members'],
+  ['integrations', 'integrations'],
+]
+
+const RAW_FILES = [
+  'account',
+  'members',
+  'visits',
+  'charges',
+  'posts',
+  'pass_claims',
+  'messages',
+]
+
+// Assigned once, before anything renders. Every renderer below reads it.
+let DATA = null
+
+async function loadCannedBundle() {
+  const loaded = await Promise.all(
+    CANNED_FILES.map(async ([key, file]) => {
+      const loader = CANNED[`../demo/data/${file}.json`]
+      if (!loader) throw new Error(`demo/data/${file}.json is missing`)
+      return [key, await loader()]
+    }),
+  )
+  return Object.fromEntries(loaded)
+}
+
+async function loadAccountBundle(id) {
+  const loaded = await Promise.all(
+    RAW_FILES.map(async (file) => {
+      const loader = RAW[`../accounts/${id}/${file}.json`]
+      if (!loader) throw new Error(`accounts/${id}/${file}.json is missing`)
+      return [file, await loader()]
+    }),
+  )
+  return deriveBundle(Object.fromEntries(loaded))
+}
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const SVG_NS = 'http://www.w3.org/2000/svg'
@@ -31,6 +83,13 @@ function append(node, children) {
     if (child === null || child === undefined || child === false) continue
     node.append(child)
   }
+}
+
+// replaceChildren stringifies anything that is not a Node, so passing it a
+// conditional child that came out null puts the word "null" on the page.
+function replace(node, ...children) {
+  node.replaceChildren()
+  append(node, children)
 }
 
 function h(tag, props, ...children) {
@@ -323,23 +382,23 @@ function barList({ total, items }) {
 
 function renderOverview(root) {
   root.append(
-    kpiRow(overviewData.kpis),
+    kpiRow(DATA.overview.kpis),
     h(
       'div',
       { class: 'split' },
-      chartPanel(overviewData.chart),
+      chartPanel(DATA.overview.chart),
       h(
         'div',
         { class: 'col' },
         panel(
           {
-            title: overviewData.attention.title,
-            aside: pill(String(overviewData.attention.items.length)),
+            title: DATA.overview.attention.title,
+            aside: pill(String(DATA.overview.attention.items.length)),
           },
           h(
             'div',
             { class: 'list' },
-            overviewData.attention.items.map((item) =>
+            DATA.overview.attention.items.map((item) =>
               h(
                 'a',
                 { href: `#${item.view}` },
@@ -351,11 +410,11 @@ function renderOverview(root) {
           ),
         ),
         panel(
-          { title: overviewData.activity.title, caption: overviewData.activity.caption },
+          { title: DATA.overview.activity.title, caption: DATA.overview.activity.caption },
           h(
             'div',
             { class: 'list feed' },
-            overviewData.activity.items.map((item) =>
+            DATA.overview.activity.items.map((item) =>
               h(
                 'div',
                 null,
@@ -372,27 +431,27 @@ function renderOverview(root) {
 
 function renderGrowth(root) {
   root.append(
-    kpiRow(growthData.kpis),
+    kpiRow(DATA.growth.kpis),
     panel(
       {
-        title: growthData.table.title,
-        caption: growthData.table.caption,
-        aside: pill(growthData.table.badge),
+        title: DATA.growth.table.title,
+        caption: DATA.growth.table.caption,
+        aside: pill(DATA.growth.table.badge),
       },
-      table(growthData.table),
+      table(DATA.growth.table),
     ),
     panel(
-      { title: growthData.bars.title, caption: growthData.bars.caption },
-      barList(growthData.bars),
+      { title: DATA.growth.bars.title, caption: DATA.growth.bars.caption },
+      barList(DATA.growth.bars),
     ),
   )
 }
 
 function renderChurn(root) {
-  const spec = churnData.table
+  const spec = DATA.churn.table
   root.append(
-    churnData.note ? h('p', { class: 'view-note', text: churnData.note }) : null,
-    kpiRow(churnData.kpis),
+    DATA.churn.note ? h('p', { class: 'view-note', text: DATA.churn.note }) : null,
+    kpiRow(DATA.churn.kpis),
     panel(
       { title: spec.title, caption: spec.caption, aside: pill(spec.badge) },
       table(spec),
@@ -404,7 +463,7 @@ function renderChurn(root) {
 }
 
 function renderMembers(root) {
-  const spec = membersData.table
+  const spec = DATA.members.table
   root.append(
     panel(
       {
@@ -419,13 +478,13 @@ function renderMembers(root) {
 
 function renderIntegrations(root) {
   root.append(
-    integrationsData.note ? h('p', { class: 'view-note', text: integrationsData.note }) : null,
+    DATA.integrations.note ? h('p', { class: 'view-note', text: DATA.integrations.note }) : null,
     panel(
       {
-        title: integrationsData.title,
-        caption: `${integrationsData.items.filter((item) => item.live).length} connected`,
+        title: DATA.integrations.title,
+        caption: `${DATA.integrations.items.filter((item) => item.live).length} connected`,
       },
-      integrationsData.items.map((item) =>
+      DATA.integrations.items.map((item) =>
         h(
           'div',
           { class: 'integration' },
@@ -447,15 +506,14 @@ function renderIntegrations(root) {
    model, so refreshing costs nothing. A thread with no cached entry still
    renders: it just gets an empty composer and sorts as low priority. */
 
-const AI = inboxAi.results || {}
 const RANK = { high: 0, medium: 1, low: 2 }
 
-const aiFor = (thread) => AI[thread.id]
+const aiFor = (thread) => DATA.inboxAi.results?.[thread.id]
 const rankOf = (thread) => RANK[aiFor(thread)?.sort.priority] ?? RANK.low
 
 function categoryOf(thread) {
   const key = aiFor(thread)?.sort.category
-  return key ? inboxData.ui.categories[key] || key : ''
+  return key ? DATA.inbox.ui.categories[key] || key : ''
 }
 
 // Each comparator falls through to age, so the order is total and the list
@@ -472,7 +530,8 @@ const SORTS = {
 let listHost = null
 let detailHost = null
 let openThread = ''
-let sortMode = (inboxData.ui.sorts.find((s) => s.active) || inboxData.ui.sorts[0]).id
+// Set once the data is in, since the options come from it.
+let sortMode = ''
 const replied = new Set()
 
 function renderInbox(root) {
@@ -485,9 +544,9 @@ function renderInbox(root) {
       class: 'range',
       id: 'thread-sort',
       role: 'group',
-      'aria-label': inboxData.ui.sortLabel,
+      'aria-label': DATA.inbox.ui.sortLabel,
     },
-    inboxData.ui.sorts.map((option) =>
+    DATA.inbox.ui.sorts.map((option) =>
       h('button', {
         type: 'button',
         'data-sort': option.id,
@@ -500,9 +559,9 @@ function renderInbox(root) {
   root.append(
     panel(
       {
-        title: inboxData.title,
-        caption: inboxData.caption,
-        aside: h('div', { class: 'panel-tools' }, sorts, pill(inboxData.badge)),
+        title: DATA.inbox.title,
+        caption: DATA.inbox.caption,
+        aside: h('div', { class: 'panel-tools' }, sorts, pill(DATA.inbox.badge)),
       },
       h('div', { class: 'inbox' }, listHost, detailHost),
     ),
@@ -517,12 +576,12 @@ function priorityTag(priority) {
     'span',
     { class: `prio is-${priority}` },
     h('i', { 'aria-hidden': 'true' }),
-    inboxData.ui.priorities[priority] || priority,
+    DATA.inbox.ui.priorities[priority] || priority,
   )
 }
 
 function renderThreadList() {
-  const threads = [...inboxData.threads].sort(SORTS[sortMode] || SORTS.newest)
+  const threads = [...DATA.inbox.threads].sort(SORTS[sortMode] || SORTS.newest)
   if (!threads.some((thread) => thread.id === openThread)) {
     openThread = threads[0]?.id || ''
   }
@@ -551,7 +610,7 @@ function renderThreadList() {
           'span',
           { class: 'thread-tags' },
           replied.has(thread.id)
-            ? pill({ label: inboxData.ui.replied, tone: 'signal' })
+            ? pill({ label: DATA.inbox.ui.replied, tone: 'signal' })
             : pill(categoryOf(thread) || thread.status),
           sorted ? priorityTag(sorted.priority) : null,
         ),
@@ -630,13 +689,14 @@ function composer(thread, entry, ui) {
 function renderThreadDetail() {
   if (!detailHost) return
 
-  const thread = inboxData.threads.find((item) => item.id === openThread)
+  const thread = DATA.inbox.threads.find((item) => item.id === openThread)
   if (!thread) return
 
-  const ui = inboxData.ui
+  const ui = DATA.inbox.ui
   const entry = aiFor(thread)
 
-  detailHost.replaceChildren(
+  replace(
+    detailHost,
     h(
       'div',
       { class: 'member-card' },
@@ -679,19 +739,19 @@ function renderThreadDetail() {
 /* ---------- shell ---------- */
 
 function renderShell() {
-  document.getElementById('product-label').textContent = portal.product
-  document.getElementById('gym-mark').textContent = portal.initials
-  document.getElementById('gym-name').prepend(portal.name)
-  document.getElementById('gym-members').textContent = portal.members
-  document.getElementById('user-initials').textContent = portal.user.initials
-  document.getElementById('user-name').textContent = portal.user.name
-  document.getElementById('user-role').textContent = portal.user.role
-  document.getElementById('sync-label').textContent = portal.sync
-  document.getElementById('portal-search').placeholder = portal.searchPlaceholder
+  document.getElementById('product-label').textContent = DATA.portal.product
+  document.getElementById('gym-mark').textContent = DATA.portal.initials
+  document.getElementById('gym-name').prepend(DATA.portal.name)
+  document.getElementById('gym-members').textContent = DATA.portal.members
+  document.getElementById('user-initials').textContent = DATA.portal.user.initials
+  document.getElementById('user-name').textContent = DATA.portal.user.name
+  document.getElementById('user-role').textContent = DATA.portal.user.role
+  document.getElementById('sync-label').textContent = DATA.portal.sync
+  document.getElementById('portal-search').placeholder = DATA.portal.searchPlaceholder
 
   const nav = document.getElementById('rail-nav')
-  nav.append(h('p', { class: 'label-mono', text: portal.navLabel }))
-  for (const view of portal.views) {
+  nav.append(h('p', { class: 'label-mono', text: DATA.portal.navLabel }))
+  for (const view of DATA.portal.views) {
     nav.append(
       h(
         'a',
@@ -709,7 +769,7 @@ function renderShell() {
   }
 
   const range = document.getElementById('range')
-  for (const item of portal.ranges) {
+  for (const item of DATA.portal.ranges) {
     range.append(
       h('button', {
         type: 'button',
@@ -720,7 +780,8 @@ function renderShell() {
   }
 
   const host = document.getElementById('views')
-  for (const view of portal.views) {
+  for (const view of DATA.portal.views) {
+    VIEWS.set(view.id, view)
     host.append(
       h(
         'section',
@@ -729,6 +790,9 @@ function renderShell() {
       ),
     )
   }
+
+  DEFAULT_VIEW = DATA.portal.views[0].id
+  sortMode = (DATA.inbox.ui.sorts.find((s) => s.active) || DATA.inbox.ui.sorts[0]).id
 }
 
 /* ---------- routing ---------- */
@@ -742,10 +806,11 @@ const RENDERERS = {
   integrations: renderIntegrations,
 }
 
-const VIEWS = new Map(portal.views.map((view) => [view.id, view]))
-const DEFAULT_VIEW = portal.views[0].id
+// Both are filled by renderShell, because the view list is data now.
+const VIEWS = new Map()
 const built = new Set()
 
+let DEFAULT_VIEW = ''
 let currentView = ''
 
 // Re-running the entrance animation needs a forced reflow between
@@ -881,6 +946,63 @@ function wireInteractions() {
 
 /* ---------- boot ---------- */
 
-renderShell()
-wireInteractions()
-activate(window.location.hash.slice(1))
+// Data now arrives over the network, so failure is a state the page has to be
+// able to show rather than a blank screen with something in the console.
+function showFailure(message) {
+  const stage = document.querySelector('.stage') || document.body
+  stage.replaceChildren(
+    h(
+      'div',
+      { class: 'noscript' },
+      h('p', { text: message }),
+      h('p', null, h('a', { href: '/' }, 'Return to SOLVD')),
+    ),
+  )
+}
+
+function wireSignOut() {
+  const button = document.querySelector('[data-signout]')
+  if (!button) return
+
+  button.addEventListener('click', (event) => {
+    event.preventDefault()
+    signOut()
+    window.location.replace('/login/')
+  })
+}
+
+async function boot() {
+  mountSprite()
+  const account = document.body.dataset.portal === 'account'
+
+  try {
+    if (account) {
+      const session = currentSession()
+      if (!session) {
+        // Not a security boundary, just the sensible landing spot for someone
+        // arriving without a session. Read the warning in session.js.
+        window.location.replace('/login/')
+        return
+      }
+      DATA = await loadAccountBundle(session.account)
+    } else {
+      DATA = await loadCannedBundle()
+    }
+  } catch (error) {
+    showFailure(`This dashboard could not load its data. ${error.message}`)
+    return
+  }
+
+  if (account) {
+    document.title = `${DATA.portal.name} — ${DATA.portal.product}`
+    const label = document.querySelector('[data-account-label]')
+    if (label) label.textContent = DATA.portal.name
+  }
+
+  renderShell()
+  wireInteractions()
+  wireSignOut()
+  activate(window.location.hash.slice(1))
+}
+
+boot()

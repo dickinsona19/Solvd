@@ -244,10 +244,35 @@ section {
   font-size: 0.9375rem;
 }
 
-/* two buttons have to share the bar with the wordmark on a phone */
+/* Existing clients know what they came for, so the way in is a plain link.
+   A third button would make the header a row of competing buttons. */
+.nav-login {
+  padding: 0.6rem 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-login:hover {
+  color: var(--ink);
+}
+
+/* the bar gets crowded once the wordmark has three things to share it with */
+@media (max-width: 46rem) {
+  .nav-cta {
+    gap: 0.25rem;
+  }
+}
+
 @media (max-width: 34rem) {
   .site-header .btn {
     padding: 0.55rem 0.7rem;
+    font-size: 0.8125rem;
+  }
+
+  .nav-login {
+    padding: 0.55rem 0.4rem;
     font-size: 0.8125rem;
   }
 }
@@ -1004,6 +1029,106 @@ section {
   grid-column: 1 / -1;
   font-size: 0.875rem;
   color: var(--muted);
+}
+
+/* ---------- login ---------- */
+
+.auth {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1.25rem;
+}
+
+.auth-stage {
+  width: 100%;
+  max-width: 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.auth-brand img {
+  display: block;
+  width: 108px;
+  height: auto;
+}
+
+.auth-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.auth-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.auth-head h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.auth-sub {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.auth-form .btn {
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* The one warm colour on the marketing side, and only for a failed sign-in.
+   The value matches --alert in portal.css, which this page does not load. */
+.auth-error {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(255, 138, 91, 0.38);
+  border-radius: 8px;
+  background: rgba(255, 138, 91, 0.13);
+  color: #ff8a5b;
+  font-size: 0.875rem;
+}
+
+.auth-demo {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.auth-demo code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: var(--panel-2, rgba(255, 255, 255, 0.05));
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--body);
+}
+
+.auth-foot {
+  font-size: 0.875rem;
+  color: var(--muted);
+  text-align: center;
 }
 
 /* ---------- footer ---------- */

@@ -110,10 +110,37 @@
   color: var(--muted);
 }
 
+/* On /app/ the pill is not a way out, it is who you are signed in as, so it
+   does not take hover or move its icon. The tag becomes the log out button. */
+.return-pill.is-account {
+  cursor: default;
+  color: var(--body);
+}
+
+.return-pill.is-account:hover {
+  border-color: var(--line-strong);
+  color: var(--body);
+}
+
+.return-pill.is-account .return-tag {
+  appearance: none;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  background: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.return-pill.is-account .return-tag:hover {
+  color: var(--ink);
+}
+
 /* ---------- no-JS notice ---------- */
 
-/* This page is the one place on the site that needs JS: the views are
-   rendered from demo/data/*.json. */
+/* The dashboard pages are the one place on the site that needs JS: every view
+   is rendered from data. */
 .noscript {
   position: absolute;
   inset: 3.35rem 0.8rem 0.8rem;

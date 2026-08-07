@@ -1,9 +1,10 @@
 # SOLVD — getsolvd.io
 
 Static site for SOLVD, a two-person software firm in Charlotte, NC, and its
-flagship product, The Gym Portal. Three pages, no client framework: all copy
-ships in the initial HTML so crawlers and link previews get the full page with
-JS disabled.
+flagship product, The Gym Portal. No client framework: on the marketing pages
+all copy ships in the initial HTML, so crawlers and link previews get the full
+page with JS disabled. The two dashboard routes are the exception and render
+from data at runtime.
 
 Color, type, voice, and motion rules live in [DESIGN.md](DESIGN.md). Read it
 before changing anything visual, but see "Loose ends" below first, because parts
@@ -20,9 +21,9 @@ of it describe an implementation that was never built.
 No React, no Tailwind, no runtime dependencies. `package.json` has exactly two
 devDependencies, and that is deliberate.
 
-The Smart Inbox agent in `ai/` is Python and LangGraph, but it is a build-time
-tool, not part of the site. It runs on your machine, writes a JSON file, and
-ships nothing to the browser. See "The Smart Inbox agent" below.
+Two Python pieces sit beside the site rather than in it, and neither ships to
+the browser: the Smart Inbox agent in `ai/`, and the test-account data
+generator in `accounts/generate.py`. Both are build-time tools that write JSON.
 
 ## Getting started
 
@@ -44,22 +45,29 @@ Then open the printed local URL (defaults to http://localhost:5173).
 
 ## Pages
 
-| Route      | Source               | Job                                                       |
-| ---------- | -------------------- | --------------------------------------------------------- |
-| `/`        | `index.html`         | The Gym Portal sales page: hero, pricing, proof, FAQ, form |
-| `/custom/` | `custom/index.html`  | Custom builds and technical partnerships                  |
-| `/demo/`   | `demo/index.html`    | Interactive product demo on sample data, `noindex`         |
+| Route      | Source              | Job                                                        |
+| ---------- | ------------------- | ---------------------------------------------------------- |
+| `/`        | `index.html`        | The Gym Portal sales page: hero, pricing, proof, FAQ, form  |
+| `/custom/` | `custom/index.html` | Custom builds and technical partnerships                   |
+| `/demo/`   | `demo/index.html`   | Product demo on hand-written sample data, `noindex`         |
+| `/login/`  | `login/index.html`  | Client sign in. A prototype facade, see below               |
+| `/app/`    | `app/index.html`    | The signed-in client dashboard, derived from raw records    |
 
 Every page needs an entry in `rollupOptions.input` in `vite.config.js` or it
 will not be built.
+
+`/demo/` and `/app/` are the same dashboard. They differ only in where the
+numbers come from, which is what `data-portal` on the `<body>` selects.
 
 ## Structure
 
 ```
 index.html            # /
 custom/index.html     # /custom/
+login/index.html      # /login/
+app/index.html        # /app/  — same shell as the demo, data-portal="account"
 demo/
-  index.html          # /demo/ — a shell: the icon sprite and the containers JS fills
+  index.html          # /demo/ — a shell: just the containers JS fills
   data/               # every number, row and message in the demo, as JSON
     portal.json       #   gym, user, date ranges, and the view list that builds the nav
     overview.json     #   KPIs, the members chart series, attention list, activity feed
@@ -69,70 +77,147 @@ demo/
     inbox-ai.json     #   what the agent made of each message. Generated, see below
     members.json      #   the roster table
     integrations.json #   connection list and sync status
+accounts/
+  generate.py         # seeded generator. Rewrites test/ from scratch, deterministically
+  test/               # raw records for the 'test' account, in integration shape
+    account.json      #   gym, owner, connections, and the as-of date everything is scored against
+    members.json      #   one row per member ever: plan, price, joined, cancelled, acquisition
+    visits.json       #   ~6k check-ins. The only source for every risk score
+    charges.json      #   ten months of billing, including failures
+    posts.json        #   social posts with reach and clicks
+    pass_claims.json  #   free-pass claims, some of which converted
+    messages.json     #   member email, addressed from real rows in members.json
 src/
-  site.css            # tokens + every marketing-page style. All three pages load it
+  site.css            # tokens + every marketing-page style. /, /custom/ and /login/ load it
   site.js             # brand intro, hero portal tilt, scroll reveals, stat count-ups
-  demo.css            # the demo app shell only. Loads after site.css and reuses its tokens
-  demo.js             # renders demo/data into DOM, plus routing and interactions
+  portal.css          # the dashboard shell only. Loads after site.css and reuses its tokens
+  portal.js           # renders a data bundle into DOM, plus routing and interactions
+  derive.js           # raw records -> the view models portal.js renders. /app/ only
+  icons.js            # the SVG sprite, injected by JS so both dashboards share one copy
+  session.js          # the hardcoded login. Not security, see below
+  login.js            # the /login/ form
 ai/                   # the Smart Inbox agent. Runs offline, ships nothing to the browser
   graph.py            #   the LangGraph: sort, then route to a drafter per category
   prompts.py          #   gym facts, what the agent may promise, and the voice rules
   run.py              #   the runner and the cache. Writes demo/data/inbox-ai.json
   requirements.txt    #   langgraph, langchain-openai, pydantic, python-dotenv
 public/               # served from the root: favicons, OG image, wordmark, photo, robots, sitemap
-vite.config.js        # the three build inputs
+vite.config.js        # the five build inputs
 DESIGN.md             # color, type, voice, motion
 ```
 
-`site.js` is loaded by `/` and `/custom/`. `/demo/` loads `demo.js` instead.
+`site.js` is loaded by `/` and `/custom/`. `/demo/` and `/app/` load
+`portal.js` instead. `/login/` loads `login.js`.
 
 ## Conventions
 
 - **Tokens, not hex values.** Everything is a custom property in `:root` at the
   top of `src/site.css`: `--void`, `--panel`, `--line`, `--ink`, `--body`,
-  `--muted`, `--signal`. `src/demo.css` adds one warm `--alert` hue, used only
+  `--muted`, `--signal`. `src/portal.css` adds one warm `--alert` hue, used only
   for churn risk and negative deltas, because a product needs a negative state
   the marketing pages never do.
 - **Progressive enhancement is a hard rule.** Both scripts are optional. With JS
-  off, every page renders complete and static: the intro overlay never mounts,
-  reveals stay visible, and stats show their final values. Keep it that way.
-  `/demo/` is the one exception: it renders its views from JSON at runtime, so
-  it needs JS and says so in a `<noscript>` notice.
+  off, every marketing page renders complete and static: the intro overlay
+  never mounts, reveals stay visible, and stats show their final values. Keep it
+  that way. The dashboards are the exception: `/demo/` and `/app/` build their
+  views from data at runtime, so they need JS and say so in a `<noscript>`
+  notice.
 - **Motion lives in one place.** Each stylesheet ends with a motion layer gated
   on `prefers-reduced-motion: no-preference`, plus (on the marketing pages) an
   `html.js` class that JS only adds when it can actually run the reveals.
 - **Accent budget.** Roughly one use of `--signal` per section, often zero. If
   you add color somewhere, remove it somewhere else. See DESIGN.md §2 and §3.
 
-## The demo, and where its data comes from
+## The dashboard, and where its data comes from
 
-Every number, row, and message lives in `demo/data/*.json`. There is no API and
-no database: the JSON is imported at build time and rendered into the DOM by
-`src/demo.js`, so tailoring the demo means editing JSON, never markup.
+One renderer, `src/portal.js`, draws both dashboards. It never reaches for a
+file directly: it is handed a bundle of view models, and `data-portal` on the
+`<body>` decides who assembles that bundle.
 
-- **To change what the demo shows,** edit the JSON. `demo/index.html` is only a
-  shell (icon sprite, return pill, and the containers the renderer fills), and
-  the views are built on first visit.
+| `data-portal` | Route    | Bundle                                                          |
+| ------------- | -------- | --------------------------------------------------------------- |
+| `demo`        | `/demo/` | `demo/data/*.json`, already in view-model shape, used as-is      |
+| `account`     | `/app/`  | `accounts/<id>/*.json` raw records, run through `src/derive.js`   |
+
+Both paths are lazy: `import.meta.glob` keeps each account's records out of the
+demo's bundle and vice versa. There is no API and no database anywhere.
+
+### Shared rules
+
 - **Values, not coordinates.** The members chart holds twelve monthly counts
-  plus a `min`/`max`; `demo.js` maps those to SVG geometry. Sparklines are plain
-  arrays and auto-scale to their own range. Bar widths come from `value / total`.
-- **Adding a view** means adding an entry to `views` in `portal.json` (which
-  builds the nav, the route, and the container) and a renderer in `demo.js`.
-- **Emphasis in copy** is marked with `*asterisks*`, so no JSON field ever has
-  to carry HTML: `"Payment received: *$149* from Priya Shah"`.
+  plus a `min`/`max`; `portal.js` maps those to SVG geometry. Sparklines are
+  plain arrays and auto-scale to their own range. Bar widths are `value / total`.
+- **Adding a view** means adding an entry to `views` in the portal model (which
+  builds the nav, the route, and the container) and a renderer in `portal.js`.
+- **Emphasis in copy** is marked with `*asterisks*`, so no field ever has to
+  carry HTML: `"Payment received: *$149* from Priya Shah"`.
 - **Nodes, not HTML strings.** The renderer builds elements and sets
   `textContent`, so copy containing quotes or apostrophes cannot break markup.
 - **Interactions are in-memory.** Sending a reply and the date-range control
   change local state only and reset on reload. The range buttons do not
   re-filter the data.
 
+### The demo: hand-written JSON
+
+Every number, row, and message in `/demo/` lives in `demo/data/*.json`, already
+shaped the way the renderer wants it. Tailoring the demo means editing JSON,
+never markup. The gym, the members, and every figure are invented; the page
+labels itself "Sample data" in the return pill and is `noindex`.
+
+### The client portal: raw records, derived at runtime
+
+`/app/` exists to prove the harder half. `accounts/test/` holds records in the
+shape an integration would actually hand over — snake_case keys, ISO
+timestamps, foreign keys, nulls, cancelled members still in the table — and
+nothing pre-computed. `src/derive.js` turns those into every KPI, chart series,
+churn score, and attribution figure on the page. That derivation is the part
+worth keeping: point it at real Mindbody and Stripe exports and the dashboard
+above it does not change.
+
+A few consequences worth knowing:
+
+- **`visits.json` is the only input to risk.** Recency is a decaying curve
+  rather than a threshold, so a member missing 100 days always outranks one
+  missing 40. Frequency drop, tenure, and failed charges adjust from there. The
+  bands are just cutoffs on that score.
+- **Trailing windows, not calendar months.** Revenue compares the last 30 days
+  against the previous 30, because a calendar month is a partial number for all
+  but one day of it.
+- **Everything is scored against `account.as_of`,** not the wall clock, so the
+  dashboard reads the same in a year as it does today.
+- **The counts agree across views by construction.** The flagged KPI on Overview
+  and the churn table are the same list, filtered once.
+
+To reshape the test gym, edit the constants at the top of `accounts/generate.py`
+and re-run it. It is seeded, so the output is byte-identical between runs and
+belongs in the commit alongside the script:
+
+```bash
+python accounts/generate.py
+```
+
 Outside the Smart Inbox, only behaviour that reads directly out of the data is
 implemented. The churn table reports risk scores and signals without
 prescribing what to do about them, and Growth attributes members to posts
 without recommending the next one. Those stay unbuilt on purpose.
 
-The gym, the members, and every figure are invented. The page labels itself
-"Sample data" in the return pill and is `noindex`.
+## The login is a facade
+
+`/login/` is a prototype. **It is not authentication and must not be treated as
+any.** `src/session.js` holds the username and password as plain text in
+client-side JavaScript, compares them in the browser, and records success in
+`sessionStorage`. That means:
+
+- The credentials ship to anyone who opens the built JS. `test` / `1234`.
+- The `/app/` gate is a redirect, not a check. Anyone can skip it.
+- `accounts/test/*.json` is served as a static asset to whoever asks. There is
+  no per-account authorization because there is no server to enforce one.
+
+This is fine for what it is: a way to show a client their own dashboard shape
+without standing up a backend. Every member, charge, and message in
+`accounts/test/` is generated, so nothing real is exposed. Before this holds
+anything real it needs a server, a session it issues, and per-account data
+access — which is a rewrite of this seam, not a patch to it.
 
 ## The Smart Inbox agent
 
@@ -142,7 +227,7 @@ category and a priority, then drafts a reply the owner can edit and send.
 **It runs offline, not in the browser.** A static site cannot hold an API key,
 and paying for a model call every time someone refreshes a demo would be
 absurd. So `ai/run.py` does the work on your machine and writes
-`demo/data/inbox-ai.json`; `src/demo.js` imports that file like any other data.
+`demo/data/inbox-ai.json`; `src/portal.js` loads it like any other data.
 The browser never talks to OpenAI, and the key never leaves `.env`.
 
 ```bash
@@ -190,10 +275,10 @@ python ai/run.py --force   # ignore the cache
 ```
 
 Every thread in `inbox.json` therefore needs a stable `id`: it is the cache
-key, and `run.py` refuses to start without one. `demo.js` keys open and
+key, and `run.py` refuses to start without one. `portal.js` keys open and
 replied state off the same id, since sorting makes array position meaningless.
 
-### What the demo shows
+### What the inbox shows
 
 Category and priority appear on each row, and the sort control offers priority,
 newest, or category. Open a message and you also get the sort rationale, the
@@ -202,6 +287,10 @@ commit to, and a "Read this one first" flag when `needs_human` is set. A thread
 with no cached entry still renders: it sorts as low priority and gets an empty
 composer.
 
+Only `/demo/` has a cache today, so every thread in `/app/` takes that empty-
+composer path. Pointing the agent at an account's `messages.json` is the same
+run with a different input and output path.
+
 ## Before launch
 
 - The form `action` in `index.html` is still `https://formspree.io/f/REPLACE_ME`.
@@ -209,6 +298,9 @@ composer.
 - Confirm the LinkedIn URL in the footer of `/` and `/custom/`.
 - `public/sitemap.xml` lists `/` and `/custom/` only. `/demo/` is excluded on
   purpose, since it is sample data.
+- **Replace the login before it guards anything real.** See "The login is a
+  facade" above. `/login/` and `/app/` are `noindex` and belong nowhere near a
+  paying client's data as written.
 
 ## Loose ends
 

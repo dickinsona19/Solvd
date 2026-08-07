@@ -7,13 +7,10 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <title>Live demo — The Gym Portal | SOLVD</title>
-    <meta
-      name="description"
-      content="An interactive walkthrough of the Gym Portal: growth attribution, churn radar, and the member inbox, running on sample data."
-    />
-    <!-- A product demo on sample data has nothing to offer search. -->
-    <meta name="robots" content="noindex, follow" />
+    <title>Your portal | SOLVD</title>
+    <meta name="description" content="The Gym Portal dashboard for your gym." />
+    <!-- A signed-in dashboard has nothing to offer search. -->
+    <meta name="robots" content="noindex, nofollow" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,30 +23,28 @@
   </head>
 
   <!--
-    This page is a shell. Every number, row and message is rendered by
-    src/portal.js from the JSON in demo/data/, so the only content here is
-    chrome: the return pill and the containers the renderer fills. The icon
-    sprite is injected by src/icons.js, since /app/ needs it too.
+    The same shell as /demo/, and the same renderer. The only difference is
+    data-portal="account", which tells src/portal.js to look up the signed-in
+    account, load its raw records from accounts/<id>/, and derive the views
+    from them instead of reading the demo's authored JSON.
 
-    data-portal="demo" is what tells portal.js to load the authored demo data
-    rather than a tenant's raw records. Unlike / and /custom/, this page needs
-    JS to render.
+    Anyone without a session gets sent to /login/. That is a convenience, not
+    a security boundary: this page is static and the credentials live in the
+    bundle. See the warning at the top of src/session.js.
   -->
 
-  <body class="demo" data-portal="demo">
+  <body class="demo" data-portal="account">
     <div class="stage">
-      <!-- The only chrome on the page: the way back out. -->
-      <a class="return-pill" href="/">
-        <svg class="icon" aria-hidden="true"><use href="#i-back" /></svg>
-        <span>Return to SOLVD</span>
-        <span class="return-tag">Sample data</span>
-      </a>
+      <div class="return-pill is-account">
+        <span class="pulse"></span>
+        <span data-account-label>Your portal</span>
+        <button class="return-tag" type="button" data-signout>Log out</button>
+      </div>
 
       <noscript>
         <div class="noscript">
           <p>
-            The portal demo is an interactive app and needs JavaScript to
-            render. Everything else on the site works without it.
+            The portal is an interactive app and needs JavaScript to render.
           </p>
           <p><a href="/">Return to SOLVD</a></p>
         </div>

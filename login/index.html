@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070E1C" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>Log in | SOLVD</title>
+    <meta name="description" content="Sign in to your gym's portal." />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..500&family=Geist:wght@400..600&family=Geist+Mono:wght@400..500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/site.css" />
+  </head>
+
+  <!--
+    The form works without JS in the sense that it renders and is readable,
+    but signing in needs src/login.js, because there is no server to post to.
+    That is the honest summary of this whole page: it is a prototype gate, not
+    authentication. See src/session.js.
+  -->
+
+  <body class="auth">
+    <main class="auth-stage">
+      <a class="auth-brand" href="/">
+        <img src="/solvd-wordmark.png" alt="SOLVD" width="292" height="56" />
+      </a>
+
+      <div class="auth-card">
+        <div class="auth-head">
+          <p class="label-mono">Client sign in</p>
+          <h1>Your gym's portal</h1>
+          <p class="auth-sub">
+            One login for growth, retention, and the member inbox.
+          </p>
+        </div>
+
+        <form class="auth-form" id="login-form" novalidate>
+          <div class="field">
+            <label for="username">Account</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              autocapitalize="none"
+              spellcheck="false"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+
+          <p class="auth-error" id="login-error" role="alert" hidden></p>
+
+          <button class="btn btn-signal" type="submit">Open my portal</button>
+        </form>
+
+              <p class="auth-demo">
+                Prototype credentials: <code>test</code> / <code>1234</code> — no
+                real gym data lives here yet.
+              </p>
+      </div>
+
+      <p class="auth-foot">
+        Not a client? <a href="/demo/">Walk through the demo</a> or
+        <a href="/#get-portal">get your gym's portal</a>.
+      </p>
+    </main>
+
+    <script type="module" src="/src/login.js"></script>
+  </body>
+</html>

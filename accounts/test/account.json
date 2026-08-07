@@ -1,0 +1,131 @@
+{
+  "id": "test",
+  "as_of": "2026-08-08T00:45:00Z",
+  "gym": {
+    "name": "Northside Barbell",
+    "short_name": "Northside",
+    "city": "Durham, NC",
+    "timezone": "America/New_York",
+    "support_email": "front@northsidebarbell.com"
+  },
+  "owner": {
+    "name": "Ray Whitfield",
+    "email": "ray@northsidebarbell.com",
+    "role": "Owner"
+  },
+  "plans": [
+    {
+      "id": "plan_unlimited",
+      "name": "Unlimited",
+      "price_cents": 15900,
+      "visits_per_week": null
+    },
+    {
+      "id": "plan_3x",
+      "name": "3x / week",
+      "price_cents": 12900,
+      "visits_per_week": 3
+    },
+    {
+      "id": "plan_open",
+      "name": "Open gym",
+      "price_cents": 8900,
+      "visits_per_week": null
+    }
+  ],
+  "class_slots": [
+    {
+      "id": "slot_0600",
+      "label": "Strength 6:00a",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "hour": 6
+    },
+    {
+      "id": "slot_0915",
+      "label": "Strength 9:15a",
+      "weekdays": [
+        0,
+        2,
+        4
+      ],
+      "hour": 9
+    },
+    {
+      "id": "slot_1730",
+      "label": "Strength 5:30p",
+      "weekdays": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "hour": 17
+    },
+    {
+      "id": "slot_1900",
+      "label": "Barbell club 7:00p",
+      "weekdays": [
+        1,
+        3
+      ],
+      "hour": 19
+    },
+    {
+      "id": "slot_sat",
+      "label": "Saturday 9:00a",
+      "weekdays": [
+        5
+      ],
+      "hour": 9
+    }
+  ],
+  "integrations": [
+    {
+      "id": "mindbody",
+      "name": "Mindbody",
+      "scope": "Members, bookings, billing history",
+      "status": "connected",
+      "last_sync_at": "2026-08-08T00:39:00Z",
+      "expires_at": null
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram, via the Meta API",
+      "scope": "Posts, reach, link clicks, free pass claims",
+      "status": "connected",
+      "last_sync_at": "2026-08-07T23:12:00Z",
+      "expires_at": "2026-08-16T11:40:00Z"
+    },
+    {
+      "id": "gmail",
+      "name": "Member inbox, Google Workspace",
+      "scope": "Reads member email so replies live in one place",
+      "status": "connected",
+      "last_sync_at": "2026-08-08T00:42:00Z",
+      "expires_at": null
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "scope": "Payments, refunds, failed charge recovery",
+      "status": "connected",
+      "last_sync_at": "2026-08-07T22:30:00Z",
+      "expires_at": null
+    },
+    {
+      "id": "zen_planner",
+      "name": "Zen Planner",
+      "scope": "Available if you migrate from Mindbody",
+      "status": "not_connected",
+      "last_sync_at": null,
+      "expires_at": null
+    }
+  ]
+}

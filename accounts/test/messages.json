@@ -1,0 +1,138 @@
+[
+  {
+    "id": "msg_9100",
+    "thread_id": "thr_9100",
+    "from": {
+      "name": "Damon Whitfield",
+      "email": "damon.whitfield@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "Freeze my membership for September?",
+    "body_text": "Hey! I'm on the road for work almost all of September and won't be able to get in. Can I freeze instead of cancelling? I'd rather not lose the rate I'm on.",
+    "received_at": "2026-08-07T22:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1061"
+  },
+  {
+    "id": "msg_9101",
+    "thread_id": "thr_9101",
+    "from": {
+      "name": "Curtis Boone",
+      "email": "curtis1@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "free pass from the beginner post",
+    "body_text": "Saw the Saturday 9am post and grabbed the free pass. I've never touched a barbell, is that class actually okay for someone starting from zero?",
+    "received_at": "2026-08-07T21:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": null
+  },
+  {
+    "id": "msg_9102",
+    "thread_id": "thr_9102",
+    "from": {
+      "name": "Ingrid Ellis",
+      "email": "ingrid.ellis@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "Switching to the 6am",
+    "body_text": "My hours changed and 5:30 doesn't work anymore. Can I move to the 6am starting next week?",
+    "received_at": "2026-08-07T03:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1249"
+  },
+  {
+    "id": "msg_9103",
+    "thread_id": "thr_9103",
+    "from": {
+      "name": "Pete Bright",
+      "email": "pete.bright@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "charged twice this month",
+    "body_text": "I show two charges from you this month. Can you check? Happy to keep the membership, just want the extra one back.",
+    "received_at": "2026-08-06T22:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1248"
+  },
+  {
+    "id": "msg_9104",
+    "thread_id": "thr_9104",
+    "from": {
+      "name": "Jonah Vance",
+      "email": "jonah.vance@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "cancelling at the end of the month",
+    "body_text": "I want to cancel at the end of the month. Work has been brutal and I haven't been in for weeks, so I'm paying for nothing right now.",
+    "received_at": "2026-08-06T04:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1099"
+  },
+  {
+    "id": "msg_9105",
+    "thread_id": "thr_9105",
+    "from": {
+      "name": "Pete Pace",
+      "email": "pete.pace@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "childcare during the morning classes?",
+    "body_text": "Is there any childcare in the mornings? That's genuinely the only thing stopping me from coming back.",
+    "received_at": "2026-08-05T21:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1151"
+  },
+  {
+    "id": "msg_9106",
+    "thread_id": "thr_9106",
+    "from": {
+      "name": "Colin Haddad",
+      "email": "colin.haddad@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "shoulder is bugging me",
+    "body_text": "Tweaked my shoulder overhead pressing on Tuesday. Should I skip the barbell club this week or is there something I can do instead?",
+    "received_at": "2026-08-05T04:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1245"
+  },
+  {
+    "id": "msg_9107",
+    "thread_id": "thr_9107",
+    "from": {
+      "name": "Rosa Whitfield",
+      "email": "rosa.whitfield@example.com"
+    },
+    "to": "front@northsidebarbell.com",
+    "subject": "Bringing a friend Saturday",
+    "body_text": "Can I bring my sister to the Saturday class? She's visiting from Raleigh and wants to try it.",
+    "received_at": "2026-08-04T23:40:00Z",
+    "labels": [
+      "INBOX",
+      "UNREAD"
+    ],
+    "member_id": "mbr_1213"
+  }
+]

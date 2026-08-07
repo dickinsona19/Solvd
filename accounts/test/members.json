@@ -1,0 +1,4802 @@
+[
+  {
+    "id": "mbr_1001",
+    "first_name": "Victor",
+    "last_name": "Kaur",
+    "email": "victor.kaur@example.com",
+    "phone": "+19195990991",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2023-09-25",
+    "cancelled_at": "2024-08-30",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1002",
+    "first_name": "June",
+    "last_name": "Bright",
+    "email": "june.bright@example.com",
+    "phone": "+19195323230",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-09-27",
+    "cancelled_at": "2024-10-02",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1003",
+    "first_name": "Victor",
+    "last_name": "Ellis",
+    "email": "victor.ellis@example.com",
+    "phone": "+19197029961",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2023-10-03",
+    "cancelled_at": "2026-02-04",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1004",
+    "first_name": "Marcus",
+    "last_name": "Amari",
+    "email": "marcus.amari@example.com",
+    "phone": "+19197557029",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-10-06",
+    "cancelled_at": "2024-09-21",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1005",
+    "first_name": "Jordan",
+    "last_name": "Nassar",
+    "email": "jordan.nassar@example.com",
+    "phone": "+19198358481",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2023-10-10",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1006",
+    "first_name": "Omar",
+    "last_name": "Lund",
+    "email": "omar.lund@example.com",
+    "phone": "+19199107749",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-10-12",
+    "cancelled_at": "2024-06-13",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1007",
+    "first_name": "Alicia",
+    "last_name": "Reyes",
+    "email": "alicia.reyes@example.com",
+    "phone": "+19197280250",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2023-10-16",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1008",
+    "first_name": "Curtis",
+    "last_name": "Amari",
+    "email": "curtis.amari@example.com",
+    "phone": "+19193129077",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-10-21",
+    "cancelled_at": "2023-11-20",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1009",
+    "first_name": "Hannah",
+    "last_name": "Vance",
+    "email": "hannah.vance@example.com",
+    "phone": "+19193599576",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-10-23",
+    "cancelled_at": "2024-01-24",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1010",
+    "first_name": "Sam",
+    "last_name": "Ferrer",
+    "email": "sam.ferrer@example.com",
+    "phone": "+19194551354",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-10-29",
+    "cancelled_at": "2024-02-20",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1011",
+    "first_name": "Marcus",
+    "last_name": "Reyes",
+    "email": "marcus.reyes@example.com",
+    "phone": "+19195703920",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2023-10-31",
+    "cancelled_at": "2024-12-16",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1012",
+    "first_name": "Trevor",
+    "last_name": "Grant",
+    "email": "trevor.grant@example.com",
+    "phone": "+19194038540",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-11-06",
+    "cancelled_at": "2023-12-12",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1013",
+    "first_name": "Alicia",
+    "last_name": "Nakamura",
+    "email": "alicia.nakamura@example.com",
+    "phone": "+19193292980",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2023-11-08",
+    "cancelled_at": "2025-01-05",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1014",
+    "first_name": "Simone",
+    "last_name": "Quinn",
+    "email": "simone.quinn@example.com",
+    "phone": "+19197762755",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2023-11-11",
+    "cancelled_at": "2024-02-01",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1015",
+    "first_name": "Felix",
+    "last_name": "Mendes",
+    "email": "felix.mendes@example.com",
+    "phone": "+19198206132",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-11-16",
+    "cancelled_at": "2024-01-10",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1016",
+    "first_name": "Tasha",
+    "last_name": "Okafor",
+    "email": "tasha.okafor@example.com",
+    "phone": "+19193915927",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2023-11-20",
+    "cancelled_at": "2024-11-06",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1017",
+    "first_name": "Jonah",
+    "last_name": "Barrera",
+    "email": "jonah.barrera@example.com",
+    "phone": "+19194258162",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2023-11-24",
+    "cancelled_at": "2024-03-17",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1018",
+    "first_name": "Reid",
+    "last_name": "Nassar",
+    "email": "reid.nassar@example.com",
+    "phone": "+19194776335",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-11-27",
+    "cancelled_at": "2024-11-24",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1019",
+    "first_name": "Yara",
+    "last_name": "Coleman",
+    "email": "yara.coleman@example.com",
+    "phone": "+19192178334",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2023-12-03",
+    "cancelled_at": "2024-10-07",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1020",
+    "first_name": "Wesley",
+    "last_name": "Ellis",
+    "email": "wesley.ellis@example.com",
+    "phone": "+19192372998",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-12-03",
+    "cancelled_at": "2024-02-11",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1021",
+    "first_name": "Sam",
+    "last_name": "Bright",
+    "email": "sam.bright@example.com",
+    "phone": "+19199920853",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-12-11",
+    "cancelled_at": "2024-10-13",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1022",
+    "first_name": "Marcus",
+    "last_name": "Kaur",
+    "email": "marcus.kaur@example.com",
+    "phone": "+19192760414",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-12-13",
+    "cancelled_at": "2024-07-28",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1023",
+    "first_name": "Devon",
+    "last_name": "Okafor",
+    "email": "devon.okafor@example.com",
+    "phone": "+19199032757",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2023-12-18",
+    "cancelled_at": "2025-09-15",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1024",
+    "first_name": "Pete",
+    "last_name": "Wu",
+    "email": "pete.wu@example.com",
+    "phone": "+19192946947",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-12-20",
+    "cancelled_at": "2024-02-02",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1025",
+    "first_name": "Elise",
+    "last_name": "Amari",
+    "email": "elise.amari@example.com",
+    "phone": "+19193422767",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2023-12-24",
+    "cancelled_at": "2024-01-23",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1026",
+    "first_name": "Maya",
+    "last_name": "Rourke",
+    "email": "maya.rourke@example.com",
+    "phone": "+19198742039",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-12-29",
+    "cancelled_at": "2024-09-03",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1027",
+    "first_name": "Curtis",
+    "last_name": "Mendes",
+    "email": "curtis.mendes@example.com",
+    "phone": "+19197966127",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2023-12-30",
+    "cancelled_at": "2024-04-21",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1028",
+    "first_name": "Priya",
+    "last_name": "Okafor",
+    "email": "priya.okafor@example.com",
+    "phone": "+19196142926",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-01-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1029",
+    "first_name": "Colin",
+    "last_name": "Vance",
+    "email": "colin.vance@example.com",
+    "phone": "+19192348029",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-01-09",
+    "cancelled_at": "2024-02-15",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1030",
+    "first_name": "Leah",
+    "last_name": "Coleman",
+    "email": "leah.coleman@example.com",
+    "phone": "+19198452627",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-01-11",
+    "cancelled_at": "2025-05-16",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1031",
+    "first_name": "Leah",
+    "last_name": "Ward",
+    "email": "leah.ward@example.com",
+    "phone": "+19197368003",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-01-16",
+    "cancelled_at": "2024-03-14",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1032",
+    "first_name": "Ingrid",
+    "last_name": "Wu",
+    "email": "ingrid.wu@example.com",
+    "phone": "+19197990900",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-01-20",
+    "cancelled_at": "2024-04-23",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1033",
+    "first_name": "Danielle",
+    "last_name": "Miles",
+    "email": "danielle.miles@example.com",
+    "phone": "+19195301053",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2024-01-22",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1034",
+    "first_name": "Omar",
+    "last_name": "Wu",
+    "email": "omar.wu@example.com",
+    "phone": "+19195160850",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-01-26",
+    "cancelled_at": "2024-11-08",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1035",
+    "first_name": "Greta",
+    "last_name": "Coleman",
+    "email": "greta.coleman@example.com",
+    "phone": "+19192830175",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-01-31",
+    "cancelled_at": "2024-08-19",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1036",
+    "first_name": "Devon",
+    "last_name": "Reyes",
+    "email": "devon.reyes@example.com",
+    "phone": "+19199178832",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-02-02",
+    "cancelled_at": "2024-07-29",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1037",
+    "first_name": "Marcus",
+    "last_name": "Haddad",
+    "email": "marcus.haddad@example.com",
+    "phone": "+19193831187",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-02-07",
+    "cancelled_at": "2024-10-26",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1038",
+    "first_name": "Priya",
+    "last_name": "Ferrer",
+    "email": "priya.ferrer@example.com",
+    "phone": "+19199554505",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-02-12",
+    "cancelled_at": "2026-02-25",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1039",
+    "first_name": "Yara",
+    "last_name": "Sowell",
+    "email": "yara.sowell@example.com",
+    "phone": "+19196687344",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-02-15",
+    "cancelled_at": "2025-04-05",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1040",
+    "first_name": "Andre",
+    "last_name": "Sowell",
+    "email": "andre.sowell@example.com",
+    "phone": "+19195197879",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-02-19",
+    "cancelled_at": "2026-07-28",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1041",
+    "first_name": "June",
+    "last_name": "Reyes",
+    "email": "june.reyes@example.com",
+    "phone": "+19192958655",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-02-21",
+    "cancelled_at": "2024-07-23",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1042",
+    "first_name": "Damon",
+    "last_name": "Grant",
+    "email": "damon.grant@example.com",
+    "phone": "+19193022830",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-02-26",
+    "cancelled_at": "2025-02-08",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1043",
+    "first_name": "Elise",
+    "last_name": "Wu",
+    "email": "elise.wu@example.com",
+    "phone": "+19196135890",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-03-01",
+    "cancelled_at": "2024-11-12",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1044",
+    "first_name": "Sam",
+    "last_name": "Boone",
+    "email": "sam.boone@example.com",
+    "phone": "+19199761733",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-03-04",
+    "cancelled_at": "2025-01-08",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1045",
+    "first_name": "Trevor",
+    "last_name": "Shah",
+    "email": "trevor.shah@example.com",
+    "phone": "+19198070020",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-03-08",
+    "cancelled_at": "2024-05-28",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1046",
+    "first_name": "Derek",
+    "last_name": "Ward",
+    "email": "derek.ward@example.com",
+    "phone": "+19193658669",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-03-12",
+    "cancelled_at": "2024-05-13",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1047",
+    "first_name": "Yara",
+    "last_name": "Mendes",
+    "email": "yara.mendes@example.com",
+    "phone": "+19196479556",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-03-15",
+    "cancelled_at": "2025-03-11",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1048",
+    "first_name": "Bianca",
+    "last_name": "Lund",
+    "email": "bianca.lund@example.com",
+    "phone": "+19199572207",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-03-18",
+    "cancelled_at": "2024-05-27",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1049",
+    "first_name": "Nadia",
+    "last_name": "Boone",
+    "email": "nadia.boone@example.com",
+    "phone": "+19199457228",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-03-23",
+    "cancelled_at": "2026-03-16",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1050",
+    "first_name": "Hannah",
+    "last_name": "Shah",
+    "email": "hannah.shah@example.com",
+    "phone": "+19193056992",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-03-27",
+    "cancelled_at": "2026-07-31",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1051",
+    "first_name": "Curtis",
+    "last_name": "Pace",
+    "email": "curtis.pace@example.com",
+    "phone": "+19192968131",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-03-31",
+    "cancelled_at": "2025-05-09",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1052",
+    "first_name": "Damon",
+    "last_name": "Ellis",
+    "email": "damon.ellis@example.com",
+    "phone": "+19192314034",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-04-04",
+    "cancelled_at": "2024-07-13",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1053",
+    "first_name": "Greta",
+    "last_name": "Nakamura",
+    "email": "greta.nakamura@example.com",
+    "phone": "+19194374768",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-04-07",
+    "cancelled_at": "2024-07-13",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1054",
+    "first_name": "Kayla",
+    "last_name": "Coleman",
+    "email": "kayla.coleman@example.com",
+    "phone": "+19196322541",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-04-09",
+    "cancelled_at": "2026-03-04",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1055",
+    "first_name": "Derek",
+    "last_name": "Ferrer",
+    "email": "derek.ferrer@example.com",
+    "phone": "+19195016275",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-04-13",
+    "cancelled_at": "2024-05-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1056",
+    "first_name": "Ingrid",
+    "last_name": "Pace",
+    "email": "ingrid.pace@example.com",
+    "phone": "+19199345293",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-04-19",
+    "cancelled_at": "2026-05-13",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1057",
+    "first_name": "Tasha",
+    "last_name": "Coleman",
+    "email": "tasha.coleman@example.com",
+    "phone": "+19198244772",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-04-22",
+    "cancelled_at": "2026-06-15",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1058",
+    "first_name": "Ethan",
+    "last_name": "Sowell",
+    "email": "ethan.sowell@example.com",
+    "phone": "+19195403640",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-04-27",
+    "cancelled_at": "2025-05-03",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1059",
+    "first_name": "Bianca",
+    "last_name": "Holm",
+    "email": "bianca.holm@example.com",
+    "phone": "+19192415821",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-04-28",
+    "cancelled_at": "2024-06-18",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1060",
+    "first_name": "Omar",
+    "last_name": "Okafor",
+    "email": "omar.okafor@example.com",
+    "phone": "+19195268151",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-05-04",
+    "cancelled_at": "2025-10-03",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1061",
+    "first_name": "Damon",
+    "last_name": "Whitfield",
+    "email": "damon.whitfield@example.com",
+    "phone": "+19194152797",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2024-05-07",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1062",
+    "first_name": "Victor",
+    "last_name": "Pace",
+    "email": "victor.pace@example.com",
+    "phone": "+19196614218",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-05-10",
+    "cancelled_at": "2024-06-09",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1063",
+    "first_name": "Pete",
+    "last_name": "Lund",
+    "email": "pete.lund@example.com",
+    "phone": "+19196608832",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-05-13",
+    "cancelled_at": "2024-07-02",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1064",
+    "first_name": "Wesley",
+    "last_name": "Rourke",
+    "email": "wesley.rourke@example.com",
+    "phone": "+19196546237",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-05-18",
+    "cancelled_at": "2024-08-09",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1065",
+    "first_name": "June",
+    "last_name": "Nakamura",
+    "email": "june.nakamura@example.com",
+    "phone": "+19194397048",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-05-19",
+    "cancelled_at": "2025-05-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1066",
+    "first_name": "Jonah",
+    "last_name": "Ellis",
+    "email": "jonah.ellis@example.com",
+    "phone": "+19197309926",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-05-24",
+    "cancelled_at": "2026-03-16",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1067",
+    "first_name": "Ethan",
+    "last_name": "Ferrer",
+    "email": "ethan.ferrer@example.com",
+    "phone": "+19199922682",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-05-29",
+    "cancelled_at": "2026-03-22",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1068",
+    "first_name": "Colin",
+    "last_name": "Wu",
+    "email": "colin.wu@example.com",
+    "phone": "+19199629211",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-06-02",
+    "cancelled_at": "2024-10-18",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1069",
+    "first_name": "Clara",
+    "last_name": "Shah",
+    "email": "clara.shah@example.com",
+    "phone": "+19193708398",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-06-07",
+    "cancelled_at": "2024-08-04",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1070",
+    "first_name": "Tom",
+    "last_name": "Haddad",
+    "email": "tom.haddad@example.com",
+    "phone": "+19196884155",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-06-09",
+    "cancelled_at": "2025-11-20",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1071",
+    "first_name": "Reid",
+    "last_name": "Haddad",
+    "email": "reid.haddad@example.com",
+    "phone": "+19199488507",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-06-13",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1072",
+    "first_name": "Simone",
+    "last_name": "Bright",
+    "email": "simone.bright@example.com",
+    "phone": "+19193594042",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-06-16",
+    "cancelled_at": "2025-09-10",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1073",
+    "first_name": "Leah",
+    "last_name": "Amari",
+    "email": "leah.amari@example.com",
+    "phone": "+19197271481",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-06-19",
+    "cancelled_at": "2025-11-08",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1074",
+    "first_name": "Tom",
+    "last_name": "Grant",
+    "email": "tom.grant@example.com",
+    "phone": "+19199657845",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-06-23",
+    "cancelled_at": "2024-08-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1075",
+    "first_name": "Ethan",
+    "last_name": "Barrera",
+    "email": "ethan.barrera@example.com",
+    "phone": "+19193118725",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-06-26",
+    "cancelled_at": "2025-01-21",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1076",
+    "first_name": "Priya",
+    "last_name": "Bright",
+    "email": "priya.bright@example.com",
+    "phone": "+19194164866",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-06-29",
+    "cancelled_at": "2026-06-01",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1077",
+    "first_name": "Felix",
+    "last_name": "Bright",
+    "email": "felix.bright@example.com",
+    "phone": "+19198930306",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-07-03",
+    "cancelled_at": "2025-09-11",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1078",
+    "first_name": "Nadia",
+    "last_name": "Ferrer",
+    "email": "nadia.ferrer@example.com",
+    "phone": "+19198839237",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-07-09",
+    "cancelled_at": "2025-01-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1079",
+    "first_name": "Clara",
+    "last_name": "Delgado",
+    "email": "clara.delgado@example.com",
+    "phone": "+19198410144",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-07-13",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1080",
+    "first_name": "Colin",
+    "last_name": "Delgado",
+    "email": "colin.delgado@example.com",
+    "phone": "+19196775421",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-07-17",
+    "cancelled_at": "2025-01-23",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1081",
+    "first_name": "Wesley",
+    "last_name": "Quinn",
+    "email": "wesley.quinn@example.com",
+    "phone": "+19195352018",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-07-21",
+    "cancelled_at": "2025-07-18",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1082",
+    "first_name": "Yara",
+    "last_name": "Ward",
+    "email": "yara.ward@example.com",
+    "phone": "+19198197775",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-07-21",
+    "cancelled_at": "2026-01-14",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1083",
+    "first_name": "Luis",
+    "last_name": "Haddad",
+    "email": "luis.haddad@example.com",
+    "phone": "+19198810308",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-07-28",
+    "cancelled_at": "2025-08-29",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1084",
+    "first_name": "Marcus",
+    "last_name": "Ward",
+    "email": "marcus.ward@example.com",
+    "phone": "+19192537344",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-07-30",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1085",
+    "first_name": "Mira",
+    "last_name": "Barrera",
+    "email": "mira.barrera@example.com",
+    "phone": "+19192217766",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-08-02",
+    "cancelled_at": "2025-01-02",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1086",
+    "first_name": "Rosa",
+    "last_name": "Alvarez",
+    "email": "rosa.alvarez@example.com",
+    "phone": "+19195308320",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-08-08",
+    "cancelled_at": "2024-12-05",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1087",
+    "first_name": "Derek",
+    "last_name": "Boone",
+    "email": "derek.boone@example.com",
+    "phone": "+19195444408",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-08-11",
+    "cancelled_at": "2025-06-28",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1088",
+    "first_name": "Derek",
+    "last_name": "Kaur",
+    "email": "derek.kaur@example.com",
+    "phone": "+19195037118",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-08-12",
+    "cancelled_at": "2025-06-07",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1089",
+    "first_name": "Alicia",
+    "last_name": "Bright",
+    "email": "alicia.bright@example.com",
+    "phone": "+19197738381",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-08-16",
+    "cancelled_at": "2024-12-29",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1090",
+    "first_name": "Ethan",
+    "last_name": "Boone",
+    "email": "ethan.boone@example.com",
+    "phone": "+19192963118",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-08-20",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1091",
+    "first_name": "Simone",
+    "last_name": "Ellis",
+    "email": "simone.ellis@example.com",
+    "phone": "+19194621864",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-08-24",
+    "cancelled_at": "2026-06-26",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1092",
+    "first_name": "Kayla",
+    "last_name": "Reyes",
+    "email": "kayla.reyes@example.com",
+    "phone": "+19193551783",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-08-28",
+    "cancelled_at": "2026-04-26",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1093",
+    "first_name": "Leah",
+    "last_name": "Pace",
+    "email": "leah.pace@example.com",
+    "phone": "+19196066462",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-08-31",
+    "cancelled_at": "2025-09-16",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1094",
+    "first_name": "Tasha",
+    "last_name": "Quinn",
+    "email": "tasha.quinn@example.com",
+    "phone": "+19199948375",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-09-07",
+    "cancelled_at": "2024-10-23",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1095",
+    "first_name": "Felix",
+    "last_name": "Lund",
+    "email": "felix.lund@example.com",
+    "phone": "+19199593609",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-09-10",
+    "cancelled_at": "2024-10-10",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1096",
+    "first_name": "Ingrid",
+    "last_name": "Nassar",
+    "email": "ingrid.nassar@example.com",
+    "phone": "+19194176200",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-09-13",
+    "cancelled_at": "2024-12-04",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1097",
+    "first_name": "Yara",
+    "last_name": "Shah",
+    "email": "yara.shah@example.com",
+    "phone": "+19192011453",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-09-17",
+    "cancelled_at": "2025-09-19",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1098",
+    "first_name": "Bianca",
+    "last_name": "Sowell",
+    "email": "bianca.sowell@example.com",
+    "phone": "+19199462961",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-09-21",
+    "cancelled_at": "2025-04-17",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1099",
+    "first_name": "Jonah",
+    "last_name": "Vance",
+    "email": "jonah.vance@example.com",
+    "phone": "+19199690324",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2024-09-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1100",
+    "first_name": "Jordan",
+    "last_name": "Bright",
+    "email": "jordan.bright@example.com",
+    "phone": "+19194651624",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-09-28",
+    "cancelled_at": "2025-09-21",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1101",
+    "first_name": "Simone",
+    "last_name": "Pace",
+    "email": "simone.pace@example.com",
+    "phone": "+19195307093",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-09-29",
+    "cancelled_at": "2026-05-24",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1102",
+    "first_name": "Clara",
+    "last_name": "Holm",
+    "email": "clara.holm@example.com",
+    "phone": "+19193992109",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-10-06",
+    "cancelled_at": "2024-11-05",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1103",
+    "first_name": "Andre",
+    "last_name": "Coleman",
+    "email": "andre.coleman@example.com",
+    "phone": "+19193276175",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2024-10-07",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1104",
+    "first_name": "Andre",
+    "last_name": "Ellis",
+    "email": "andre.ellis@example.com",
+    "phone": "+19194151231",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-10-11",
+    "cancelled_at": "2025-04-26",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1105",
+    "first_name": "Curtis",
+    "last_name": "Reyes",
+    "email": "curtis.reyes@example.com",
+    "phone": "+19195748504",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-10-15",
+    "cancelled_at": "2025-03-17",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1106",
+    "first_name": "Felix",
+    "last_name": "Wu",
+    "email": "felix.wu@example.com",
+    "phone": "+19192305986",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-10-17",
+    "cancelled_at": "2026-02-06",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1107",
+    "first_name": "Clara",
+    "last_name": "Coleman",
+    "email": "clara.coleman@example.com",
+    "phone": "+19194866010",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-10-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1108",
+    "first_name": "Naomi",
+    "last_name": "Quinn",
+    "email": "naomi.quinn@example.com",
+    "phone": "+19197226327",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2024-10-26",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1109",
+    "first_name": "Alicia",
+    "last_name": "Holm",
+    "email": "alicia.holm@example.com",
+    "phone": "+19192155537",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2024-10-30",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1110",
+    "first_name": "Trevor",
+    "last_name": "Boone",
+    "email": "trevor.boone@example.com",
+    "phone": "+19198922183",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-11-01",
+    "cancelled_at": "2025-11-27",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1111",
+    "first_name": "Kayla",
+    "last_name": "Nakamura",
+    "email": "kayla.nakamura@example.com",
+    "phone": "+19196307094",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-11-07",
+    "cancelled_at": "2025-04-26",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1112",
+    "first_name": "Rosa",
+    "last_name": "Coleman",
+    "email": "rosa.coleman@example.com",
+    "phone": "+19197260624",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-11-11",
+    "cancelled_at": "2026-07-07",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1113",
+    "first_name": "Jordan",
+    "last_name": "Shah",
+    "email": "jordan.shah@example.com",
+    "phone": "+19195794058",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-11-13",
+    "cancelled_at": "2025-05-23",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1114",
+    "first_name": "Sam",
+    "last_name": "Ward",
+    "email": "sam.ward@example.com",
+    "phone": "+19199524263",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-11-19",
+    "cancelled_at": "2025-12-18",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1115",
+    "first_name": "Maya",
+    "last_name": "Nakamura",
+    "email": "maya.nakamura@example.com",
+    "phone": "+19195045899",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2024-11-19",
+    "cancelled_at": "2026-05-27",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1116",
+    "first_name": "Ethan",
+    "last_name": "Miles",
+    "email": "ethan.miles@example.com",
+    "phone": "+19199603808",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-11-25",
+    "cancelled_at": "2025-07-30",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1117",
+    "first_name": "Felix",
+    "last_name": "Nakamura",
+    "email": "felix.nakamura@example.com",
+    "phone": "+19196777458",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-11-28",
+    "cancelled_at": "2025-03-14",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1118",
+    "first_name": "Tasha",
+    "last_name": "Miles",
+    "email": "tasha.miles@example.com",
+    "phone": "+19198053462",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-12-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1119",
+    "first_name": "Rosa",
+    "last_name": "Pace",
+    "email": "rosa.pace@example.com",
+    "phone": "+19198358854",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2024-12-07",
+    "cancelled_at": "2025-08-18",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1120",
+    "first_name": "Reid",
+    "last_name": "Amari",
+    "email": "reid.amari@example.com",
+    "phone": "+19192984563",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2024-12-08",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1121",
+    "first_name": "Luis",
+    "last_name": "Alvarez",
+    "email": "luis.alvarez@example.com",
+    "phone": "+19194483412",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-12-14",
+    "cancelled_at": "2025-09-11",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1122",
+    "first_name": "June",
+    "last_name": "Mendes",
+    "email": "june.mendes@example.com",
+    "phone": "+19193043917",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2024-12-16",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1123",
+    "first_name": "Victor",
+    "last_name": "Ward",
+    "email": "victor.ward@example.com",
+    "phone": "+19194569420",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-12-20",
+    "cancelled_at": "2026-07-12",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1124",
+    "first_name": "Tasha",
+    "last_name": "Ward",
+    "email": "tasha.ward@example.com",
+    "phone": "+19196730854",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2024-12-25",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1125",
+    "first_name": "Ethan",
+    "last_name": "Ward",
+    "email": "ethan.ward@example.com",
+    "phone": "+19199400202",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2024-12-28",
+    "cancelled_at": "2025-02-01",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1126",
+    "first_name": "Pete",
+    "last_name": "Coleman",
+    "email": "pete.coleman@example.com",
+    "phone": "+19199508856",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-01-01",
+    "cancelled_at": "2025-06-20",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1127",
+    "first_name": "Victor",
+    "last_name": "Sowell",
+    "email": "victor.sowell@example.com",
+    "phone": "+19194720854",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-01-03",
+    "cancelled_at": "2025-05-08",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1128",
+    "first_name": "Elise",
+    "last_name": "Shah",
+    "email": "elise.shah@example.com",
+    "phone": "+19199522881",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-01-08",
+    "cancelled_at": "2025-04-29",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1129",
+    "first_name": "Tom",
+    "last_name": "Reyes",
+    "email": "tom.reyes@example.com",
+    "phone": "+19193694585",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-01-10",
+    "cancelled_at": "2025-02-09",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1130",
+    "first_name": "Pete",
+    "last_name": "Ellis",
+    "email": "pete.ellis@example.com",
+    "phone": "+19199552316",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-01-13",
+    "cancelled_at": "2026-06-01",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1131",
+    "first_name": "Leah",
+    "last_name": "Kaur",
+    "email": "leah.kaur@example.com",
+    "phone": "+19193872649",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2025-01-17",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1132",
+    "first_name": "Simone",
+    "last_name": "Alvarez",
+    "email": "simone.alvarez@example.com",
+    "phone": "+19195124889",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-01-22",
+    "cancelled_at": "2025-05-30",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1133",
+    "first_name": "Devon",
+    "last_name": "Coleman",
+    "email": "devon.coleman@example.com",
+    "phone": "+19197601918",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-01-25",
+    "cancelled_at": "2025-04-30",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1134",
+    "first_name": "Priya",
+    "last_name": "Nassar",
+    "email": "priya.nassar@example.com",
+    "phone": "+19195552136",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-01-30",
+    "cancelled_at": "2025-03-01",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1135",
+    "first_name": "Luis",
+    "last_name": "Wu",
+    "email": "luis.wu@example.com",
+    "phone": "+19198630066",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-01-31",
+    "cancelled_at": "2025-05-05",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1136",
+    "first_name": "Rosa",
+    "last_name": "Mendes",
+    "email": "rosa.mendes@example.com",
+    "phone": "+19199631013",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-02-03",
+    "cancelled_at": "2025-09-24",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1137",
+    "first_name": "Ingrid",
+    "last_name": "Boone",
+    "email": "ingrid.boone@example.com",
+    "phone": "+19198244180",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-02-09",
+    "cancelled_at": "2026-01-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1138",
+    "first_name": "Pete",
+    "last_name": "Miles",
+    "email": "pete.miles@example.com",
+    "phone": "+19198598181",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-02-12",
+    "cancelled_at": "2025-11-13",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1139",
+    "first_name": "Hannah",
+    "last_name": "Okafor",
+    "email": "hannah.okafor@example.com",
+    "phone": "+19192440537",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-02-16",
+    "cancelled_at": "2026-01-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1140",
+    "first_name": "Luis",
+    "last_name": "Nassar",
+    "email": "luis.nassar@example.com",
+    "phone": "+19195705022",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-02-21",
+    "cancelled_at": "2025-03-23",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1141",
+    "first_name": "Trevor",
+    "last_name": "Kaur",
+    "email": "trevor.kaur@example.com",
+    "phone": "+19193996283",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-02-24",
+    "cancelled_at": "2026-04-03",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1142",
+    "first_name": "June",
+    "last_name": "Shah",
+    "email": "june.shah@example.com",
+    "phone": "+19198419764",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-02-25",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1143",
+    "first_name": "Mira",
+    "last_name": "Whitfield",
+    "email": "mira.whitfield@example.com",
+    "phone": "+19198970307",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-02-28",
+    "cancelled_at": "2025-07-19",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1144",
+    "first_name": "Wesley",
+    "last_name": "Bright",
+    "email": "wesley.bright@example.com",
+    "phone": "+19193077243",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-03-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1145",
+    "first_name": "Wesley",
+    "last_name": "Shah",
+    "email": "wesley.shah@example.com",
+    "phone": "+19193187388",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-03-08",
+    "cancelled_at": "2025-04-07",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1146",
+    "first_name": "Jordan",
+    "last_name": "Pace",
+    "email": "jordan.pace@example.com",
+    "phone": "+19197137627",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-03-13",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1147",
+    "first_name": "Omar",
+    "last_name": "Delgado",
+    "email": "omar.delgado@example.com",
+    "phone": "+19199939087",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-03-15",
+    "cancelled_at": "2026-01-06",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1148",
+    "first_name": "Tom",
+    "last_name": "Holm",
+    "email": "tom.holm@example.com",
+    "phone": "+19199847021",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-03-19",
+    "cancelled_at": "2026-05-21",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1149",
+    "first_name": "Bianca",
+    "last_name": "Pace",
+    "email": "bianca.pace@example.com",
+    "phone": "+19193708293",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-03-23",
+    "cancelled_at": "2025-08-05",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1150",
+    "first_name": "Tasha",
+    "last_name": "Reyes",
+    "email": "tasha.reyes@example.com",
+    "phone": "+19193716172",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-03-27",
+    "cancelled_at": "2026-02-13",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1151",
+    "first_name": "Pete",
+    "last_name": "Pace",
+    "email": "pete.pace@example.com",
+    "phone": "+19196296058",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-03-30",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1152",
+    "first_name": "Bianca",
+    "last_name": "Okafor",
+    "email": "bianca.okafor@example.com",
+    "phone": "+19199040812",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-04-02",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1153",
+    "first_name": "Devon",
+    "last_name": "Grant",
+    "email": "devon.grant@example.com",
+    "phone": "+19197613828",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2025-04-09",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1154",
+    "first_name": "Tom",
+    "last_name": "Delgado",
+    "email": "tom.delgado@example.com",
+    "phone": "+19195557219",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-04-10",
+    "cancelled_at": "2025-06-27",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1155",
+    "first_name": "Sam",
+    "last_name": "Lund",
+    "email": "sam.lund@example.com",
+    "phone": "+19196487682",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-04-15",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1156",
+    "first_name": "Sam",
+    "last_name": "Pace",
+    "email": "sam.pace@example.com",
+    "phone": "+19199115295",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-04-18",
+    "cancelled_at": "2025-11-26",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1157",
+    "first_name": "Marcus",
+    "last_name": "Holm",
+    "email": "marcus.holm@example.com",
+    "phone": "+19199709735",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-04-21",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1158",
+    "first_name": "Bianca",
+    "last_name": "Barrera",
+    "email": "bianca.barrera@example.com",
+    "phone": "+19192754064",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-04-25",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1159",
+    "first_name": "Naomi",
+    "last_name": "Alvarez",
+    "email": "naomi.alvarez@example.com",
+    "phone": "+19193330387",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-04-28",
+    "cancelled_at": "2025-11-04",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1160",
+    "first_name": "Jonah",
+    "last_name": "Amari",
+    "email": "jonah.amari@example.com",
+    "phone": "+19196012325",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-05-01",
+    "cancelled_at": "2025-06-16",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1161",
+    "first_name": "Mira",
+    "last_name": "Okafor",
+    "email": "mira.okafor@example.com",
+    "phone": "+19194281726",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-05-06",
+    "cancelled_at": "2025-06-05",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1162",
+    "first_name": "Tom",
+    "last_name": "Pace",
+    "email": "tom.pace@example.com",
+    "phone": "+19199480641",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-05-09",
+    "cancelled_at": "2025-11-14",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1163",
+    "first_name": "Ingrid",
+    "last_name": "Coleman",
+    "email": "ingrid.coleman@example.com",
+    "phone": "+19192260287",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-05-12",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1164",
+    "first_name": "Luis",
+    "last_name": "Vance",
+    "email": "luis.vance@example.com",
+    "phone": "+19194316709",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-05-17",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1165",
+    "first_name": "Priya",
+    "last_name": "Sowell",
+    "email": "priya.sowell@example.com",
+    "phone": "+19194588786",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-05-19",
+    "cancelled_at": "2026-01-07",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1166",
+    "first_name": "Elise",
+    "last_name": "Haddad",
+    "email": "elise.haddad@example.com",
+    "phone": "+19196367058",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-05-23",
+    "cancelled_at": "2025-10-20",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1167",
+    "first_name": "Alicia",
+    "last_name": "Quinn",
+    "email": "alicia.quinn@example.com",
+    "phone": "+19197237736",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-05-27",
+    "cancelled_at": "2026-04-18",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1168",
+    "first_name": "Greta",
+    "last_name": "Mendes",
+    "email": "greta.mendes@example.com",
+    "phone": "+19193744548",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-05-31",
+    "cancelled_at": "2025-12-21",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1169",
+    "first_name": "Tasha",
+    "last_name": "Rourke",
+    "email": "tasha.rourke@example.com",
+    "phone": "+19194463549",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-06-01",
+    "cancelled_at": "2025-12-12",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1170",
+    "first_name": "Ingrid",
+    "last_name": "Ferrer",
+    "email": "ingrid.ferrer@example.com",
+    "phone": "+19193491372",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-06-05",
+    "cancelled_at": "2025-10-12",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1171",
+    "first_name": "Damon",
+    "last_name": "Holm",
+    "email": "damon.holm@example.com",
+    "phone": "+19196297945",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-06-08",
+    "cancelled_at": "2025-07-29",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1172",
+    "first_name": "Jonah",
+    "last_name": "Terry",
+    "email": "jonah.terry@example.com",
+    "phone": "+19198681139",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-06-12",
+    "cancelled_at": "2025-07-12",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1173",
+    "first_name": "Trevor",
+    "last_name": "Haddad",
+    "email": "trevor.haddad@example.com",
+    "phone": "+19195528192",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-06-18",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1174",
+    "first_name": "Sam",
+    "last_name": "Nakamura",
+    "email": "sam.nakamura@example.com",
+    "phone": "+19197469375",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-06-21",
+    "cancelled_at": "2025-10-06",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1175",
+    "first_name": "Nadia",
+    "last_name": "Grant",
+    "email": "nadia.grant@example.com",
+    "phone": "+19194113746",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-06-24",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1176",
+    "first_name": "Tasha",
+    "last_name": "Pace",
+    "email": "tasha.pace@example.com",
+    "phone": "+19194399486",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2025-06-29",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1177",
+    "first_name": "Derek",
+    "last_name": "Holm",
+    "email": "derek.holm@example.com",
+    "phone": "+19195132565",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-07-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1178",
+    "first_name": "Priya",
+    "last_name": "Delgado",
+    "email": "priya.delgado@example.com",
+    "phone": "+19196835122",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-07-04",
+    "cancelled_at": "2025-11-02",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1179",
+    "first_name": "Felix",
+    "last_name": "Rourke",
+    "email": "felix.rourke@example.com",
+    "phone": "+19199831150",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-07-09",
+    "cancelled_at": "2025-09-23",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1180",
+    "first_name": "Trevor",
+    "last_name": "Mendes",
+    "email": "trevor.mendes@example.com",
+    "phone": "+19197245330",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-07-11",
+    "cancelled_at": "2025-08-10",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1181",
+    "first_name": "Colin",
+    "last_name": "Ward",
+    "email": "colin.ward@example.com",
+    "phone": "+19197622503",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-07-13",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1182",
+    "first_name": "Jordan",
+    "last_name": "Grant",
+    "email": "jordan.grant@example.com",
+    "phone": "+19194947766",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-07-17",
+    "cancelled_at": "2025-11-02",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1183",
+    "first_name": "Greta",
+    "last_name": "Pace",
+    "email": "greta.pace@example.com",
+    "phone": "+19199252765",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-07-22",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1184",
+    "first_name": "Hannah",
+    "last_name": "Bright",
+    "email": "hannah.bright@example.com",
+    "phone": "+19192996366",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-07-25",
+    "cancelled_at": "2025-10-25",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1185",
+    "first_name": "Derek",
+    "last_name": "Grant",
+    "email": "derek.grant@example.com",
+    "phone": "+19194222434",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-07-30",
+    "cancelled_at": "2025-08-29",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1186",
+    "first_name": "Elise",
+    "last_name": "Pace",
+    "email": "elise.pace@example.com",
+    "phone": "+19195374445",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-08-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1187",
+    "first_name": "Reid",
+    "last_name": "Okafor",
+    "email": "reid.okafor@example.com",
+    "phone": "+19196246076",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-08-06",
+    "cancelled_at": "2025-10-17",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1188",
+    "first_name": "Leah",
+    "last_name": "Bright",
+    "email": "leah.bright@example.com",
+    "phone": "+19196984512",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-08-10",
+    "cancelled_at": "2026-02-05",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1189",
+    "first_name": "Kayla",
+    "last_name": "Okafor",
+    "email": "kayla.okafor@example.com",
+    "phone": "+19193487252",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-08-11",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1190",
+    "first_name": "Derek",
+    "last_name": "Alvarez",
+    "email": "derek.alvarez@example.com",
+    "phone": "+19192794720",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-08-14",
+    "cancelled_at": "2025-09-13",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1191",
+    "first_name": "Colin",
+    "last_name": "Barrera",
+    "email": "colin.barrera@example.com",
+    "phone": "+19196855260",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-08-20",
+    "cancelled_at": "2025-11-20",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1192",
+    "first_name": "Colin",
+    "last_name": "Ferrer",
+    "email": "colin.ferrer@example.com",
+    "phone": "+19197680893",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2025-08-22",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1193",
+    "first_name": "Felix",
+    "last_name": "Quinn",
+    "email": "felix.quinn@example.com",
+    "phone": "+19195171875",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-08-25",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1194",
+    "first_name": "Derek",
+    "last_name": "Mendes",
+    "email": "derek.mendes@example.com",
+    "phone": "+19195801850",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-08-29",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1195",
+    "first_name": "Naomi",
+    "last_name": "Rourke",
+    "email": "naomi.rourke@example.com",
+    "phone": "+19199717061",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-09-02",
+    "cancelled_at": "2026-04-15",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1196",
+    "first_name": "Danielle",
+    "last_name": "Lund",
+    "email": "danielle.lund@example.com",
+    "phone": "+19198190731",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-09-06",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1197",
+    "first_name": "June",
+    "last_name": "Boone",
+    "email": "june.boone@example.com",
+    "phone": "+19192931575",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-09-08",
+    "cancelled_at": "2025-10-08",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1198",
+    "first_name": "Omar",
+    "last_name": "Miles",
+    "email": "omar.miles@example.com",
+    "phone": "+19192543778",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-09-13",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1199",
+    "first_name": "Nadia",
+    "last_name": "Kaur",
+    "email": "nadia.kaur@example.com",
+    "phone": "+19193644082",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-09-14",
+    "cancelled_at": "2026-04-07",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1200",
+    "first_name": "Elise",
+    "last_name": "Okafor",
+    "email": "elise.okafor@example.com",
+    "phone": "+19198710628",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-09-21",
+    "cancelled_at": "2026-06-26",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1201",
+    "first_name": "Elise",
+    "last_name": "Kaur",
+    "email": "elise.kaur@example.com",
+    "phone": "+19192841704",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-09-21",
+    "cancelled_at": "2025-10-23",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1202",
+    "first_name": "Maya",
+    "last_name": "Terry",
+    "email": "maya.terry@example.com",
+    "phone": "+19192261358",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-09-28",
+    "cancelled_at": "2026-03-10",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1203",
+    "first_name": "June",
+    "last_name": "Nassar",
+    "email": "june.nassar@example.com",
+    "phone": "+19193653093",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-10-01",
+    "cancelled_at": "2026-01-20",
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1204",
+    "first_name": "Greta",
+    "last_name": "Rourke",
+    "email": "greta.rourke@example.com",
+    "phone": "+19197058945",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-10-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1205",
+    "first_name": "Bianca",
+    "last_name": "Vance",
+    "email": "bianca.vance@example.com",
+    "phone": "+19197117245",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-10-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1206",
+    "first_name": "June",
+    "last_name": "Haddad",
+    "email": "june.haddad@example.com",
+    "phone": "+19198457511",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-10-09",
+    "cancelled_at": "2026-01-27",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1207",
+    "first_name": "Reid",
+    "last_name": "Reyes",
+    "email": "reid.reyes@example.com",
+    "phone": "+19196248719",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-10-12",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1208",
+    "first_name": "Devon",
+    "last_name": "Alvarez",
+    "email": "devon.alvarez@example.com",
+    "phone": "+19197676418",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-10-16",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1209",
+    "first_name": "Clara",
+    "last_name": "Ward",
+    "email": "clara.ward@example.com",
+    "phone": "+19195515659",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-10-22",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1210",
+    "first_name": "Maya",
+    "last_name": "Delgado",
+    "email": "maya.delgado@example.com",
+    "phone": "+19192126900",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-10-24",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1211",
+    "first_name": "Sam",
+    "last_name": "Coleman",
+    "email": "sam.coleman@example.com",
+    "phone": "+19199520541",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-10-28",
+    "cancelled_at": "2026-05-16",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1212",
+    "first_name": "Bianca",
+    "last_name": "Wu",
+    "email": "bianca.wu@example.com",
+    "phone": "+19197603350",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-11-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1213",
+    "first_name": "Rosa",
+    "last_name": "Whitfield",
+    "email": "rosa.whitfield@example.com",
+    "phone": "+19192176071",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-11-02",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1214",
+    "first_name": "Tasha",
+    "last_name": "Ferrer",
+    "email": "tasha.ferrer@example.com",
+    "phone": "+19195366263",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-11-08",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1215",
+    "first_name": "Mira",
+    "last_name": "Reyes",
+    "email": "mira.reyes@example.com",
+    "phone": "+19197226108",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-11-10",
+    "cancelled_at": "2025-12-28",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1216",
+    "first_name": "Trevor",
+    "last_name": "Rourke",
+    "email": "trevor.rourke@example.com",
+    "phone": "+19199923338",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-11-14",
+    "cancelled_at": "2026-01-14",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1217",
+    "first_name": "Marcus",
+    "last_name": "Alvarez",
+    "email": "marcus.alvarez@example.com",
+    "phone": "+19196731297",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-11-16",
+    "cancelled_at": "2026-01-11",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1218",
+    "first_name": "Devon",
+    "last_name": "Wu",
+    "email": "devon.wu@example.com",
+    "phone": "+19194070100",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-11-20",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1219",
+    "first_name": "Mira",
+    "last_name": "Ferrer",
+    "email": "mira.ferrer@example.com",
+    "phone": "+19198792041",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2025-11-23",
+    "cancelled_at": "2026-02-20",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1220",
+    "first_name": "Damon",
+    "last_name": "Shah",
+    "email": "damon.shah@example.com",
+    "phone": "+19198897733",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2025-11-26",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1221",
+    "first_name": "Alicia",
+    "last_name": "Ward",
+    "email": "alicia.ward@example.com",
+    "phone": "+19192239391",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2025-11-29",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1222",
+    "first_name": "Tasha",
+    "last_name": "Alvarez",
+    "email": "tasha.alvarez@example.com",
+    "phone": "+19192657260",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2025-12-04",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1223",
+    "first_name": "Pete",
+    "last_name": "Alvarez",
+    "email": "pete.alvarez@example.com",
+    "phone": "+19196202240",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-12-08",
+    "cancelled_at": "2026-03-27",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1224",
+    "first_name": "Kayla",
+    "last_name": "Pace",
+    "email": "kayla.pace@example.com",
+    "phone": "+19195226733",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-12-11",
+    "cancelled_at": "2026-04-09",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1225",
+    "first_name": "Derek",
+    "last_name": "Ellis",
+    "email": "derek.ellis@example.com",
+    "phone": "+19196593115",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-12-14",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1226",
+    "first_name": "Colin",
+    "last_name": "Pace",
+    "email": "colin.pace@example.com",
+    "phone": "+19196361008",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2025-12-18",
+    "cancelled_at": "2026-01-17",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1227",
+    "first_name": "Yara",
+    "last_name": "Whitfield",
+    "email": "yara.whitfield@example.com",
+    "phone": "+19195067180",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-12-21",
+    "cancelled_at": "2026-02-12",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1228",
+    "first_name": "Wesley",
+    "last_name": "Vance",
+    "email": "wesley.vance@example.com",
+    "phone": "+19196330122",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-12-24",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1229",
+    "first_name": "Derek",
+    "last_name": "Terry",
+    "email": "derek.terry@example.com",
+    "phone": "+19195374663",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2025-12-29",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1230",
+    "first_name": "Jordan",
+    "last_name": "Delgado",
+    "email": "jordan.delgado@example.com",
+    "phone": "+19193253017",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2025-12-31",
+    "cancelled_at": "2026-05-02",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1231",
+    "first_name": "Rosa",
+    "last_name": "Bright",
+    "email": "rosa.bright@example.com",
+    "phone": "+19193161862",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-01-02",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1232",
+    "first_name": "Maya",
+    "last_name": "Ellis",
+    "email": "maya.ellis@example.com",
+    "phone": "+19194814018",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2026-01-07",
+    "cancelled_at": "2026-05-01",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1233",
+    "first_name": "Priya",
+    "last_name": "Miles",
+    "email": "priya.miles@example.com",
+    "phone": "+19195732938",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-01-11",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1234",
+    "first_name": "Colin",
+    "last_name": "Mendes",
+    "email": "colin.mendes@example.com",
+    "phone": "+19192949901",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-01-14",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1235",
+    "first_name": "Devon",
+    "last_name": "Pace",
+    "email": "devon.pace@example.com",
+    "phone": "+19199040218",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-01-16",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1236",
+    "first_name": "Devon",
+    "last_name": "Shah",
+    "email": "devon.shah@example.com",
+    "phone": "+19199786063",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-01-21",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1237",
+    "first_name": "Elise",
+    "last_name": "Whitfield",
+    "email": "elise.whitfield@example.com",
+    "phone": "+19198484069",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-01-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1238",
+    "first_name": "Mira",
+    "last_name": "Boone",
+    "email": "mira.boone@example.com",
+    "phone": "+19195259443",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-01-26",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1239",
+    "first_name": "Victor",
+    "last_name": "Coleman",
+    "email": "victor.coleman@example.com",
+    "phone": "+19192758400",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-01-30",
+    "cancelled_at": "2026-04-16",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1240",
+    "first_name": "Elise",
+    "last_name": "Ward",
+    "email": "elise.ward@example.com",
+    "phone": "+19195167300",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-02-03",
+    "cancelled_at": "2026-03-05",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1241",
+    "first_name": "Bianca",
+    "last_name": "Ferrer",
+    "email": "bianca.ferrer@example.com",
+    "phone": "+19192986017",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-02-07",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1242",
+    "first_name": "June",
+    "last_name": "Alvarez",
+    "email": "june.alvarez@example.com",
+    "phone": "+19196112273",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-02-09",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1243",
+    "first_name": "Maya",
+    "last_name": "Whitfield",
+    "email": "maya.whitfield@example.com",
+    "phone": "+19193832816",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-02-11",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1244",
+    "first_name": "Curtis",
+    "last_name": "Kaur",
+    "email": "curtis.kaur@example.com",
+    "phone": "+19197782084",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-02-16",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1245",
+    "first_name": "Colin",
+    "last_name": "Haddad",
+    "email": "colin.haddad@example.com",
+    "phone": "+19194090428",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-02-17",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1246",
+    "first_name": "Nadia",
+    "last_name": "Barrera",
+    "email": "nadia.barrera@example.com",
+    "phone": "+19192243277",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-02-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1247",
+    "first_name": "Andre",
+    "last_name": "Bright",
+    "email": "andre.bright@example.com",
+    "phone": "+19192749404",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-02-25",
+    "cancelled_at": "2026-05-19",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1248",
+    "first_name": "Pete",
+    "last_name": "Bright",
+    "email": "pete.bright@example.com",
+    "phone": "+19195582947",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-03-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1249",
+    "first_name": "Ingrid",
+    "last_name": "Ellis",
+    "email": "ingrid.ellis@example.com",
+    "phone": "+19196241661",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-03-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1250",
+    "first_name": "Greta",
+    "last_name": "Alvarez",
+    "email": "greta.alvarez@example.com",
+    "phone": "+19193638293",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-03-07",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1251",
+    "first_name": "Ingrid",
+    "last_name": "Delgado",
+    "email": "ingrid.delgado@example.com",
+    "phone": "+19199174910",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-03-10",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1252",
+    "first_name": "Yara",
+    "last_name": "Barrera",
+    "email": "yara.barrera@example.com",
+    "phone": "+19199378910",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-03-12",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1253",
+    "first_name": "Kayla",
+    "last_name": "Ferrer",
+    "email": "kayla.ferrer@example.com",
+    "phone": "+19194815466",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-03-16",
+    "cancelled_at": "2026-04-15",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1254",
+    "first_name": "Omar",
+    "last_name": "Vance",
+    "email": "omar.vance@example.com",
+    "phone": "+19197108129",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-03-20",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1255",
+    "first_name": "Elise",
+    "last_name": "Bright",
+    "email": "elise.bright@example.com",
+    "phone": "+19192915659",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-03-24",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1256",
+    "first_name": "Devon",
+    "last_name": "Delgado",
+    "email": "devon.delgado@example.com",
+    "phone": "+19199101833",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2026-03-28",
+    "cancelled_at": "2026-04-27",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1257",
+    "first_name": "Mira",
+    "last_name": "Amari",
+    "email": "mira.amari@example.com",
+    "phone": "+19195419410",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2026-03-31",
+    "cancelled_at": "2026-05-03",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1258",
+    "first_name": "Omar",
+    "last_name": "Haddad",
+    "email": "omar.haddad@example.com",
+    "phone": "+19196371662",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2026-04-02",
+    "cancelled_at": "2026-05-02",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1259",
+    "first_name": "Derek",
+    "last_name": "Nassar",
+    "email": "derek.nassar@example.com",
+    "phone": "+19193853404",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2026-04-06",
+    "cancelled_at": "2026-07-22",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1260",
+    "first_name": "Maya",
+    "last_name": "Miles",
+    "email": "maya.miles@example.com",
+    "phone": "+19193547884",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-04-08",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1261",
+    "first_name": "Simone",
+    "last_name": "Ward",
+    "email": "simone.ward@example.com",
+    "phone": "+19192776699",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-04-11",
+    "cancelled_at": "2026-07-29",
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1262",
+    "first_name": "Jordan",
+    "last_name": "Rourke",
+    "email": "jordan.rourke@example.com",
+    "phone": "+19192586315",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-04-16",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1263",
+    "first_name": "Felix",
+    "last_name": "Shah",
+    "email": "felix.shah@example.com",
+    "phone": "+19196716426",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-04-18",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1264",
+    "first_name": "Mira",
+    "last_name": "Holm",
+    "email": "mira.holm@example.com",
+    "phone": "+19195563919",
+    "plan_id": "plan_open",
+    "status": "cancelled",
+    "joined_at": "2026-04-20",
+    "cancelled_at": "2026-05-20",
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1265",
+    "first_name": "Ethan",
+    "last_name": "Shah",
+    "email": "ethan.shah@example.com",
+    "phone": "+19193189148",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-04-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1266",
+    "first_name": "Colin",
+    "last_name": "Terry",
+    "email": "colin.terry@example.com",
+    "phone": "+19195806331",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-04-27",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1267",
+    "first_name": "Ingrid",
+    "last_name": "Haddad",
+    "email": "ingrid.haddad@example.com",
+    "phone": "+19192413137",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-05-02",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1268",
+    "first_name": "Colin",
+    "last_name": "Miles",
+    "email": "colin.miles@example.com",
+    "phone": "+19194196304",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-05-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1269",
+    "first_name": "Jordan",
+    "last_name": "Wu",
+    "email": "jordan.wu@example.com",
+    "phone": "+19194771736",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-05-08",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1270",
+    "first_name": "Andre",
+    "last_name": "Whitfield",
+    "email": "andre.whitfield@example.com",
+    "phone": "+19193236357",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-05-12",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1271",
+    "first_name": "Jonah",
+    "last_name": "Rourke",
+    "email": "jonah.rourke@example.com",
+    "phone": "+19192164508",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2026-05-12",
+    "cancelled_at": "2026-06-11",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1272",
+    "first_name": "Naomi",
+    "last_name": "Bright",
+    "email": "naomi.bright@example.com",
+    "phone": "+19194823631",
+    "plan_id": "plan_3x",
+    "status": "cancelled",
+    "joined_at": "2026-05-18",
+    "cancelled_at": "2026-06-17",
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4024"
+    }
+  },
+  {
+    "id": "mbr_1273",
+    "first_name": "June",
+    "last_name": "Barrera",
+    "email": "june.barrera@example.com",
+    "phone": "+19195497733",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-05-20",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1274",
+    "first_name": "Naomi",
+    "last_name": "Barrera",
+    "email": "naomi.barrera@example.com",
+    "phone": "+19193364127",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-05-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": "post_2228",
+      "claim_id": "claim_4115"
+    }
+  },
+  {
+    "id": "mbr_1275",
+    "first_name": "Clara",
+    "last_name": "Lund",
+    "email": "clara.lund@example.com",
+    "phone": "+19195386204",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-05-26",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1276",
+    "first_name": "Ethan",
+    "last_name": "Vance",
+    "email": "ethan.vance@example.com",
+    "phone": "+19196171016",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-05-31",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4002"
+    }
+  },
+  {
+    "id": "mbr_1277",
+    "first_name": "Alicia",
+    "last_name": "Rourke",
+    "email": "alicia.rourke@example.com",
+    "phone": "+19196041558",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-06-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1278",
+    "first_name": "Tom",
+    "last_name": "Ellis",
+    "email": "tom.ellis@example.com",
+    "phone": "+19196892491",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-06-03",
+    "cancelled_at": "2026-07-03",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1279",
+    "first_name": "Tasha",
+    "last_name": "Bright",
+    "email": "tasha.bright@example.com",
+    "phone": "+19196109376",
+    "plan_id": "plan_unlimited",
+    "status": "cancelled",
+    "joined_at": "2026-06-06",
+    "cancelled_at": "2026-07-27",
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1280",
+    "first_name": "Jonah",
+    "last_name": "Shah",
+    "email": "jonah.shah@example.com",
+    "phone": "+19198997352",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-06-10",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1281",
+    "first_name": "Victor",
+    "last_name": "Bright",
+    "email": "victor.bright@example.com",
+    "phone": "+19198721600",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-06-13",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4013"
+    }
+  },
+  {
+    "id": "mbr_1282",
+    "first_name": "Nadia",
+    "last_name": "Alvarez",
+    "email": "nadia.alvarez@example.com",
+    "phone": "+19194878537",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-06-18",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4003"
+    }
+  },
+  {
+    "id": "mbr_1283",
+    "first_name": "Jonah",
+    "last_name": "Bright",
+    "email": "jonah.bright@example.com",
+    "phone": "+19192917549",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-06-20",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4005"
+    }
+  },
+  {
+    "id": "mbr_1284",
+    "first_name": "Trevor",
+    "last_name": "Delgado",
+    "email": "trevor.delgado@example.com",
+    "phone": "+19197444241",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-06-24",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4016"
+    }
+  },
+  {
+    "id": "mbr_1285",
+    "first_name": "Sam",
+    "last_name": "Holm",
+    "email": "sam.holm@example.com",
+    "phone": "+19197361344",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-06-26",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": "post_2228",
+      "claim_id": "claim_4116"
+    }
+  },
+  {
+    "id": "mbr_1286",
+    "first_name": "Felix",
+    "last_name": "Vance",
+    "email": "felix.vance@example.com",
+    "phone": "+19198503482",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-06-28",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4015"
+    }
+  },
+  {
+    "id": "mbr_1287",
+    "first_name": "Devon",
+    "last_name": "Vance",
+    "email": "devon.vance@example.com",
+    "phone": "+19198473129",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-01",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1288",
+    "first_name": "Kayla",
+    "last_name": "Boone",
+    "email": "kayla.boone@example.com",
+    "phone": "+19198493957",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-04",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4004"
+    }
+  },
+  {
+    "id": "mbr_1289",
+    "first_name": "Tom",
+    "last_name": "Boone",
+    "email": "tom.boone@example.com",
+    "phone": "+19192421624",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-06",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "tiktok",
+      "post_id": "post_2242",
+      "claim_id": "claim_4131"
+    }
+  },
+  {
+    "id": "mbr_1290",
+    "first_name": "Andre",
+    "last_name": "Reyes",
+    "email": "andre.reyes@example.com",
+    "phone": "+19199213111",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-12",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1291",
+    "first_name": "Pete",
+    "last_name": "Ferrer",
+    "email": "pete.ferrer@example.com",
+    "phone": "+19195489144",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-07-12",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1292",
+    "first_name": "Greta",
+    "last_name": "Bright",
+    "email": "greta.bright@example.com",
+    "phone": "+19196426841",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-07-17",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": "post_2228",
+      "claim_id": "claim_4111"
+    }
+  },
+  {
+    "id": "mbr_1293",
+    "first_name": "Jordan",
+    "last_name": "Reyes",
+    "email": "jordan.reyes@example.com",
+    "phone": "+19198096701",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-07-18",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1294",
+    "first_name": "Colin",
+    "last_name": "Okafor",
+    "email": "colin.okafor@example.com",
+    "phone": "+19193626090",
+    "plan_id": "plan_3x",
+    "status": "active",
+    "joined_at": "2026-07-22",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1295",
+    "first_name": "Tom",
+    "last_name": "Barrera",
+    "email": "tom.barrera@example.com",
+    "phone": "+19196808152",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-23",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "walk_in",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1296",
+    "first_name": "Hannah",
+    "last_name": "Pace",
+    "email": "hannah.pace@example.com",
+    "phone": "+19194057070",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-28",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "facebook",
+      "post_id": "post_2228",
+      "claim_id": "claim_4106"
+    }
+  },
+  {
+    "id": "mbr_1297",
+    "first_name": "Tom",
+    "last_name": "Coleman",
+    "email": "tom.coleman@example.com",
+    "phone": "+19194056832",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-07-30",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4028"
+    }
+  },
+  {
+    "id": "mbr_1298",
+    "first_name": "Elise",
+    "last_name": "Coleman",
+    "email": "elise.coleman@example.com",
+    "phone": "+19196268254",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-08-02",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "referral",
+      "post_id": null,
+      "claim_id": null
+    }
+  },
+  {
+    "id": "mbr_1299",
+    "first_name": "Luis",
+    "last_name": "Ferrer",
+    "email": "luis.ferrer@example.com",
+    "phone": "+19193736813",
+    "plan_id": "plan_open",
+    "status": "active",
+    "joined_at": "2026-08-05",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4035"
+    }
+  },
+  {
+    "id": "mbr_1300",
+    "first_name": "Ingrid",
+    "last_name": "Rourke",
+    "email": "ingrid.rourke@example.com",
+    "phone": "+19198482306",
+    "plan_id": "plan_unlimited",
+    "status": "active",
+    "joined_at": "2026-08-06",
+    "cancelled_at": null,
+    "acquisition": {
+      "channel": "instagram",
+      "post_id": "post_2200",
+      "claim_id": "claim_4011"
+    }
+  }
+]
