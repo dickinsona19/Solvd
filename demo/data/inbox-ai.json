@@ -1,0 +1,112 @@
+{
+  "generatedAt": "2026-08-07T21:22:50+00:00",
+  "models": {
+    "sort": "gpt-5.6-luna",
+    "draft": "gpt-5.6-luna"
+  },
+  "recipe": "b8f3705ad9b2",
+  "results": {
+    "danielle-switch-6am": {
+      "fingerprint": "b140934648e28862",
+      "processedAt": "2026-08-07T21:22:37+00:00",
+      "sort": {
+        "category": "schedule",
+        "priority": "medium",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Danielle wants to move her class reservation from 5:30pm to 6am starting next week.",
+        "reasoning": "The member wants to move from the 5:30pm class block to 6am starting next week, which is a permitted reservation change and needs a response."
+      },
+      "draft": {
+        "reply": "Danielle, yes, I’ll move your existing 5:30pm bookings to the 6am block starting Monday, August 10. Your current bookings will be updated rather than cancelled.",
+        "action": "Move bookings in Mindbody to the 6am block",
+        "confidence": "high"
+      }
+    },
+    "jordan-cancelling": {
+      "fingerprint": "f6a5d2f1ec785ca8",
+      "processedAt": "2026-08-07T21:22:46+00:00",
+      "sort": {
+        "category": "membership",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Jordan wants to cancel at the end of the month because work has kept them from using the gym.",
+        "reasoning": "Jordan is asking to cancel their membership, making this a high-priority churn-risk request. Policy allows offering a no-cost freeze of up to 60 days with their current rate locked before discussing cancellation."
+      },
+      "draft": {
+        "reply": "Jordan, I can cancel your membership at the end of this month. Since work has kept you from using the gym, I can also place it on a no-cost freeze for up to 60 days and keep your $149 rate locked. If you want to cancel, I’ll make that easy.",
+        "action": "No action",
+        "confidence": "high"
+      }
+    },
+    "kayla-freeze": {
+      "fingerprint": "5a29a841ed26b6a5",
+      "processedAt": "2026-08-07T21:22:29+00:00",
+      "sort": {
+        "category": "membership",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Kayla wants to freeze her membership for March while keeping her current rate.",
+        "reasoning": "Kayla is requesting a membership freeze, which is allowed for up to 60 days with billing paused and her current $149/mo rate locked. Her high churn-risk score makes this urgent."
+      },
+      "draft": {
+        "reply": "Kayla, yes, I can freeze your membership for March at no cost, and your $149 monthly rate will stay locked. I’ll apply the freeze for up to 31 days so billing pauses while you’re traveling.",
+        "action": "Apply March membership freeze in Mindbody",
+        "confidence": "high"
+      }
+    },
+    "marcus-double-charge": {
+      "fingerprint": "b4e2c168fb325f92",
+      "processedAt": "2026-08-07T21:22:40+00:00",
+      "sort": {
+        "category": "billing",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Marcus was charged twice for his Unlimited membership and wants the duplicate $149 charge refunded.",
+        "reasoning": "The member reports a duplicate $149 charge and requests a refund, which is covered by policy; money being wrong makes this high priority."
+      },
+      "draft": {
+        "reply": "Marcus, you were charged twice for your Unlimited membership on the 1st, so I’ve refunded the duplicate $149 charge. The refund should reach your account in three to five business days.",
+        "action": "Refund $149 duplicate charge in Stripe",
+        "confidence": "high"
+      }
+    },
+    "priya-childcare": {
+      "fingerprint": "d047c97ce90f1b54",
+      "processedAt": "2026-08-07T21:22:50+00:00",
+      "sort": {
+        "category": "facilities",
+        "priority": "high",
+        "needs_human": true,
+        "confidence": "high",
+        "summary": "Priya asks whether childcare is available during morning classes because its absence is causing her to skip.",
+        "reasoning": "Priya is asking about childcare, a facility amenity not fully covered by the available policy; her comment that it is the only reason she is skipping indicates elevated churn risk."
+      },
+      "draft": {
+        "reply": "Priya, we do not offer staffed childcare during morning classes. We do have an unstaffed kids' corner in view of the floor during the 9:15am class, but children are not supervised by gym staff.",
+        "action": "No action",
+        "confidence": "high"
+      }
+    },
+    "tom-free-pass": {
+      "fingerprint": "8e684e40c5305c48",
+      "processedAt": "2026-08-07T21:22:33+00:00",
+      "sort": {
+        "category": "lead",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Tom wants to know whether his free pass works for any class this week and says he is new to barbell training.",
+        "reasoning": "Tom is a new lead asking whether his claimed free pass can be used for any class this week; policy allows honoring a free pass for any class in the week it was claimed, and he is also asking about beginner suitability."
+      },
+      "draft": {
+        "reply": "Tom, yes, your free pass is good for any class this week, and you do not need barbell experience. Come to the beginner-friendly Saturday 9am class, and I’ll book your pass there.",
+        "action": "Create free-pass reservation in Mindbody for Saturday 9am",
+        "confidence": "high"
+      }
+    }
+  }
+}

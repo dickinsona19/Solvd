@@ -5,14 +5,17 @@
    interactions, so tailoring the demo means editing JSON, not markup.
 
    Scope note: only behaviour that follows directly from the data lives
-   here. The AI layer (drafted replies, confidence, suggested CRM and
-   retention actions) is deliberately absent until we build it properly. */
+   here. The Smart Inbox is the one view with an AI layer behind it, and even
+   that reads a file: ai/run.py does the thinking offline and writes
+   demo/data/inbox-ai.json, so this module never calls a model. The churn and
+   growth views still prescribe nothing. */
 
 import portal from '../demo/data/portal.json'
 import overviewData from '../demo/data/overview.json'
 import growthData from '../demo/data/growth.json'
 import churnData from '../demo/data/churn.json'
 import inboxData from '../demo/data/inbox.json'
+import inboxAi from '../demo/data/inbox-ai.json'
 import membersData from '../demo/data/members.json'
 import integrationsData from '../demo/data/integrations.json'
 
@@ -438,20 +441,105 @@ function renderIntegrations(root) {
   )
 }
 
-/* ---------- inbox: message list and the message itself ---------- */
+/* ---------- inbox: sorting, messages, and the drafted reply ----------
+   The agent in ai/ has already read every message and written what it made
+   of it to demo/data/inbox-ai.json, keyed by thread id. Nothing here calls a
+   model, so refreshing costs nothing. A thread with no cached entry still
+   renders: it just gets an empty composer and sorts as low priority. */
 
+const AI = inboxAi.results || {}
+const RANK = { high: 0, medium: 1, low: 2 }
+
+const aiFor = (thread) => AI[thread.id]
+const rankOf = (thread) => RANK[aiFor(thread)?.sort.priority] ?? RANK.low
+
+function categoryOf(thread) {
+  const key = aiFor(thread)?.sort.category
+  return key ? inboxData.ui.categories[key] || key : ''
+}
+
+// Each comparator falls through to age, so the order is total and the list
+// cannot reshuffle between two renders of the same sort.
+const SORTS = {
+  priority: (a, b) => rankOf(a) - rankOf(b) || a.ageMinutes - b.ageMinutes,
+  newest: (a, b) => a.ageMinutes - b.ageMinutes,
+  category: (a, b) =>
+    categoryOf(a).localeCompare(categoryOf(b)) ||
+    rankOf(a) - rankOf(b) ||
+    a.ageMinutes - b.ageMinutes,
+}
+
+let listHost = null
 let detailHost = null
-let openThread = 0
+let openThread = ''
+let sortMode = (inboxData.ui.sorts.find((s) => s.active) || inboxData.ui.sorts[0]).id
 const replied = new Set()
 
 function renderInbox(root) {
-  const list = h(
+  listHost = h('div', { class: 'thread-list', 'aria-label': 'Member messages' })
+  detailHost = h('div', { class: 'thread-detail' })
+
+  const sorts = h(
     'div',
-    { class: 'thread-list', 'aria-label': 'Member messages' },
-    inboxData.threads.map((thread, index) =>
-      h(
+    {
+      class: 'range',
+      id: 'thread-sort',
+      role: 'group',
+      'aria-label': inboxData.ui.sortLabel,
+    },
+    inboxData.ui.sorts.map((option) =>
+      h('button', {
+        type: 'button',
+        'data-sort': option.id,
+        'aria-pressed': String(option.id === sortMode),
+        text: option.label,
+      }),
+    ),
+  )
+
+  root.append(
+    panel(
+      {
+        title: inboxData.title,
+        caption: inboxData.caption,
+        aside: h('div', { class: 'panel-tools' }, sorts, pill(inboxData.badge)),
+      },
+      h('div', { class: 'inbox' }, listHost, detailHost),
+    ),
+  )
+
+  renderThreadList()
+  renderThreadDetail()
+}
+
+function priorityTag(priority) {
+  return h(
+    'span',
+    { class: `prio is-${priority}` },
+    h('i', { 'aria-hidden': 'true' }),
+    inboxData.ui.priorities[priority] || priority,
+  )
+}
+
+function renderThreadList() {
+  const threads = [...inboxData.threads].sort(SORTS[sortMode] || SORTS.newest)
+  if (!threads.some((thread) => thread.id === openThread)) {
+    openThread = threads[0]?.id || ''
+  }
+
+  listHost.replaceChildren(
+    ...threads.map((thread) => {
+      const on = thread.id === openThread
+      const sorted = aiFor(thread)?.sort
+
+      return h(
         'button',
-        { class: 'thread', type: 'button', 'data-thread': index },
+        {
+          class: on ? 'thread is-on' : 'thread',
+          type: 'button',
+          'data-thread': thread.id,
+          'aria-current': on ? 'true' : null,
+        },
         h(
           'span',
           { class: 'thread-top' },
@@ -459,46 +547,94 @@ function renderInbox(root) {
           h('span', { class: 'thread-when', text: thread.when }),
         ),
         h('span', { class: 'thread-subject', text: thread.subject }),
-        pill(thread.status),
-      ),
-    ),
+        h(
+          'span',
+          { class: 'thread-tags' },
+          replied.has(thread.id)
+            ? pill({ label: inboxData.ui.replied, tone: 'signal' })
+            : pill(categoryOf(thread) || thread.status),
+          sorted ? priorityTag(sorted.priority) : null,
+        ),
+      )
+    }),
   )
-
-  detailHost = h('div', { class: 'thread-detail' })
-
-  root.append(
-    panel(
-      { title: inboxData.title, caption: inboxData.caption, aside: pill(inboxData.badge) },
-      h('div', { class: 'inbox' }, list, detailHost),
-    ),
-  )
-
-  syncThreadList()
-  renderThreadDetail()
 }
 
-function syncThreadList() {
-  for (const button of document.querySelectorAll('.thread')) {
-    const index = Number(button.dataset.thread)
-    const on = index === openThread
+// Why the message landed where it did in the list. The owner gets to
+// disagree with the sort, which means they have to be able to see it.
+function sortNote(sorted) {
+  return h(
+    'div',
+    { class: sorted.needs_human ? 'sort-note is-flagged' : 'sort-note' },
+    icon(sorted.needs_human ? 'alert' : 'check'),
+    h(
+      'span',
+      null,
+      h('strong', { text: sorted.summary }),
+      h('span', { text: sorted.reasoning }),
+    ),
+  )
+}
 
-    button.classList.toggle('is-on', on)
-    if (on) button.setAttribute('aria-current', 'true')
-    else button.removeAttribute('aria-current')
+function composer(thread, entry, ui) {
+  const draft = entry?.draft
 
-    const badge = button.querySelector('.pill')
-    if (badge && replied.has(index)) {
-      badge.className = 'pill pill-signal'
-      badge.textContent = inboxData.ui.replied
-    }
-  }
+  return h(
+    'div',
+    { class: draft ? 'reply has-draft' : 'reply' },
+    draft
+      ? h(
+          'div',
+          { class: 'draft-head' },
+          h('p', { class: 'label-mono', text: ui.draftLabel }),
+          h(
+            'span',
+            { class: 'draft-meta' },
+            entry.sort.needs_human ? pill({ label: ui.needsHuman, tone: 'alert' }) : null,
+            h('span', {
+              class: 'draft-conf',
+              text: `${draft.confidence} ${ui.confidenceLabel}`,
+            }),
+          ),
+        )
+      : h('label', { class: 'label-mono', for: 'reply-body', text: ui.replyLabel }),
+    h('textarea', {
+      id: 'reply-body',
+      rows: draft ? '7' : '4',
+      placeholder: ui.replyPlaceholder,
+      'aria-label': draft ? ui.draftLabel : ui.replyLabel,
+      text: draft ? draft.reply : null,
+    }),
+    draft
+      ? h(
+          'p',
+          { class: 'draft-action' },
+          h('span', { class: 'label-mono', text: ui.actionLabel }),
+          h('strong', { text: draft.action }),
+        )
+      : null,
+    h(
+      'div',
+      { class: 'reply-foot' },
+      h('button', {
+        class: 'btn btn-signal btn-sm',
+        type: 'button',
+        'data-send': '',
+        text: draft ? ui.approve : ui.send,
+      }),
+      draft ? h('p', { class: 'draft-note', text: ui.draftNote }) : null,
+    ),
+  )
 }
 
 function renderThreadDetail() {
   if (!detailHost) return
 
-  const thread = inboxData.threads[openThread]
+  const thread = inboxData.threads.find((item) => item.id === openThread)
+  if (!thread) return
+
   const ui = inboxData.ui
+  const entry = aiFor(thread)
 
   detailHost.replaceChildren(
     h(
@@ -524,7 +660,8 @@ function renderThreadDetail() {
       ),
       h('p', { text: thread.message }),
     ),
-    replied.has(openThread)
+    entry ? sortNote(entry.sort) : null,
+    replied.has(thread.id)
       ? h(
           'div',
           { class: 'reply' },
@@ -535,22 +672,7 @@ function renderThreadDetail() {
             ui.sent.replace('{name}', thread.name.split(' ')[0]),
           ),
         )
-      : h(
-          'div',
-          { class: 'reply' },
-          h('label', { class: 'label-mono', for: 'reply-body', text: ui.replyLabel }),
-          h('textarea', { id: 'reply-body', rows: '4', placeholder: ui.replyPlaceholder }),
-          h(
-            'div',
-            { class: 'reply-foot' },
-            h('button', {
-              class: 'btn btn-signal btn-sm',
-              type: 'button',
-              'data-send': '',
-              text: ui.send,
-            }),
-          ),
-        ),
+      : composer(thread, entry, ui),
   )
 }
 
@@ -728,19 +850,30 @@ function wireInteractions() {
     }
   })
 
-  // Delegated, because views are rendered on first visit.
+  // Delegated, because views are rendered on first visit and the thread
+  // list is rebuilt every time the sort changes.
   document.getElementById('views').addEventListener('click', (event) => {
     const thread = event.target.closest('.thread')
     if (thread) {
-      openThread = Number(thread.dataset.thread)
-      syncThreadList()
+      openThread = thread.dataset.thread
+      renderThreadList()
       renderThreadDetail()
+      return
+    }
+
+    const sortButton = event.target.closest('[data-sort]')
+    if (sortButton) {
+      sortMode = sortButton.dataset.sort
+      for (const other of document.querySelectorAll('#thread-sort button')) {
+        other.setAttribute('aria-pressed', String(other === sortButton))
+      }
+      renderThreadList()
       return
     }
 
     if (event.target.closest('[data-send]')) {
       replied.add(openThread)
-      syncThreadList()
+      renderThreadList()
       renderThreadDetail()
     }
   })

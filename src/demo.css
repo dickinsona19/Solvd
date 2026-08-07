@@ -498,6 +498,15 @@
   color: var(--muted);
 }
 
+/* The inbox head carries a sort control and its badge, not just a badge. */
+.panel-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
 .panel-body {
   padding: 1.25rem;
 }
@@ -978,8 +987,41 @@
   white-space: nowrap;
 }
 
-.thread .pill {
+.thread-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   margin-top: 0.5rem;
+}
+
+/* Priority is a dot and a word rather than a second pill, so a row can show
+   both what the message is about and how soon it matters without turning
+   into a wall of capsules. */
+.prio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.prio i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.prio.is-high {
+  color: var(--alert);
+}
+
+.prio.is-medium {
+  color: var(--body);
 }
 
 .thread-detail {
@@ -1040,8 +1082,51 @@
   text-wrap: pretty;
 }
 
-/* Reply composer. Plain inbox behaviour: the drafted-reply layer comes
-   later, and gets its own treatment when it does. */
+/* Why the agent filed the message where it did. Deliberately quiet: it is
+   context for the reply, not the reply. */
+.sort-note {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel-2);
+}
+
+.sort-note .icon {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  margin-top: 0.2rem;
+  color: var(--signal-core);
+}
+
+.sort-note.is-flagged .icon {
+  color: var(--alert);
+}
+
+.sort-note > span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.sort-note strong {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.sort-note > span > span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* Reply composer. When the agent has drafted something the textarea arrives
+   pre-filled, so the composer grows a header, states what sending it would
+   commit to, and changes the verb on the button. */
 .reply {
   display: flex;
   flex-direction: column;
@@ -1075,6 +1160,7 @@
 
 .reply-foot {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
 }
@@ -1085,6 +1171,56 @@
   gap: 0.55rem;
   color: var(--signal-core);
   font-size: 0.875rem;
+}
+
+.draft-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.draft-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.draft-conf {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* A pre-filled reply is something the gym is about to actually say, so it
+   gets an accent edge the empty composer does not earn. */
+.reply.has-draft textarea {
+  border-color: rgba(61, 123, 253, 0.32);
+}
+
+.draft-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.draft-action strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.draft-note {
+  flex: 1;
+  min-width: 12rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-wrap: pretty;
 }
 
 /* ---------- integrations ---------- */

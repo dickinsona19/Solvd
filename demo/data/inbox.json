@@ -7,16 +7,43 @@
     "replyLabel": "Your reply",
     "replyPlaceholder": "Write a reply, or leave it for later.",
     "send": "Send reply",
+    "approve": "Approve and send",
     "sent": "Sent to {name}.",
-    "replied": "Replied"
+    "replied": "Replied",
+    "draftLabel": "Drafted reply",
+    "draftNote": "Drafted from this member's record. Edit anything before it goes out.",
+    "actionLabel": "Commits to",
+    "confidenceLabel": "confidence",
+    "needsHuman": "Read this one first",
+    "sortLabel": "Sort",
+    "sorts": [
+      { "id": "priority", "label": "Priority", "active": true },
+      { "id": "newest", "label": "Newest" },
+      { "id": "category", "label": "Category" }
+    ],
+    "categories": {
+      "billing": "Billing",
+      "membership": "Membership",
+      "schedule": "Scheduling",
+      "lead": "New lead",
+      "facilities": "Facilities",
+      "other": "Other"
+    },
+    "priorities": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
   },
 
   "threads": [
     {
+      "id": "kayla-freeze",
       "name": "Kayla Reyes",
       "initials": "KR",
       "when": "6:04a",
       "receivedAt": "Today, 6:01a",
+      "ageMinutes": 9,
       "status": { "label": "Member" },
       "meta": "Member since Mar 2024 · Unlimited · $149/mo",
       "risk": { "label": "Churn risk 88", "tone": "alert" },
@@ -24,30 +51,36 @@
       "message": "Hey! I'm traveling for work most of March and won't be able to make it in. Is there any way to freeze my membership instead of cancelling? I don't want to lose my rate."
     },
     {
+      "id": "tom-free-pass",
       "name": "Tom Alvarez",
       "initials": "TA",
       "when": "5:47a",
       "receivedAt": "Today, 5:44a",
+      "ageMinutes": 26,
       "status": { "label": "Lead", "tone": "signal" },
       "meta": "New lead · from the \"PR Friday\" reel",
       "subject": "Free pass from your reel",
       "message": "Saw the PR Friday video on Instagram and clicked the free pass link. Is it good for any class this week? I've never done barbell stuff before."
     },
     {
+      "id": "danielle-switch-6am",
       "name": "Danielle Wu",
       "initials": "DW",
       "when": "Yesterday",
       "receivedAt": "Yesterday, 4:12p",
+      "ageMinutes": 898,
       "status": { "label": "Member" },
       "meta": "Member since Jan 2025 · Unlimited · $149/mo",
       "subject": "Can I switch to the 6am?",
       "message": "My work schedule changed and the 5:30pm doesn't work anymore. Can I move to the 6am block starting next week?"
     },
     {
+      "id": "marcus-double-charge",
       "name": "Marcus Terry",
       "initials": "MT",
       "when": "Yesterday",
       "receivedAt": "Yesterday, 8:37p",
+      "ageMinutes": 573,
       "status": { "label": "Member" },
       "meta": "Member since Sep 2023 · Unlimited · $149/mo",
       "risk": { "label": "Churn risk 58", "tone": "alert" },
@@ -55,10 +88,12 @@
       "message": "I've got two $149 charges from you on the 1st. Can you take a look? Not a big deal but I'd like the second one back."
     },
     {
+      "id": "jordan-cancelling",
       "name": "Jordan Miles",
       "initials": "JM",
       "when": "2 days ago",
       "receivedAt": "2 days ago, 7:22a",
+      "ageMinutes": 2808,
       "status": { "label": "Member" },
       "meta": "Member since Feb 2023 · Unlimited · $149/mo",
       "risk": { "label": "Churn risk 81", "tone": "alert" },
@@ -66,10 +101,12 @@
       "message": "Hey, I want to cancel at the end of the month. Been slammed at work and I haven't been in for a couple of weeks, so it doesn't feel worth the money right now."
     },
     {
+      "id": "priya-childcare",
       "name": "Priya Shah",
       "initials": "PS",
       "when": "2 days ago",
       "receivedAt": "2 days ago, 12:05p",
+      "ageMinutes": 2525,
       "status": { "label": "Member" },
       "meta": "Member since Nov 2024 · 3x / week · $119/mo",
       "risk": { "label": "Churn risk 67", "tone": "alert" },

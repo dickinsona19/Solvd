@@ -1,0 +1,10 @@
+# Versions checked against PyPI on 2026-08-07.
+#
+# The major bounds are load bearing, not decoration. langgraph 1.x and the
+# langchain 1.x packages are a different API from the 0.x line, and graph.py
+# is written against 1.x: StateGraph with add_conditional_edges, and
+# with_structured_output returning a Pydantic model.
+langgraph>=1.2.10,<2
+langchain-openai>=1.4.2,<2
+pydantic>=2.13.4,<3
+python-dotenv>=1.2.2,<2

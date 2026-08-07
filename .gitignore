@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Secrets. The inbox agent reads OPENAI_API_KEY from here.
+.env
+.env.*
+!.env.example
+
+# Python, for the inbox agent in ai/
+.venv
+venv
+__pycache__/
+*.py[cod]
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
