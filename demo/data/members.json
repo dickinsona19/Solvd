@@ -1,0 +1,80 @@
+{
+  "table": {
+    "title": "Member roster",
+    "caption": "412 active, synced from Mindbody",
+    "columns": [
+      { "key": "member", "label": "Member", "type": "name" },
+      { "key": "plan", "label": "Plan" },
+      { "key": "joined", "label": "Joined" },
+      { "key": "lastVisit", "label": "Last visit" },
+      { "key": "visits", "label": "Visits / 30d", "type": "num" },
+      { "key": "status", "label": "Status", "type": "pill" }
+    ],
+    "rows": [
+      {
+        "member": "Chris Bell",
+        "plan": "Unlimited",
+        "joined": "Aug 2024",
+        "lastVisit": "Today",
+        "visits": "15",
+        "status": { "label": "Active" }
+      },
+      {
+        "member": "Danielle Wu",
+        "plan": "Unlimited",
+        "joined": "Jan 2025",
+        "lastVisit": "Yesterday",
+        "visits": "12",
+        "status": { "label": "Active" }
+      },
+      {
+        "member": "Alicia Gray",
+        "plan": "Open gym",
+        "joined": "May 2025",
+        "lastVisit": "2 days ago",
+        "visits": "9",
+        "status": { "label": "Active" }
+      },
+      {
+        "member": "Tom Alvarez",
+        "plan": "3x / week",
+        "joined": "Jul 2026",
+        "lastVisit": "Today",
+        "visits": "4",
+        "status": { "label": "New", "tone": "signal" }
+      },
+      {
+        "member": "Marcus Terry",
+        "plan": "Unlimited",
+        "joined": "Sep 2023",
+        "lastVisit": "7 days ago",
+        "visits": "3",
+        "status": { "label": "Watch" }
+      },
+      {
+        "member": "Priya Shah",
+        "plan": "3x / week",
+        "joined": "Nov 2024",
+        "lastVisit": "9 days ago",
+        "visits": "2",
+        "status": { "label": "At risk", "tone": "alert" }
+      },
+      {
+        "member": "Jordan Miles",
+        "plan": "Unlimited",
+        "joined": "Feb 2023",
+        "lastVisit": "11 days ago",
+        "visits": "1",
+        "status": { "label": "At risk", "tone": "alert" }
+      },
+      {
+        "member": "Kayla Reyes",
+        "plan": "Unlimited",
+        "joined": "Mar 2024",
+        "lastVisit": "14 days ago",
+        "visits": "0",
+        "status": { "label": "At risk", "tone": "alert" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "product": "The Gym Portal",
+  "name": "CLT Lifting Club",
+  "initials": "CL",
+  "members": "412 members",
+  "navLabel": "Portal",
+  "sync": "Synced 2m ago",
+  "searchPlaceholder": "Search this view",
+  "ranges": [
+    { "label": "7D" },
+    { "label": "30D", "active": true },
+    { "label": "90D" }
+  ],
+  "user": {
+    "name": "Dana Kim",
+    "initials": "DK",
+    "role": "Owner"
+  },
+  "views": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "overview",
+      "title": "Overview",
+      "eyebrow": "CLT Lifting Club"
+    },
+    {
+      "id": "growth",
+      "label": "Growth",
+      "icon": "growth",
+      "title": "Growth",
+      "eyebrow": "Instagram to signed member"
+    },
+    {
+      "id": "churn",
+      "label": "Churn Radar",
+      "icon": "churn",
+      "title": "Churn Radar",
+      "eyebrow": "Retention",
+      "badge": { "value": 6, "tone": "alert" }
+    },
+    {
+      "id": "inbox",
+      "label": "Smart Inbox",
+      "icon": "inbox",
+      "title": "Smart Inbox",
+      "eyebrow": "Member email",
+      "badge": { "value": 6 }
+    },
+    {
+      "id": "members",
+      "label": "Members",
+      "icon": "members",
+      "title": "Members",
+      "eyebrow": "Roster"
+    },
+    {
+      "id": "integrations",
+      "label": "Integrations",
+      "icon": "plug",
+      "title": "Integrations",
+      "eyebrow": "Data sources"
+    }
+  ]
+}

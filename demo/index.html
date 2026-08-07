@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070E1C" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>Live demo — The Gym Portal | SOLVD</title>
+    <meta
+      name="description"
+      content="An interactive walkthrough of the Gym Portal: growth attribution, churn radar, and the member inbox, running on sample data."
+    />
+    <!-- A product demo on sample data has nothing to offer search. -->
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,200..500&family=Geist:wght@400..600&family=Geist+Mono:wght@400..500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/site.css" />
+    <link rel="stylesheet" href="/src/demo.css" />
+  </head>
+
+  <!--
+    This page is a shell. Every number, row and message is rendered by
+    src/demo.js from the JSON in demo/data/, so the only content here is
+    chrome: the icon sprite, the return pill, and the containers the
+    renderer fills. Unlike / and /custom/, this page needs JS to render.
+  -->
+
+  <body class="demo">
+    <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="i-overview" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" />
+        <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" />
+        <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" />
+      </symbol>
+      <symbol id="i-growth" viewBox="0 0 24 24">
+        <path d="M3 17.5 9.5 11l4 4L21 7.5" />
+        <path d="M15 7.5h6v6" />
+      </symbol>
+      <symbol id="i-churn" viewBox="0 0 24 24">
+        <path d="M2.5 12h3.8l2.2-5.5 3.2 11 2.6-7 1.6 3h5.6" />
+      </symbol>
+      <symbol id="i-inbox" viewBox="0 0 24 24">
+        <path d="M3.5 13.5h4l1.8 3h5.4l1.8-3h4" />
+        <path d="M3.5 13.5 6.3 5h11.4l2.8 8.5V18a2 2 0 0 1-2 2H5.5a2 2 0 0 1-2-2z" />
+      </symbol>
+      <symbol id="i-members" viewBox="0 0 24 24">
+        <circle cx="9.5" cy="8" r="3.6" />
+        <path d="M3 20a6.5 6.5 0 0 1 13 0" />
+        <path d="M16.5 5.4a3.6 3.6 0 0 1 0 5.2" />
+        <path d="M18 20a6.6 6.6 0 0 0-1.6-4.3" />
+      </symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24">
+        <path d="M9 3v5M15 3v5" />
+        <path d="M6.5 8h11v3.5a5.5 5.5 0 0 1-11 0z" />
+        <path d="M12 17v4" />
+      </symbol>
+      <symbol id="i-back" viewBox="0 0 24 24">
+        <path d="M19.5 12H5" />
+        <path d="m11 5.5-6 6.5 6 6.5" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m16.4 16.4 4.6 4.6" />
+      </symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24">
+        <path d="m6 9.5 6 6 6-6" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12.5 4.5 4.5L19.5 7" />
+      </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <path d="M12 3.5 2.5 20h19z" />
+        <path d="M12 9.5v4.5M12 16.8v.2" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M4.5 12h15" />
+        <path d="m13.5 5.5 6 6.5-6 6.5" />
+      </symbol>
+    </svg>
+
+    <div class="stage">
+      <!-- The only chrome on the page: the way back out. -->
+      <a class="return-pill" href="/">
+        <svg class="icon" aria-hidden="true"><use href="#i-back" /></svg>
+        <span>Return to SOLVD</span>
+        <span class="return-tag">Sample data</span>
+      </a>
+
+      <noscript>
+        <div class="noscript">
+          <p>
+            The portal demo is an interactive app and needs JavaScript to
+            render. Everything else on the site works without it.
+          </p>
+          <p><a href="/">Return to SOLVD</a></p>
+        </div>
+      </noscript>
+
+      <div class="app">
+        <aside class="rail">
+          <div class="rail-brand">
+            <img src="/solvd-wordmark.png" alt="SOLVD" width="292" height="56" />
+            <p class="label-mono" id="product-label"></p>
+          </div>
+
+          <button class="gym" type="button">
+            <span class="gym-mark" id="gym-mark"></span>
+            <span class="gym-name" id="gym-name">
+              <span class="gym-sub" id="gym-members"></span>
+            </span>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron" /></svg>
+          </button>
+
+          <nav class="rail-nav" id="rail-nav" aria-label="Portal sections"></nav>
+
+          <div class="rail-foot">
+            <span class="avatar" id="user-initials"></span>
+            <span class="who">
+              <strong id="user-name"></strong>
+              <span class="gym-sub" id="user-role"></span>
+            </span>
+          </div>
+        </aside>
+
+        <div class="workspace">
+          <header class="topbar">
+            <div class="topbar-title">
+              <p class="label-mono" id="view-eyebrow"></p>
+              <h1 id="view-title"></h1>
+            </div>
+
+            <div class="topbar-tools">
+              <div class="range" id="range" role="group" aria-label="Date range"></div>
+              <label class="search">
+                <svg class="icon" aria-hidden="true"><use href="#i-search" /></svg>
+                <input type="search" id="portal-search" aria-label="Search this view" />
+              </label>
+              <p class="sync"><span class="pulse"></span> <span id="sync-label"></span></p>
+            </div>
+          </header>
+
+          <div class="views" id="views"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/demo.js"></script>
+  </body>
+</html>

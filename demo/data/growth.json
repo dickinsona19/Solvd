@@ -1,0 +1,104 @@
+{
+  "kpis": [
+    {
+      "label": "Cost per member",
+      "value": 38,
+      "prefix": "$",
+      "delta": "Best post this month"
+    },
+    { "label": "Attributed members", "value": 30, "delta": "From 7 tracked posts" },
+    { "label": "Free passes claimed", "value": 144, "delta": "21% converted" },
+    { "label": "Total reach", "value": 162400, "delta": "+12% vs prior" }
+  ],
+
+  "table": {
+    "title": "Post attribution",
+    "caption": "View to link click to free pass to signed member",
+    "badge": "Last 30 days",
+    "columns": [
+      { "key": "post", "label": "Post", "type": "name" },
+      { "key": "channel", "label": "Channel" },
+      { "key": "reach", "label": "Reach", "type": "num" },
+      { "key": "clicks", "label": "Clicks", "type": "num" },
+      { "key": "passes", "label": "Passes", "type": "num" },
+      { "key": "members", "label": "Members", "type": "num" },
+      { "key": "cost", "label": "Cost / member", "type": "num" }
+    ],
+    "rows": [
+      {
+        "post": { "name": "\"PR Friday\" reel", "sub": "Posted Jul 11" },
+        "channel": "Instagram",
+        "reach": "41,200",
+        "clicks": "968",
+        "passes": "34",
+        "members": { "value": "9", "highlight": true },
+        "cost": { "value": "$38", "highlight": true }
+      },
+      {
+        "post": { "name": "Coach intro: meet Dana", "sub": "Posted Jul 3" },
+        "channel": "Instagram",
+        "reach": "22,600",
+        "clicks": "610",
+        "passes": "21",
+        "members": "6",
+        "cost": "$52"
+      },
+      {
+        "post": { "name": "Member story: Marcus, 40 lbs", "sub": "Posted Jul 18" },
+        "channel": "Instagram",
+        "reach": "31,400",
+        "clicks": "845",
+        "passes": "26",
+        "members": "5",
+        "cost": "$61"
+      },
+      {
+        "post": { "name": "6am class time-lapse", "sub": "Posted Jul 22" },
+        "channel": "Instagram",
+        "reach": "18,900",
+        "clicks": "402",
+        "passes": "14",
+        "members": "4",
+        "cost": "$71"
+      },
+      {
+        "post": { "name": "Free week giveaway", "sub": "Posted Jul 7" },
+        "channel": "Facebook",
+        "reach": "12,100",
+        "clicks": "512",
+        "passes": "29",
+        "members": "3",
+        "cost": "$96"
+      },
+      {
+        "post": { "name": "Referral reminder story", "sub": "Posted Jul 25" },
+        "channel": "Instagram",
+        "reach": "8,400",
+        "clicks": "190",
+        "passes": "11",
+        "members": "2",
+        "cost": "$74"
+      },
+      {
+        "post": { "name": "Gym tour walkthrough", "sub": "Posted Jul 15" },
+        "channel": "TikTok",
+        "reach": "27,800",
+        "clicks": "288",
+        "passes": "9",
+        "members": "1",
+        "cost": "$184"
+      }
+    ]
+  },
+
+  "bars": {
+    "title": "Members by channel",
+    "caption": "30 signed members, last 30 days",
+    "total": 30,
+    "items": [
+      { "label": "Instagram", "value": 26 },
+      { "label": "Facebook", "value": 3 },
+      { "label": "TikTok", "value": 1 }
+    ]
+  }
+}

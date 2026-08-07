@@ -1,0 +1,37 @@
+{
+  "note": "Read access only. You never hand over passwords, and member data is used to run your portal and nothing else.",
+  "title": "Connections",
+
+  "items": [
+    {
+      "name": "Mindbody",
+      "detail": "Members, bookings, billing history",
+      "live": true,
+      "status": { "label": "Synced 2m ago", "tone": "signal" }
+    },
+    {
+      "name": "Instagram, via the Meta API",
+      "detail": "Posts, reach, link clicks, free pass claims",
+      "live": true,
+      "status": { "label": "Token expires in 6d", "tone": "alert" },
+      "action": "Reconnect"
+    },
+    {
+      "name": "Member inbox, Google Workspace",
+      "detail": "Reads member email so replies live in one place",
+      "live": true,
+      "status": { "label": "Live", "tone": "signal" }
+    },
+    {
+      "name": "Stripe",
+      "detail": "Payments, refunds, failed charge recovery",
+      "live": true,
+      "status": { "label": "Synced 18m ago", "tone": "signal" }
+    },
+    {
+      "name": "Zen Planner",
+      "detail": "Available if you migrate from Mindbody",
+      "status": { "label": "Not connected" }
+    }
+  ]
+}

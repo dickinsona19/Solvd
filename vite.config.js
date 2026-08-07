@@ -11,6 +11,7 @@ export default defineConfig({
         custom: fileURLToPath(
           new URL('./custom/index.html', import.meta.url),
         ),
+        demo: fileURLToPath(new URL('./demo/index.html', import.meta.url)),
       },
     },
   },

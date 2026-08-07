@@ -1,0 +1,68 @@
+{
+  "note": "Members whose attendance and booking patterns say \"about to cancel.\" Names, not averages, so you know who to walk over to.",
+
+  "kpis": [
+    { "label": "High risk", "value": 2, "delta": "Act this week", "deltaTone": "alert" },
+    { "label": "Medium risk", "value": 4, "delta": "Worth a check-in" },
+    { "label": "Watchlist", "value": 11, "delta": "Monitoring only" },
+    { "label": "Saved last 90d", "value": 14, "delta": "$2,086 monthly revenue" }
+  ],
+
+  "table": {
+    "title": "Flagged this week",
+    "caption": "Ranked by risk score, refreshed every Monday at 5am",
+    "badge": { "label": "6 flagged", "tone": "alert" },
+    "columns": [
+      { "key": "member", "label": "Member", "type": "name" },
+      { "key": "risk", "label": "Risk", "type": "meter" },
+      { "key": "lastVisit", "label": "Last visit" },
+      { "key": "visits", "label": "Visits / 30d", "type": "num" },
+      { "key": "signal", "label": "Signal" }
+    ],
+    "rows": [
+      {
+        "member": { "name": "Kayla Reyes", "sub": "Unlimited · $149/mo" },
+        "risk": { "value": 88, "tone": "alert" },
+        "lastVisit": "14 days ago",
+        "visits": "0",
+        "signal": "Bookings down 71%"
+      },
+      {
+        "member": { "name": "Jordan Miles", "sub": "Unlimited · $149/mo" },
+        "risk": { "value": 81, "tone": "alert" },
+        "lastVisit": "11 days ago",
+        "visits": "1",
+        "signal": "18-week streak broken"
+      },
+      {
+        "member": { "name": "Priya Shah", "sub": "3x / week · $119/mo" },
+        "risk": { "value": 67 },
+        "lastVisit": "9 days ago",
+        "visits": "2",
+        "signal": "3 cancels in 2 weeks"
+      },
+      {
+        "member": { "name": "Devon Ward", "sub": "Unlimited · $149/mo" },
+        "risk": { "value": 64 },
+        "lastVisit": "8 days ago",
+        "visits": "2",
+        "signal": "Visits down 40%"
+      },
+      {
+        "member": { "name": "Marcus Terry", "sub": "Unlimited · $149/mo" },
+        "risk": { "value": 58 },
+        "lastVisit": "7 days ago",
+        "visits": "3",
+        "signal": "Visits down 33%"
+      },
+      {
+        "member": { "name": "Sam Okafor", "sub": "3x / week · $119/mo" },
+        "risk": { "value": 55 },
+        "lastVisit": "12 days ago",
+        "visits": "2",
+        "signal": "No PT rebook in 3 weeks"
+      }
+    ],
+    "foot": "Saving two members a month pays for the portal"
+  }
+}
