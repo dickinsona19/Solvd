@@ -4,68 +4,84 @@
    turning that data into DOM and wiring the interactions, so no content lives
    in markup and there is one dashboard rather than two.
 
-   Scope note: only behaviour that follows directly from the data lives here.
-   The Smart Inbox is the one view with an AI layer behind it, and even that
-   reads a file: ai/run.py does the thinking offline and writes
-   demo/data/inbox-ai.json, so this module never calls a model. The churn and
-   growth views still prescribe nothing. */
+   /demo/ is a frozen walkthrough of authored sample JSON. It never calls a
+   network API, never talks to OpenAI, and never mutates its data: the Smart
+   Inbox drafts already sit in demo/data/inbox-ai.json from an offline
+   ai/run.py pass. /app/ is the live path — it derives from a tenant's raw
+   records and allows in-memory reply state. */
 
 import { deriveBundle } from './derive.js'
 import { mountSprite } from './icons.js'
 import { currentSession, signOut } from './session.js'
 
-/* Two data sources, one renderer. /demo/ loads the authored view models in
-   demo/data/*.json. /app/ loads a tenant's raw records from accounts/<id>/
-   and runs them through derive.js first. The page says which it wants with
-   data-portal, so neither HTML file carries any content.
+/* Two data sources, one renderer. /demo/ pulls the authored view models from
+   demo/data/*.json (same-origin static assets, never an API). /app/ lazily
+   loads accounts/<id>/*.json and runs them through derive.js. Dynamic imports
+   keep each path out of the other's bundle: /app/ does not ship the sample
+   numbers, and /demo/ does not ship a megabyte of check-in log. */
 
-   Both are lazy: /app/ has no reason to ship the demo's numbers, and /demo/
-   has no reason to ship a megabyte of somebody's check-in log. */
-
-const CANNED = import.meta.glob('../demo/data/*.json', { import: 'default' })
 const RAW = import.meta.glob('../accounts/*/*.json', { import: 'default' })
 
-const CANNED_FILES = [
-  ['portal', 'portal'],
-  ['overview', 'overview'],
-  ['growth', 'growth'],
-  ['churn', 'churn'],
-  ['inbox', 'inbox'],
-  ['inboxAi', 'inbox-ai'],
-  ['members', 'members'],
-  ['integrations', 'integrations'],
-]
-
 const RAW_FILES = [
-  'account',
-  'members',
-  'visits',
-  'charges',
-  'posts',
-  'pass_claims',
-  'messages',
+  ['account', 'account'],
+  ['members', 'members'],
+  ['visits', 'visits'],
+  ['charges', 'charges'],
+  ['posts', 'posts'],
+  ['pass_claims', 'pass_claims'],
+  ['messages', 'messages'],
+  // Account inboxes use a build-time AI cache, not a live model call. Keeping
+  // it account-scoped prevents a signed-in gym from ever seeing another gym's
+  // drafts, actions, or member context.
+  ['inboxAi', 'inbox-ai'],
 ]
 
 // Assigned once, before anything renders. Every renderer below reads it.
 let DATA = null
+// True on /demo/: frozen sample data, no mutations, no API calls.
+let STATIC = false
 
 async function loadCannedBundle() {
-  const loaded = await Promise.all(
-    CANNED_FILES.map(async ([key, file]) => {
-      const loader = CANNED[`../demo/data/${file}.json`]
-      if (!loader) throw new Error(`demo/data/${file}.json is missing`)
-      return [key, await loader()]
-    }),
-  )
-  return Object.fromEntries(loaded)
+  // Only reached from /demo/. These are authored JSON files bundled by Vite —
+  // not OpenAI, not a backend, and nothing that can change under the visitor.
+  const [
+    portal,
+    overview,
+    growth,
+    churn,
+    inbox,
+    inboxAi,
+    members,
+    integrations,
+  ] = await Promise.all([
+    import('../demo/data/portal.json'),
+    import('../demo/data/overview.json'),
+    import('../demo/data/growth.json'),
+    import('../demo/data/churn.json'),
+    import('../demo/data/inbox.json'),
+    import('../demo/data/inbox-ai.json'),
+    import('../demo/data/members.json'),
+    import('../demo/data/integrations.json'),
+  ])
+
+  return {
+    portal: portal.default,
+    overview: overview.default,
+    growth: growth.default,
+    churn: churn.default,
+    inbox: inbox.default,
+    inboxAi: inboxAi.default,
+    members: members.default,
+    integrations: integrations.default,
+  }
 }
 
 async function loadAccountBundle(id) {
   const loaded = await Promise.all(
-    RAW_FILES.map(async (file) => {
+    RAW_FILES.map(async ([key, file]) => {
       const loader = RAW[`../accounts/${id}/${file}.json`]
       if (!loader) throw new Error(`accounts/${id}/${file}.json is missing`)
-      return [file, await loader()]
+      return [key, await loader()]
     }),
   )
   return deriveBundle(Object.fromEntries(loaded))
@@ -638,6 +654,15 @@ function sortNote(sorted) {
 function composer(thread, entry, ui) {
   const draft = entry?.draft
 
+  // The demo is a frozen walkthrough: drafts are pre-cached sample text, the
+  // box is read-only, and nothing is sent. /app/ keeps the editable path.
+  const frozen = STATIC
+  const note = frozen
+    ? 'Sample draft from cached data. Nothing is sent and no model is called.'
+    : draft
+      ? ui.draftNote
+      : null
+
   return h(
     'div',
     { class: draft ? 'reply has-draft' : 'reply' },
@@ -663,6 +688,7 @@ function composer(thread, entry, ui) {
       placeholder: ui.replyPlaceholder,
       'aria-label': draft ? ui.draftLabel : ui.replyLabel,
       text: draft ? draft.reply : null,
+      readonly: frozen ? '' : null,
     }),
     draft
       ? h(
@@ -675,13 +701,20 @@ function composer(thread, entry, ui) {
     h(
       'div',
       { class: 'reply-foot' },
-      h('button', {
-        class: 'btn btn-signal btn-sm',
-        type: 'button',
-        'data-send': '',
-        text: draft ? ui.approve : ui.send,
-      }),
-      draft ? h('p', { class: 'draft-note', text: ui.draftNote }) : null,
+      frozen
+        ? h('button', {
+            class: 'btn btn-ghost btn-sm',
+            type: 'button',
+            disabled: '',
+            text: 'Sample only',
+          })
+        : h('button', {
+            class: 'btn btn-signal btn-sm',
+            type: 'button',
+            'data-send': '',
+            text: draft ? ui.approve : ui.send,
+          }),
+      note ? h('p', { class: 'draft-note', text: note }) : null,
     ),
   )
 }
@@ -836,7 +869,9 @@ function activate(name) {
       RENDERERS[next](section.firstElementChild)
     }
     if (!reduce) restartAnimation(section)
-    countUp(section)
+    // The demo shows final numbers immediately so it never looks like a live
+    // sync. /app/ still count-ups on first visit.
+    if (!STATIC) countUp(section)
   }
 
   for (const item of document.querySelectorAll('.nav-item')) {
@@ -937,6 +972,8 @@ function wireInteractions() {
     }
 
     if (event.target.closest('[data-send]')) {
+      // Demo is frozen: the composer never mounts a send control there.
+      if (STATIC) return
       replied.add(openThread)
       renderThreadList()
       renderThreadDetail()
@@ -974,6 +1011,7 @@ function wireSignOut() {
 async function boot() {
   mountSprite()
   const account = document.body.dataset.portal === 'account'
+  STATIC = !account
 
   try {
     if (account) {
@@ -986,6 +1024,7 @@ async function boot() {
       }
       DATA = await loadAccountBundle(session.account)
     } else {
+      // Authored sample JSON only. No derivation, no model, no mutation path.
       DATA = await loadCannedBundle()
     }
   } catch (error) {

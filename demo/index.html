@@ -26,14 +26,15 @@
   </head>
 
   <!--
-    This page is a shell. Every number, row and message is rendered by
-    src/portal.js from the JSON in demo/data/, so the only content here is
-    chrome: the return pill and the containers the renderer fills. The icon
-    sprite is injected by src/icons.js, since /app/ needs it too.
+    This page is a frozen walkthrough. Every number, row and message is
+    rendered by src/portal.js from the authored JSON in demo/data/. The icon
+    sprite is injected by src/icons.js.
 
-    data-portal="demo" is what tells portal.js to load the authored demo data
-    rather than a tenant's raw records. Unlike / and /custom/, this page needs
-    JS to render.
+    data-portal="demo" tells portal.js to use that canned data as a frozen
+    walkthrough: no OpenAI call, no derivation, and no in-page mutations
+    (drafts are read-only, send is disabled). The Smart Inbox drafts already
+    live in demo/data/inbox-ai.json from an offline ai/run.py pass. Unlike /
+    and /custom/, this page needs JS to render.
   -->
 
   <body class="demo" data-portal="demo">

@@ -875,6 +875,11 @@
   cursor: pointer;
 }
 
+.btn-sm:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
 /* ---------- tables ---------- */
 
 .table-wrap {

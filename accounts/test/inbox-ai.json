@@ -1,0 +1,129 @@
+{
+  "generatedAt": "2026-08-07T23:55:00Z",
+  "models": {
+    "sort": "gpt-5.6-luna",
+    "draft": "gpt-5.6-luna"
+  },
+  "results": {
+    "msg_9100": {
+      "sort": {
+        "category": "membership",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Damon wants to freeze his membership for September without losing his current rate.",
+        "reasoning": "A freeze is covered by policy, and the request is an opportunity to prevent a cancellation."
+      },
+      "draft": {
+        "reply": "Damon, yes, I can freeze your membership for September so billing pauses while you're away and your current rate stays locked. I'll apply the freeze from September 1 through September 30.",
+        "action": "Apply September membership freeze in Mindbody",
+        "confidence": "high"
+      }
+    },
+    "msg_9101": {
+      "sort": {
+        "category": "lead",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Curtis claimed a free pass and wants to know whether Saturday's class is suitable for a complete beginner.",
+        "reasoning": "A new lead is waiting on an answer that determines whether he attends, and the Saturday 9am class is beginner-friendly."
+      },
+      "draft": {
+        "reply": "Curtis, yes, the Saturday 9am class is a good place to start, even if you've never touched a barbell. I'll book your free pass for this Saturday, and the coach will walk you through everything from the beginning.",
+        "action": "Book free pass for Saturday 9am in Mindbody",
+        "confidence": "high"
+      }
+    },
+    "msg_9102": {
+      "sort": {
+        "category": "schedule",
+        "priority": "medium",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Ingrid wants to move from the 5:30pm class to 6am starting next week.",
+        "reasoning": "This is a straightforward class reservation change covered by policy."
+      },
+      "draft": {
+        "reply": "Ingrid, yes, I'll move your existing 5:30pm bookings to the 6am class starting Monday, August 10. Your current bookings will be updated rather than cancelled.",
+        "action": "Move bookings to the 6am class in Mindbody",
+        "confidence": "high"
+      }
+    },
+    "msg_9103": {
+      "sort": {
+        "category": "billing",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Pete reports a duplicate membership charge and wants the extra payment refunded.",
+        "reasoning": "Money is wrong, and refunding a duplicate charge is explicitly covered by policy."
+      },
+      "draft": {
+        "reply": "Pete, I found the duplicate $159 charge and I've refunded it. The refund should reach your account in three to five business days.",
+        "action": "Refund $159 duplicate charge in Stripe",
+        "confidence": "high"
+      }
+    },
+    "msg_9104": {
+      "sort": {
+        "category": "membership",
+        "priority": "high",
+        "needs_human": false,
+        "confidence": "high",
+        "summary": "Jonah wants to cancel because work has kept him from using the gym.",
+        "reasoning": "This is a cancellation and churn-risk request; policy allows offering a no-cost freeze before processing it."
+      },
+      "draft": {
+        "reply": "Jonah, I understand, it doesn't make sense to keep paying when work is keeping you away. Before I cancel it, I can place your membership on a no-cost freeze for up to 60 days and keep your current rate locked. If you'd still rather cancel, I'll make that easy.",
+        "action": "No action",
+        "confidence": "high"
+      }
+    },
+    "msg_9105": {
+      "sort": {
+        "category": "facilities",
+        "priority": "high",
+        "needs_human": true,
+        "confidence": "high",
+        "summary": "Pete asks about morning childcare because its availability affects whether he returns.",
+        "reasoning": "The account has no confirmed childcare policy, and the message signals an immediate churn risk."
+      },
+      "draft": {
+        "reply": "Pete, I don't have a confirmed childcare option to promise you right now. I'm checking what we can offer during the morning classes and I'll get back to you before you plan your next visit.",
+        "action": "No action",
+        "confidence": "medium"
+      }
+    },
+    "msg_9106": {
+      "sort": {
+        "category": "other",
+        "priority": "high",
+        "needs_human": true,
+        "confidence": "high",
+        "summary": "Colin is asking for training guidance after hurting his shoulder.",
+        "reasoning": "An injury question needs a careful human response and should not be answered with invented medical advice."
+      },
+      "draft": {
+        "reply": "Colin, skip Barbell Club this week and don't train through shoulder pain. Please have it checked by a qualified medical professional, and once you know what movements are safe, we'll help modify your training around that guidance.",
+        "action": "No action",
+        "confidence": "medium"
+      }
+    },
+    "msg_9107": {
+      "sort": {
+        "category": "schedule",
+        "priority": "medium",
+        "needs_human": true,
+        "confidence": "high",
+        "summary": "Rosa wants to bring a visiting guest to Saturday's class.",
+        "reasoning": "The account has no confirmed guest policy, so the owner should approve the visit before a booking is promised."
+      },
+      "draft": {
+        "reply": "Rosa, I'd be glad to help your sister try the Saturday class. I'm checking the guest spot and pass details now, and I'll confirm it with you before Saturday.",
+        "action": "No action",
+        "confidence": "medium"
+      }
+    }
+  }
+}

@@ -136,7 +136,7 @@ file directly: it is handed a bundle of view models, and `data-portal` on the
 
 | `data-portal` | Route    | Bundle                                                          |
 | ------------- | -------- | --------------------------------------------------------------- |
-| `demo`        | `/demo/` | `demo/data/*.json`, already in view-model shape, used as-is      |
+| `demo`        | `/demo/` | `demo/data/*.json`, frozen walkthrough, no API calls             |
 | `account`     | `/app/`  | `accounts/<id>/*.json` raw records, run through `src/derive.js`   |
 
 Both paths are lazy: `import.meta.glob` keeps each account's records out of the
@@ -153,16 +153,24 @@ demo's bundle and vice versa. There is no API and no database anywhere.
   carry HTML: `"Payment received: *$149* from Priya Shah"`.
 - **Nodes, not HTML strings.** The renderer builds elements and sets
   `textContent`, so copy containing quotes or apostrophes cannot break markup.
-- **Interactions are in-memory.** Sending a reply and the date-range control
-  change local state only and reset on reload. The range buttons do not
-  re-filter the data.
+- **Interactions.** View switching, search, and inbox sort are client-side
+  only. On `/app/`, sending a reply flips in-memory state and resets on
+  reload. On `/demo/`, drafts are read-only and send is disabled. The range
+  buttons never re-filter the data.
 
-### The demo: hand-written JSON
+### The demo: frozen sample JSON
 
 Every number, row, and message in `/demo/` lives in `demo/data/*.json`, already
-shaped the way the renderer wants it. Tailoring the demo means editing JSON,
-never markup. The gym, the members, and every figure are invented; the page
-labels itself "Sample data" in the return pill and is `noindex`.
+shaped the way the renderer wants it. Those files are loaded only on the demo
+route as same-origin static assets — never OpenAI, never a backend, and never
+run through `derive.js`. Smart Inbox drafts are the committed cache in
+`demo/data/inbox-ai.json` from an offline `ai/run.py` pass. Drafts are
+read-only, send is disabled, and KPI count-ups are skipped so nothing on the
+page looks like a live sync.
+
+Tailoring the demo means editing JSON, never markup. The gym, the members, and
+every figure are invented; the page labels itself "Sample data" in the return
+pill and is `noindex`.
 
 ### The client portal: raw records, derived at runtime
 

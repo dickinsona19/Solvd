@@ -849,7 +849,7 @@ function derivePortal(ctx, overview, churn, inbox) {
 /* ---------- entry point ---------- */
 
 export function deriveBundle(raw) {
-  const { account, members, visits, charges, posts, pass_claims: claims, messages } = raw
+  const { account, members, visits, charges, posts, pass_claims: claims, messages, inboxAi } = raw
   const clock = clockFor(account.gym.timezone)
 
   const ctx = {
@@ -879,6 +879,6 @@ export function deriveBundle(raw) {
     members: membersView,
     integrations,
     inbox,
-    inboxAi: { results: {} },
+    inboxAi,
   }
 }
