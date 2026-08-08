@@ -1,32 +1,28 @@
-/* Sign-in for the client dashboard.
+/* Server-issued sessions for the client dashboard.
 
-   READ THIS BEFORE SHIPPING. This is not authentication. The credentials are
-   in the table below, which means they are in the JavaScript bundle, which
-   means anyone can read them with view-source. The session is a flag in
-   sessionStorage that any visitor can set themselves, and /app/ is a static
-   page that will render for anyone who asks for it, logged in or not.
+   The browser stores only a short-lived signed token. Credentials and token
+   signing secrets live in the backend service, and every account/inbox API
+   request is authorized there. The token is intentionally kept out of URLs
+   and never sent to OpenAI. */
 
-   It is a facade good enough to demo a per-tenant dashboard and nothing more.
-   Real multi-tenant auth needs a server that holds the password hashes, issues
-   a session cookie, and only ever sends a client the rows they own. Until that
-   exists, do not put a real gym's data in accounts/. */
+import { apiUrl } from './api-config.js'
 
 const KEY = 'solvd.session'
 
-const ACCOUNTS = {
-  test: { password: '1234', account: 'test', label: 'Northside Barbell' },
-}
+export async function signIn(username, password) {
+  const response = await fetch(apiUrl('/api/v1/session'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  })
+  if (response.status === 401) return null
+  if (!response.ok) throw new Error(`Portal service returned ${response.status}`)
 
-export function signIn(username, password) {
-  const record = ACCOUNTS[String(username).trim().toLowerCase()]
-  if (!record || record.password !== password) return null
-
-  const session = { account: record.account, label: record.label, at: Date.now() }
+  const session = await response.json()
   try {
     sessionStorage.setItem(KEY, JSON.stringify(session))
   } catch {
-    // Private browsing can refuse storage. The sign-in still "works" for this
-    // page load; the next one will bounce back to the form.
+    return null
   }
   return session
 }
@@ -36,7 +32,11 @@ export function currentSession() {
     const raw = sessionStorage.getItem(KEY)
     if (!raw) return null
     const session = JSON.parse(raw)
-    return session && ACCOUNTS[session.account] ? session : null
+    if (!session?.token || !session?.account || Number(session.exp) * 1000 <= Date.now()) {
+      signOut()
+      return null
+    }
+    return session
   } catch {
     return null
   }

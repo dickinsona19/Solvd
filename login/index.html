@@ -20,13 +20,6 @@
     <link rel="stylesheet" href="/src/site.css" />
   </head>
 
-  <!--
-    The form works without JS in the sense that it renders and is readable,
-    but signing in needs src/login.js, because there is no server to post to.
-    That is the honest summary of this whole page: it is a prototype gate, not
-    authentication. See src/session.js.
-  -->
-
   <body class="auth">
     <main class="auth-stage">
       <a class="auth-brand" href="/">
@@ -72,10 +65,9 @@
           <button class="btn btn-signal" type="submit">Open my portal</button>
         </form>
 
-              <p class="auth-demo">
-                Prototype credentials: <code>test</code> / <code>1234</code> — no
-                real gym data lives here yet.
-              </p>
+          <p class="auth-demo">
+            Your credentials are verified securely by the portal service.
+          </p>
       </div>
 
       <p class="auth-foot">

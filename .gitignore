@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+*.db
+*.db-shm
+*.db-wal
 
 # Secrets. The inbox agent reads OPENAI_API_KEY from here.
 .env

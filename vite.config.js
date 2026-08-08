@@ -4,6 +4,14 @@ import { fileURLToPath } from 'node:url'
 // Static multi-page site: all copy ships in the initial HTML, no client
 // rendering. Crawlers and link previews get the full page with JS disabled.
 export default defineConfig({
+  server: {
+    // Local development keeps browser requests same-origin while the Python
+    // API runs on port 8000. Production uses VITE_API_BASE_URL on Render.
+    proxy: {
+      '/api': 'http://127.0.0.1:8000',
+      '/healthz': 'http://127.0.0.1:8000',
+    },
+  },
   build: {
     // The only chunk over the default 500 kB is accounts/test/visits.json, a
     // six thousand row check-in log. It is data rather than code, it is 56 kB

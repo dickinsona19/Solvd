@@ -13,6 +13,7 @@
 import { deriveBundle } from './derive.js'
 import { mountSprite } from './icons.js'
 import { currentSession, signOut } from './session.js'
+import { apiRequest } from './api.js'
 
 /* Two data sources, one renderer. /demo/ pulls the authored view models from
    demo/data/*.json (same-origin static assets, never an API). /app/ lazily
@@ -20,24 +21,9 @@ import { currentSession, signOut } from './session.js'
    keep each path out of the other's bundle: /app/ does not ship the sample
    numbers, and /demo/ does not ship a megabyte of check-in log. */
 
-const RAW = import.meta.glob('../accounts/*/*.json', { import: 'default' })
-
-const RAW_FILES = [
-  ['account', 'account'],
-  ['members', 'members'],
-  ['visits', 'visits'],
-  ['charges', 'charges'],
-  ['posts', 'posts'],
-  ['pass_claims', 'pass_claims'],
-  ['messages', 'messages'],
-  // Account inboxes use a build-time AI cache, not a live model call. Keeping
-  // it account-scoped prevents a signed-in gym from ever seeing another gym's
-  // drafts, actions, or member context.
-  ['inboxAi', 'inbox-ai'],
-]
-
 // Assigned once, before anything renders. Every renderer below reads it.
 let DATA = null
+let LIVE_RAW = null
 // True on /demo/: frozen sample data, no mutations, no API calls.
 let STATIC = false
 
@@ -77,14 +63,9 @@ async function loadCannedBundle() {
 }
 
 async function loadAccountBundle(id) {
-  const loaded = await Promise.all(
-    RAW_FILES.map(async ([key, file]) => {
-      const loader = RAW[`../accounts/${id}/${file}.json`]
-      if (!loader) throw new Error(`accounts/${id}/${file}.json is missing`)
-      return [key, await loader()]
-    }),
-  )
-  return deriveBundle(Object.fromEntries(loaded))
+  LIVE_RAW = await apiRequest('/api/v1/account')
+  if (LIVE_RAW.account?.id !== id) throw new Error('The signed-in account does not match this portal.')
+  return deriveBundle(LIVE_RAW)
 }
 
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -525,11 +506,20 @@ function renderIntegrations(root) {
 const RANK = { high: 0, medium: 1, low: 2 }
 
 const aiFor = (thread) => DATA.inboxAi.results?.[thread.id]
-const rankOf = (thread) => RANK[aiFor(thread)?.sort.priority] ?? RANK.low
+const rankOf = (thread) => RANK[aiFor(thread)?.sort?.priority] ?? RANK.low
 
 function categoryOf(thread) {
-  const key = aiFor(thread)?.sort.category
+  const key = aiFor(thread)?.sort?.category
   return key ? DATA.inbox.ui.categories[key] || key : ''
+}
+
+function processingPill(entry) {
+  if (entry?.status === 'queued' || entry?.status === 'processing') {
+    return pill({ label: 'Drafting', tone: 'signal' })
+  }
+  if (entry?.status === 'failed') return pill({ label: 'Needs retry', tone: 'alert' })
+  if (entry?.status === 'skipped') return pill({ label: 'No draft needed' })
+  return null
 }
 
 // Each comparator falls through to age, so the order is total and the list
@@ -605,7 +595,8 @@ function renderThreadList() {
   listHost.replaceChildren(
     ...threads.map((thread) => {
       const on = thread.id === openThread
-      const sorted = aiFor(thread)?.sort
+      const entry = aiFor(thread)
+      const sorted = entry?.sort
 
       return h(
         'button',
@@ -627,7 +618,7 @@ function renderThreadList() {
           { class: 'thread-tags' },
           replied.has(thread.id)
             ? pill({ label: DATA.inbox.ui.replied, tone: 'signal' })
-            : pill(categoryOf(thread) || thread.status),
+            : processingPill(entry) || pill(categoryOf(thread) || thread.status),
           sorted ? priorityTag(sorted.priority) : null,
         ),
       )
@@ -653,6 +644,9 @@ function sortNote(sorted) {
 
 function composer(thread, entry, ui) {
   const draft = entry?.draft
+  const processing = entry?.status === 'queued' || entry?.status === 'processing'
+  const failed = entry?.status === 'failed'
+  const skipped = entry?.status === 'skipped'
 
   // The demo is a frozen walkthrough: drafts are pre-cached sample text, the
   // box is read-only, and nothing is sent. /app/ keeps the editable path.
@@ -661,7 +655,13 @@ function composer(thread, entry, ui) {
     ? 'Sample draft from cached data. Nothing is sent and no model is called.'
     : draft
       ? ui.draftNote
-      : null
+      : processing
+        ? 'A secure server-side AI pass is preparing the reply and suggested action.'
+        : failed
+          ? entry.error
+          : skipped
+            ? entry.decision
+            : 'No draft exists for this message yet.'
 
   return h(
     'div',
@@ -681,14 +681,18 @@ function composer(thread, entry, ui) {
             }),
           ),
         )
-      : h('label', { class: 'label-mono', for: 'reply-body', text: ui.replyLabel }),
+      : h('label', {
+          class: 'label-mono',
+          for: 'reply-body',
+          text: processing ? 'Drafting reply' : ui.replyLabel,
+        }),
     h('textarea', {
       id: 'reply-body',
       rows: draft ? '7' : '4',
-      placeholder: ui.replyPlaceholder,
+      placeholder: processing ? 'The draft will appear here automatically…' : ui.replyPlaceholder,
       'aria-label': draft ? ui.draftLabel : ui.replyLabel,
       text: draft ? draft.reply : null,
-      readonly: frozen ? '' : null,
+      readonly: frozen || processing ? '' : null,
     }),
     draft
       ? h(
@@ -708,6 +712,20 @@ function composer(thread, entry, ui) {
             disabled: '',
             text: 'Sample only',
           })
+        : processing
+          ? h('button', {
+              class: 'btn btn-ghost btn-sm',
+              type: 'button',
+              disabled: '',
+              text: 'Drafting…',
+            })
+          : !draft
+            ? h('button', {
+                class: 'btn btn-signal btn-sm',
+                type: 'button',
+                'data-analyze': thread.id,
+                text: failed ? 'Retry AI draft' : 'Draft with AI',
+              })
         : h('button', {
             class: 'btn btn-signal btn-sm',
             type: 'button',
@@ -753,7 +771,7 @@ function renderThreadDetail() {
       ),
       h('p', { text: thread.message }),
     ),
-    entry ? sortNote(entry.sort) : null,
+    entry?.sort ? sortNote(entry.sort) : null,
     replied.has(thread.id)
       ? h(
           'div',
@@ -767,6 +785,79 @@ function renderThreadDetail() {
         )
       : composer(thread, entry, ui),
   )
+}
+
+/* ---------- live inbox sync ---------- */
+
+let liveInboxVersion = ''
+let liveInboxRequest = null
+let liveInboxTimer = null
+
+function versionOfInbox(payload) {
+  const messages = payload.messages.map((message) => [
+    message.id,
+    message.received_at,
+    message.body_text,
+    message.labels,
+  ])
+  const results = Object.entries(payload.inboxAi.results || {}).map(([id, entry]) => [
+    id,
+    entry.status,
+    entry.processedAt,
+    entry.attempts,
+  ])
+  return JSON.stringify([messages, results])
+}
+
+function refreshInboxChrome() {
+  const view = DATA.portal.views.find((item) => item.id === 'inbox')
+  const count = view?.badge?.value ?? DATA.inbox.threads.length
+  const badge = document.querySelector('.nav-item[data-view="inbox"] .nav-count')
+  if (badge) badge.textContent = count
+  const sync = document.getElementById('sync-label')
+  if (sync) sync.textContent = 'Inbox synced just now'
+}
+
+function rebuildInboxView() {
+  if (!built.has('inbox')) return
+  const host = document.querySelector('.view[data-view="inbox"] .view-inner')
+  if (!host) return
+  host.replaceChildren()
+  renderInbox(host)
+}
+
+async function refreshLiveInbox(force = false) {
+  if (STATIC || document.visibilityState === 'hidden') return
+  if (liveInboxRequest) return liveInboxRequest
+
+  liveInboxRequest = apiRequest('/api/v1/inbox')
+    .then((payload) => {
+      const nextVersion = versionOfInbox(payload)
+      if (!force && nextVersion === liveInboxVersion) return
+      liveInboxVersion = nextVersion
+      LIVE_RAW.messages = payload.messages
+      LIVE_RAW.inboxAi = payload.inboxAi
+      DATA = deriveBundle(LIVE_RAW)
+      refreshInboxChrome()
+      rebuildInboxView()
+    })
+    .catch(() => {
+      const sync = document.getElementById('sync-label')
+      if (sync) sync.textContent = 'Inbox reconnecting…'
+    })
+    .finally(() => {
+      liveInboxRequest = null
+    })
+  return liveInboxRequest
+}
+
+function startLiveInbox() {
+  liveInboxVersion = versionOfInbox({ messages: LIVE_RAW.messages, inboxAi: LIVE_RAW.inboxAi })
+  liveInboxTimer = window.setInterval(() => refreshLiveInbox(), 10000)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') refreshLiveInbox(true)
+  })
+  window.addEventListener('beforeunload', () => window.clearInterval(liveInboxTimer), { once: true })
 }
 
 /* ---------- shell ---------- */
@@ -952,7 +1043,7 @@ function wireInteractions() {
 
   // Delegated, because views are rendered on first visit and the thread
   // list is rebuilt every time the sort changes.
-  document.getElementById('views').addEventListener('click', (event) => {
+  document.getElementById('views').addEventListener('click', async (event) => {
     const thread = event.target.closest('.thread')
     if (thread) {
       openThread = thread.dataset.thread
@@ -968,6 +1059,24 @@ function wireInteractions() {
         other.setAttribute('aria-pressed', String(other === sortButton))
       }
       renderThreadList()
+      return
+    }
+
+    const analyzeButton = event.target.closest('[data-analyze]')
+    if (analyzeButton) {
+      const id = analyzeButton.dataset.analyze
+      const entry = DATA.inboxAi.results[id] || {}
+      DATA.inboxAi.results[id] = { ...entry, status: 'processing', error: null }
+      renderThreadList()
+      renderThreadDetail()
+      try {
+        await apiRequest(`/api/v1/inbox/${encodeURIComponent(id)}/analyze`, { method: 'POST' })
+        window.setTimeout(() => refreshLiveInbox(true), 500)
+      } catch (error) {
+        DATA.inboxAi.results[id] = { ...entry, status: 'failed', error: error.message }
+        renderThreadList()
+        renderThreadDetail()
+      }
       return
     }
 
@@ -1042,6 +1151,7 @@ async function boot() {
   wireInteractions()
   wireSignOut()
   activate(window.location.hash.slice(1))
+  if (account) startLiveInbox()
 }
 
 boot()

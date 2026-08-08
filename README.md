@@ -1,10 +1,10 @@
 # SOLVD — getsolvd.io
 
-Static site for SOLVD, a two-person software firm in Charlotte, NC, and its
-flagship product, The Gym Portal. No client framework: on the marketing pages
-all copy ships in the initial HTML, so crawlers and link previews get the full
-page with JS disabled. The two dashboard routes are the exception and render
-from data at runtime.
+Website and live portal for SOLVD, a two-person software firm in Charlotte, NC,
+and its flagship product, The Gym Portal. The frontend has no client framework:
+marketing copy ships in the initial HTML and the dashboard uses vanilla ES
+modules. A FastAPI service now owns authentication, live email ingestion,
+durable inbox state, and server-side OpenAI calls.
 
 Color, type, voice, and motion rules live in [DESIGN.md](DESIGN.md). Read it
 before changing anything visual, but see "Loose ends" below first, because parts
@@ -16,19 +16,21 @@ of it describe an implementation that was never built.
 - Hand-written HTML and CSS, tokens as custom properties
 - Vanilla ES modules, used only for progressive enhancement
 - [oxlint](https://oxc.rs/docs/guide/usage/linter)
+- FastAPI, SQLAlchemy, and Postgres for the live portal service
+- LangGraph and OpenAI's Responses API for Smart Inbox classification/drafting
 - Archivo, Geist, and Geist Mono, loaded from Google Fonts in each page head
 
-No React, no Tailwind, no runtime dependencies. `package.json` has exactly two
-devDependencies, and that is deliberate.
-
-Two Python pieces sit beside the site rather than in it, and neither ships to
-the browser: the Smart Inbox agent in `ai/`, and the test-account data
-generator in `accounts/generate.py`. Both are build-time tools that write JSON.
+No React and no Tailwind. The Python backend and model code never ship to the
+browser, and the OpenAI key remains server-side.
 
 ## Getting started
 
 ```bash
 npm install
+npm run build
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python -m uvicorn server.app:app --reload
 npm run dev
 ```
 
@@ -50,8 +52,8 @@ Then open the printed local URL (defaults to http://localhost:5173).
 | `/`        | `index.html`        | The Gym Portal sales page: hero, pricing, proof, FAQ, form  |
 | `/custom/` | `custom/index.html` | Custom builds and technical partnerships                   |
 | `/demo/`   | `demo/index.html`   | Product demo on hand-written sample data, `noindex`         |
-| `/login/`  | `login/index.html`  | Client sign in. A prototype facade, see below               |
-| `/app/`    | `app/index.html`    | The signed-in client dashboard, derived from raw records    |
+| `/login/`  | `login/index.html`  | Client sign in through the authenticated portal API         |
+| `/app/`    | `app/index.html`    | Authorized dashboard with a live, polling Smart Inbox       |
 
 Every page needs an entry in `rollupOptions.input` in `vite.config.js` or it
 will not be built.
@@ -87,6 +89,7 @@ accounts/
     posts.json        #   social posts with reach and clicks
     pass_claims.json  #   free-pass claims, some of which converted
     messages.json     #   member email, addressed from real rows in members.json
+    inbox-ai.json     #   seeded account drafts used to bootstrap local development
 src/
   site.css            # tokens + every marketing-page style. /, /custom/ and /login/ load it
   site.js             # brand intro, hero portal tilt, scroll reveals, stat count-ups
@@ -94,13 +97,20 @@ src/
   portal.js           # renders a data bundle into DOM, plus routing and interactions
   derive.js           # raw records -> the view models portal.js renders. /app/ only
   icons.js            # the SVG sprite, injected by JS so both dashboards share one copy
-  session.js          # the hardcoded login. Not security, see below
+  api.js              # authenticated browser requests to the portal service
+  session.js          # stores and validates the short-lived signed session
   login.js            # the /login/ form
-ai/                   # the Smart Inbox agent. Runs offline, ships nothing to the browser
+ai/                   # the Smart Inbox graph, also usable as an offline generator
+  model.py            #   ChatOpenAI wired to OpenAI's Responses API
   graph.py            #   the LangGraph: sort, then route to a drafter per category
   prompts.py          #   gym facts, what the agent may promise, and the voice rules
   run.py              #   the runner and the cache. Writes demo/data/inbox-ai.json
   requirements.txt    #   langgraph, langchain-openai, pydantic, python-dotenv
+server/               # FastAPI auth, inbox persistence, ingestion, and AI workers
+tests/                # policy, auth, parser, and API tests (no paid model calls)
+requirements.txt      # complete API service dependency set
+render.yaml           # Render API service + Postgres Blueprint
+DEPLOYMENT.md          # exact live deployment and mailbox setup
 public/               # served from the root: favicons, OG image, wordmark, photo, robots, sitemap
 vite.config.js        # the five build inputs
 DESIGN.md             # color, type, voice, motion
@@ -172,15 +182,14 @@ Tailoring the demo means editing JSON, never markup. The gym, the members, and
 every figure are invented; the page labels itself "Sample data" in the return
 pill and is `noindex`.
 
-### The client portal: raw records, derived at runtime
+### The client portal: authorized records, derived at runtime
 
-`/app/` exists to prove the harder half. `accounts/test/` holds records in the
-shape an integration would actually hand over — snake_case keys, ISO
-timestamps, foreign keys, nulls, cancelled members still in the table — and
-nothing pre-computed. `src/derive.js` turns those into every KPI, chart series,
-churn score, and attribution figure on the page. That derivation is the part
-worth keeping: point it at real Mindbody and Stripe exports and the dashboard
-above it does not change.
+`/app/` requests an authorized account bundle from the FastAPI service.
+`accounts/test/` remains the seeded integration-shaped fixture behind that
+service: snake_case keys, ISO timestamps, foreign keys, nulls, and cancelled
+members. `src/derive.js` turns the authorized raw bundle into every KPI, chart
+series, churn score, and attribution figure. The browser no longer imports
+tenant files directly.
 
 A few consequences worth knowing:
 
@@ -209,34 +218,29 @@ implemented. The churn table reports risk scores and signals without
 prescribing what to do about them, and Growth attributes members to posts
 without recommending the next one. Those stay unbuilt on purpose.
 
-## The login is a facade
+## Authentication
 
-`/login/` is a prototype. **It is not authentication and must not be treated as
-any.** `src/session.js` holds the username and password as plain text in
-client-side JavaScript, compares them in the browser, and records success in
-`sessionStorage`. That means:
+`/login/` posts credentials to `POST /api/v1/session`. The server compares them
+against environment-held secrets and issues a signed, expiring token. Every
+account and inbox endpoint verifies that token before returning data. The
+browser never receives the password, signing secret, mailbox credential,
+webhook secret, or OpenAI key.
 
-- The credentials ship to anyone who opens the built JS. `test` / `1234`.
-- The `/app/` gate is a redirect, not a check. Anyone can skip it.
-- `accounts/test/*.json` is served as a static asset to whoever asks. There is
-  no per-account authorization because there is no server to enforce one.
-
-This is fine for what it is: a way to show a client their own dashboard shape
-without standing up a backend. Every member, charge, and message in
-`accounts/test/` is generated, so nothing real is exposed. Before this holds
-anything real it needs a server, a session it issues, and per-account data
-access — which is a rewrite of this seam, not a patch to it.
+The service is intentionally single-tenant today. Supporting multiple gyms
+requires an account table with per-account password hashes and ownership rules,
+not additional credentials embedded in frontend code.
 
 ## The Smart Inbox agent
 
 The inbox is the one view with a model behind it. It sorts each message into a
 category and a priority, then drafts a reply the owner can edit and send.
 
-**It runs offline, not in the browser.** A static site cannot hold an API key,
-and paying for a model call every time someone refreshes a demo would be
-absurd. So `ai/run.py` does the work on your machine and writes
-`demo/data/inbox-ai.json`; `src/portal.js` loads it like any other data.
-The browser never talks to OpenAI, and the key never leaves `.env`.
+The demo remains frozen: `ai/run.py` writes `demo/data/inbox-ai.json` and the
+browser reads that committed sample cache. The signed-in portal is live. The
+API service ingests email through IMAP polling or an authenticated webhook,
+stores it in Postgres, applies deterministic no-call filters, and runs the
+LangGraph workflow in a background worker. The portal polls draft status every
+ten seconds. The browser talks only to the SOLVD API, never directly to OpenAI.
 
 ```bash
 python -m venv ai/.venv
@@ -244,9 +248,12 @@ ai/.venv/Scripts/python -m pip install -r ai/requirements.txt   # Windows
 python ai/run.py
 ```
 
-`.env` needs `OPENAI_API_KEY`. Copy `.env.example` to start. Both passes run on
-`gpt-5.6-luna`; override either with `SOLVD_SORT_MODEL` or `SOLVD_DRAFT_MODEL`,
-for instance to sort on something cheaper than you draft on.
+The live service and offline runner need `OPENAI_API_KEY`. Copy `.env.example`
+to start. Both model passes run on
+`gpt-5.6-luna` through OpenAI's **Responses API** (`use_responses_api=True` in
+`ai/model.py`), not Chat Completions. Override either model with
+`SOLVD_SORT_MODEL` or `SOLVD_DRAFT_MODEL`, for instance to sort on something
+cheaper than you draft on.
 
 ### The graph
 
@@ -268,13 +275,18 @@ duplicate charge). Anything outside that list has to be escalated rather than
 invented, which is what `needs_human` is for. Changing gym policy is a text
 edit in that file.
 
-### One call per email, ever
+### When the live service calls OpenAI
 
-Each email is fingerprinted from its own content plus the models and prompts
-that produced its result. A matching fingerprint means the answer is already
-cached and the email is skipped, so re-running is free and idempotent.
-Editing the message, or editing `prompts.py`, changes the fingerprint and
-re-runs just what it affects. Results for deleted emails are pruned.
+Every email is keyed by provider Message-ID and fingerprinted from the content
+that affects the reply. Duplicate deliveries and unchanged messages reuse the
+stored result. Before any model call, `server/email_policy.py` rejects read or
+non-inbox mail, spam/trash/sent/draft labels, automated senders, auto-responses,
+mailing lists, messages from the gym, empty bodies, and acknowledgement-only
+replies. Ambiguous human mail is processed because missing a member request is
+worse than drafting one extra response. An owner can explicitly request a
+draft for anything the prefilter skipped or retry a failed call.
+
+The offline demo runner retains its prompt-and-model fingerprint cache:
 
 ```bash
 python ai/run.py --list    # report what is cached and what is stale, call nothing
@@ -295,9 +307,12 @@ commit to, and a "Read this one first" flag when `needs_human` is set. A thread
 with no cached entry still renders: it sorts as low priority and gets an empty
 composer.
 
-Only `/demo/` has a cache today, so every thread in `/app/` takes that empty-
-composer path. Pointing the agent at an account's `messages.json` is the same
-run with a different input and output path.
+In `/app/`, queued messages show a drafting state, ready results fill the
+composer and suggested action, and skipped or failed messages expose an
+explicit **Draft with AI** control.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for Render, Postgres, CORS, mailbox, webhook,
+and static-site configuration.
 
 ## Before launch
 
@@ -306,9 +321,8 @@ run with a different input and output path.
 - Confirm the LinkedIn URL in the footer of `/` and `/custom/`.
 - `public/sitemap.xml` lists `/` and `/custom/` only. `/demo/` is excluded on
   purpose, since it is sample data.
-- **Replace the login before it guards anything real.** See "The login is a
-  facade" above. `/login/` and `/app/` are `noindex` and belong nowhere near a
-  paying client's data as written.
+- Replace the single-tenant environment login with a real account store before
+  onboarding multiple gyms.
 
 ## Loose ends
 

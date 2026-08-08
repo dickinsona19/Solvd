@@ -22,16 +22,7 @@
     <link rel="stylesheet" href="/src/portal.css" />
   </head>
 
-  <!--
-    The same shell as /demo/, and the same renderer. The only difference is
-    data-portal="account", which tells src/portal.js to look up the signed-in
-    account, load its raw records from accounts/<id>/, and derive the views
-    from them instead of reading the demo's authored JSON.
-
-    Anyone without a session gets sent to /login/. That is a convenience, not
-    a security boundary: this page is static and the credentials live in the
-    bundle. See the warning at the top of src/session.js.
-  -->
+  <!-- The account shell loads authorized data from the live portal API. -->
 
   <body class="demo" data-portal="account">
     <div class="stage">

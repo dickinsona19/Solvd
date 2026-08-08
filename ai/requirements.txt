@@ -4,7 +4,12 @@
 # langchain 1.x packages are a different API from the 0.x line, and graph.py
 # is written against 1.x: StateGraph with add_conditional_edges, and
 # with_structured_output returning a Pydantic model.
+#
+# ChatOpenAI is configured with use_responses_api=True (see model.py), so
+# calls go to OpenAI's Responses API rather than Chat Completions.
 langgraph>=1.2.10,<2
+langchain>=1.3.14,<2
 langchain-openai>=1.4.2,<2
+langchain-core>=1.5.3,<2
 pydantic>=2.13.4,<3
 python-dotenv>=1.2.2,<2

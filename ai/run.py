@@ -114,7 +114,12 @@ def main() -> int:
         if not os.getenv("OPENAI_API_KEY"):
             print(f"OPENAI_API_KEY is not set. Add it to {ROOT / '.env'}.", file=sys.stderr)
             return 1
-        from graph import DRAFT_MODEL, SORT_MODEL, build_graph
+        try:
+            from .graph import build_graph
+            from .model import DRAFT_MODEL, SORT_MODEL
+        except ImportError:  # Direct `python ai/run.py` compatibility.
+            from graph import build_graph
+            from model import DRAFT_MODEL, SORT_MODEL
 
         models = {"sort": SORT_MODEL, "draft": DRAFT_MODEL}
     else:

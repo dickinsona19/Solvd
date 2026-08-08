@@ -1,8 +1,5 @@
-/* The sign-in form.
-
-   There is no server, so this checks the credentials against the table in
-   session.js and sets a flag. It is a facade. Read the warning there before
-   assuming it protects anything. */
+/* The sign-in form. Credentials are checked by the API service, which returns
+   a short-lived signed session token for subsequent account requests. */
 
 import { currentSession, signIn } from './session.js'
 
@@ -19,7 +16,7 @@ function fail(message) {
   error.hidden = false
 }
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault()
   error.hidden = true
 
@@ -31,9 +28,22 @@ form.addEventListener('submit', (event) => {
     return
   }
 
-  if (!signIn(username, password)) {
-    // Deliberately does not say which half was wrong, which is the one habit
-    // from real auth worth keeping here.
+  const submit = form.querySelector('button[type="submit"]')
+  submit.disabled = true
+  submit.textContent = 'Opening portal…'
+
+  let session = null
+  try {
+    session = await signIn(username, password)
+  } catch {
+    fail('The portal service is unavailable. Try again in a moment.')
+    return
+  } finally {
+    submit.disabled = false
+    submit.textContent = 'Open my portal'
+  }
+
+  if (!session) {
     fail('That account and password do not match.')
     form.password.value = ''
     form.password.focus()
