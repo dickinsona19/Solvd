@@ -27,6 +27,10 @@ services:
         generateValue: true
       - key: SOLVD_EMAIL_WEBHOOK_SECRET
         generateValue: true
+      - key: SOLVD_EMAIL_SOURCE
+        value: auto
+      - key: SOLVD_FIXTURE_AI_MODE
+        value: process
       - key: SOLVD_ALLOWED_ORIGINS
         sync: false
       - key: SOLVD_IMAP_HOST

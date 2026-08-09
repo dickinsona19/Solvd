@@ -236,11 +236,14 @@ The inbox is the one view with a model behind it. It sorts each message into a
 category and a priority, then drafts a reply the owner can edit and send.
 
 The demo remains frozen: `ai/run.py` writes `demo/data/inbox-ai.json` and the
-browser reads that committed sample cache. The signed-in portal is live. The
-API service ingests email through IMAP polling or an authenticated webhook,
-stores it in Postgres, applies deterministic no-call filters, and runs the
-LangGraph workflow in a background worker. The portal polls draft status every
-ten seconds. The browser talks only to the SOLVD API, never directly to OpenAI.
+browser reads that committed sample cache. The signed-in portal is live. With
+no mailbox credentials, the production API ingests `accounts/test/messages.json`
+and runs its actionable messages through OpenAI once. Postgres deduplication
+keeps unchanged messages from being billed again after a restart. When complete
+IMAP credentials are added, `SOLVD_EMAIL_SOURCE=auto` switches to mailbox
+polling; authenticated webhook ingestion remains available in either setup.
+The portal polls draft status every ten seconds. The browser talks only to the
+SOLVD API, never directly to OpenAI.
 
 ```bash
 python -m venv ai/.venv
@@ -268,12 +271,10 @@ category, each with its own prompt, because a duplicate charge and a
 cancellation are not the same kind of reply. Drafting never runs without a
 sort, so an email costs two calls at most.
 
-Everything the agent knows or may promise is in `ai/prompts.py`: the gym's
-hours, plans and classes, plus a policy block listing exactly what it can
-commit to unaided (freezes to 60 days, one plan change a cycle, refunding a
-duplicate charge). Anything outside that list has to be escalated rather than
-invented, which is what `needs_human` is for. Changing gym policy is a text
-edit in that file.
+The live agent builds gym facts and policy from the authorized account fixture;
+`ai/prompts.py` supplies the reusable prompt templates and offline-runner
+defaults. Anything outside the allowed policy is escalated instead of invented,
+which is what `needs_human` is for.
 
 ### When the live service calls OpenAI
 

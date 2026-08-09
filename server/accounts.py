@@ -27,6 +27,17 @@ def static_account_data(account_id: str) -> dict:
     return {name: _read(folder / f"{name}.json") for name in _RAW_FILES}
 
 
+def fixture_messages(account_id: str) -> list[dict]:
+    """Return the temporary raw-email feed for an account."""
+    return _read(_account_dir(account_id) / "messages.json")
+
+
+def fixture_results(account_id: str) -> dict[str, dict]:
+    """Return optional precomputed drafts used only by local development."""
+    path = _account_dir(account_id) / "inbox-ai.json"
+    return _read(path).get("results", {}) if path.is_file() else {}
+
+
 def member_id_for_email(account_id: str, email: str) -> str | None:
     needle = email.strip().lower()
     for member in static_account_data(account_id)["members"]:

@@ -6,15 +6,21 @@ import logging
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
-from pathlib import Path
 
 from sqlalchemy import select
 
 from ai.graph import build_graph
 from ai.model import DRAFT_MODEL, SORT_MODEL
 
-from .accounts import member_id_for_email, message_context, prompt_context, static_account_data
-from .config import ROOT
+from .accounts import (
+    fixture_messages,
+    fixture_results,
+    member_id_for_email,
+    message_context,
+    prompt_context,
+    static_account_data,
+)
+from .config import settings
 from .db import EmailRecord, SessionLocal
 from .email_policy import decide_email
 
@@ -95,26 +101,57 @@ def ingest_message(account_id: str, message: dict, *, schedule: bool = True) -> 
     return record, changed
 
 
-def seed_account(account_id: str) -> None:
-    folder = ROOT / "accounts" / account_id
-    messages_path = folder / "messages.json"
-    cache_path = folder / "inbox-ai.json"
-    if not messages_path.exists():
-        return
-    messages = json.loads(messages_path.read_text(encoding="utf-8"))
-    cached = json.loads(cache_path.read_text(encoding="utf-8")).get("results", {}) if cache_path.exists() else {}
-    for message in messages:
+def _apply_cached_fixture_result(record_id: int, entry: dict) -> None:
+    with SessionLocal() as db:
+        record = db.get(EmailRecord, record_id)
+        if not record or record.status != "queued":
+            return
+        record.status = "ready"
+        record.analysis = {
+            "sort": entry["sort"],
+            "draft": entry["draft"],
+            "source": "fixture-cache",
+        }
+        record.processed_at = datetime.now(timezone.utc)
+        db.commit()
+
+
+def _queue_legacy_fixture_result(record_id: int) -> None:
+    """Replace an old cached draft with one real API pass, once."""
+    with SessionLocal() as db:
+        record = db.get(EmailRecord, record_id)
+        if not record or record.status != "ready":
+            return
+        if (record.analysis or {}).get("source") == "openai":
+            return
+        record.status = "queued"
+        record.analysis = None
+        record.processed_at = None
+        record.decision_reason = "Temporary JSON message queued for live AI processing"
+        db.commit()
+
+
+def seed_fixture(account_id: str, *, ai_mode: str | None = None) -> int:
+    """Load the temporary JSON inbox and return the changed-message count.
+
+    Production defaults to ``process``, which sends actionable fixture messages
+    through OpenAI. Local development defaults to ``cache`` for fast, free and
+    deterministic startup. Database deduplication prevents repeat calls after a
+    successful production pass.
+    """
+    mode = ai_mode or settings.fixture_ai_mode
+    cached = fixture_results(account_id) if mode == "cache" else {}
+    changed_count = 0
+
+    for message in fixture_messages(account_id):
         record, changed = ingest_message(account_id, message, schedule=False)
-        entry = cached.get(message["id"])
-        if changed and entry:
-            with SessionLocal() as db:
-                stored = db.get(EmailRecord, record.id)
-                stored.status = "ready"
-                stored.analysis = {"sort": entry["sort"], "draft": entry["draft"]}
-                stored.processed_at = datetime.now(timezone.utc)
-                db.commit()
-        elif changed and record.status == "queued":
-            submit_for_processing(record.id)
+        changed_count += int(changed)
+        if changed and record.status == "queued" and message["id"] in cached:
+            _apply_cached_fixture_result(record.id, cached[message["id"]])
+        elif not changed and mode == "process":
+            _queue_legacy_fixture_result(record.id)
+
+    return changed_count
 
 
 def _process(record_id: int) -> None:
@@ -138,7 +175,7 @@ def _process(record_id: int) -> None:
             policy=policy,
         )
         state = graph.invoke({"email": message_context(account_id, message)})
-        analysis = {"sort": state["sort"], "draft": state["draft"]}
+        analysis = {"sort": state["sort"], "draft": state["draft"], "source": "openai"}
 
         with SessionLocal() as db:
             record = db.get(EmailRecord, record_id)
@@ -222,7 +259,12 @@ def live_inbox(account_id: str) -> dict:
                 "attempts": record.attempts,
             }
             if record.analysis:
-                entry.update(record.analysis)
+                entry.update(
+                    {
+                        "sort": record.analysis.get("sort"),
+                        "draft": record.analysis.get("draft"),
+                    }
+                )
             if record.processed_at:
                 processed = record.processed_at
                 if processed.tzinfo is None:

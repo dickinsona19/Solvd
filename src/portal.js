@@ -15,11 +15,10 @@ import { mountSprite } from './icons.js'
 import { currentSession, signOut } from './session.js'
 import { apiRequest } from './api.js'
 
-/* Two data sources, one renderer. /demo/ pulls the authored view models from
-   demo/data/*.json (same-origin static assets, never an API). /app/ lazily
-   loads accounts/<id>/*.json and runs them through derive.js. Dynamic imports
-   keep each path out of the other's bundle: /app/ does not ship the sample
-   numbers, and /demo/ does not ship a megabyte of check-in log. */
+/* Two data sources, one renderer. /demo/ pulls authored view models from
+   same-origin static assets. /app/ requests an authorized raw account bundle
+   from the API and runs it through derive.js. Dynamic imports keep the demo
+   samples out of the signed-in application bundle. */
 
 // Assigned once, before anything renders. Every renderer below reads it.
 let DATA = null

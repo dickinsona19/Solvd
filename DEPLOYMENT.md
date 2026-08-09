@@ -30,6 +30,13 @@ Set these secrets on the API service:
 - `SOLVD_IMAP_USERNAME` to the connected mailbox address
 - `SOLVD_IMAP_PASSWORD` to a mailbox-specific password or credential
 
+Until a mailbox exists, leave `SOLVD_IMAP_USERNAME` and
+`SOLVD_IMAP_PASSWORD` empty. `SOLVD_EMAIL_SOURCE=auto` then selects the
+temporary `accounts/test/messages.json` input, and
+`SOLVD_FIXTURE_AI_MODE=process` sends its actionable messages through OpenAI.
+The results are stored in Postgres, so service restarts do not repeat calls for
+unchanged messages.
+
 Render generates `SOLVD_SESSION_SECRET` and `SOLVD_EMAIL_WEBHOOK_SECRET` when
 the Blueprint first creates the service. For an existing service, set both to
 separate long random values in the dashboard.
@@ -47,10 +54,30 @@ in `SOLVD_ALLOWED_ORIGINS` on the API service.
 
 ## 3. Choose email ingestion
 
+### Temporary JSON input
+
+With no complete IMAP credentials, the deployed service automatically loads:
+
+```text
+accounts/test/messages.json
+```
+
+Each entry uses the same normalized message structure as the webhook example
+below. Edit or add an entry, commit it, and redeploy. A changed content
+fingerprint is queued for a fresh AI pass; unchanged entries keep their stored
+result. `accounts/test/inbox-ai.json` is only a local-development cache and is
+not used as the production answer.
+
+The health endpoint reports `"emailSource":"fixture"` in this mode.
+
+### IMAP
+
 IMAP polling is enabled when all three `SOLVD_IMAP_*` credentials are present.
 The service checks unread messages every 15 seconds, reads them without marking
 them as read, deduplicates by Message-ID and content fingerprint, and schedules
 only actionable human messages for AI.
+
+### Webhook
 
 Alternatively, an email provider can send a normalized event to:
 

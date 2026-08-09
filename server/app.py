@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
 
@@ -12,7 +13,16 @@ from .auth import create_session, require_session, require_webhook
 from .config import settings
 from .db import initialize_database
 from .ingest import start_poller, stop_poller
-from .inbox import account_bundle, ingest_message, live_inbox, request_analysis, resume_queued, seed_account
+from .inbox import (
+    account_bundle,
+    ingest_message,
+    live_inbox,
+    request_analysis,
+    resume_queued,
+    seed_fixture,
+)
+
+logger = logging.getLogger(__name__)
 
 
 class LoginRequest(BaseModel):
@@ -58,14 +68,24 @@ class EmailEvent(BaseModel):
 async def lifespan(_: FastAPI):
     settings.validate()
     initialize_database()
-    seed_account(settings.account_id)
+    if settings.email_source == "fixture":
+        changed = seed_fixture(settings.account_id)
+        logger.info(
+            "Email source is temporary JSON (%s changed message(s), AI mode: %s)",
+            changed,
+            settings.fixture_ai_mode,
+        )
     resume_queued()
-    start_poller()
+    if settings.email_source == "imap":
+        start_poller()
+        logger.info("Email source is IMAP polling")
+    elif settings.email_source == "webhook":
+        logger.info("Email source is authenticated webhooks")
     yield
     stop_poller()
 
 
-app = FastAPI(title="SOLVD Smart Inbox API", version="1.0.0", lifespan=lifespan)
+app = FastAPI(title="SOLVD Smart Inbox API", version="1.1.0", lifespan=lifespan)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(
     CORSMiddleware,
@@ -78,7 +98,12 @@ app.add_middleware(
 
 @app.get("/healthz")
 def health() -> dict:
-    return {"status": "ok", "imap": "configured" if settings.imap_enabled else "not-configured"}
+    return {
+        "status": "ok",
+        "emailSource": settings.email_source,
+        "imap": "configured" if settings.imap_enabled else "not-configured",
+        "fixtureAiMode": settings.fixture_ai_mode if settings.email_source == "fixture" else None,
+    }
 
 
 @app.post("/api/v1/session")

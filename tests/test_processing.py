@@ -52,6 +52,11 @@ def test_actionable_email_calls_graph_once_and_persists_result(monkeypatch):
     result = payload["inboxAi"]["results"][message_id]
     assert result["status"] == "ready"
     assert result["draft"]["action"] == "Move booking in Mindbody"
+    assert "source" not in result
+
+    with SessionLocal() as db:
+        stored = db.get(EmailRecord, record.id)
+        assert stored.analysis["source"] == "openai"
 
     same_record, changed = inbox.ingest_message("test", message, schedule=False)
     assert not changed
