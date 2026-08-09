@@ -10,9 +10,8 @@ from __future__ import annotations
 import os
 import warnings
 from functools import lru_cache
-from typing import Any
-
 from pathlib import Path
+from typing import Any
 
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI

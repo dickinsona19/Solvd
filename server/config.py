@@ -10,7 +10,9 @@ FIXTURE_AI_MODES = {"cache", "process"}
 
 
 def _csv(name: str, default: str = "") -> tuple[str, ...]:
-    return tuple(value.strip().rstrip("/") for value in os.getenv(name, default).split(",") if value.strip())
+    return tuple(
+        value.strip().rstrip("/") for value in os.getenv(name, default).split(",") if value.strip()
+    )
 
 
 def _database_url(value: str) -> str:
@@ -30,6 +32,7 @@ class Settings:
     account_password: str = os.getenv("SOLVD_ACCOUNT_PASSWORD", "1234")
     session_secret: str = os.getenv("SOLVD_SESSION_SECRET", "local-development-only")
     webhook_secret: str = os.getenv("SOLVD_EMAIL_WEBHOOK_SECRET", "local-webhook-only")
+    admin_secret: str = os.getenv("SOLVD_ADMIN_SECRET", "local-admin-only")
     email_source_setting: str = os.getenv("SOLVD_EMAIL_SOURCE", "auto").strip().lower()
     fixture_ai_setting: str = os.getenv("SOLVD_FIXTURE_AI_MODE", "").strip().lower()
     allowed_origins: tuple[str, ...] = _csv(
@@ -94,6 +97,8 @@ class Settings:
             missing.append("SOLVD_SESSION_SECRET")
         if not self.webhook_secret or self.webhook_secret == "local-webhook-only":
             missing.append("SOLVD_EMAIL_WEBHOOK_SECRET")
+        if not self.admin_secret or self.admin_secret == "local-admin-only":
+            missing.append("SOLVD_ADMIN_SECRET")
         if self.email_source == "fixture" and self.fixture_ai_mode == "process":
             if not os.getenv("OPENAI_API_KEY", "").strip():
                 missing.append("OPENAI_API_KEY")

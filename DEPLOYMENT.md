@@ -15,6 +15,7 @@ In Render, create a Blueprint from this repository's `render.yaml`, or create a
 Python Web Service manually with:
 
 - Build command: `pip install -r requirements.txt`
+- Pre-deploy command: `alembic upgrade head`
 - Start command: `uvicorn server.app:app --host 0.0.0.0 --port $PORT`
 - Health check: `/healthz`
 - Plan: Starter or higher. A sleeping free service cannot poll email in real time.
@@ -37,9 +38,13 @@ temporary `accounts/test/messages.json` input, and
 The results are stored in Postgres, so service restarts do not repeat calls for
 unchanged messages.
 
-Render generates `SOLVD_SESSION_SECRET` and `SOLVD_EMAIL_WEBHOOK_SECRET` when
-the Blueprint first creates the service. For an existing service, set both to
-separate long random values in the dashboard.
+`SOLVD_ACCOUNT_ID`, `SOLVD_ACCOUNT_USERNAME`, and
+`SOLVD_ACCOUNT_PASSWORD` bootstrap the first owner into Postgres. They are not
+the permanent account store and should remain set for safe recovery.
+
+Render generates `SOLVD_SESSION_SECRET`, `SOLVD_EMAIL_WEBHOOK_SECRET`, and
+`SOLVD_ADMIN_SECRET` when the Blueprint first creates the service. For an
+existing service, set all three to separate long random values in the dashboard.
 
 ## 2. Point the static site at the API
 
@@ -75,7 +80,10 @@ The health endpoint reports `"emailSource":"fixture"` in this mode.
 IMAP polling is enabled when all three `SOLVD_IMAP_*` credentials are present.
 The service checks unread messages every 15 seconds, reads them without marking
 them as read, deduplicates by Message-ID and content fingerprint, and schedules
-only actionable human messages for AI.
+only actionable human messages for AI. These environment credentials belong to
+the bootstrap account only. Additional production tenants should use their
+account-scoped webhook until per-tenant Google OAuth connections are added; do
+not add multiple mailbox passwords to Render environment variables.
 
 ### Webhook
 
@@ -100,6 +108,53 @@ Content-Type: application/json
   "headers": {}
 }
 ```
+
+## 4. Add tenants and users
+
+The API stores tenants, identities, and roles in Postgres. Each identity is
+assigned to exactly one gym account; there is no dashboard account switcher.
+Passwords are Argon2id hashes. The environment-configured login is imported as
+the initial owner of `SOLVD_ACCOUNT_ID` on every deployment, which migrates the
+existing test login without resetting the database.
+
+The web service runs `alembic upgrade head` as its pre-deploy command. This
+creates only missing versioned schema and preserves the existing inbox records.
+Do not delete or recreate the Render database for this deployment.
+
+While account data is still fixture-backed, add a tenant by committing a new
+`accounts/<account-id>/` directory with the same required JSON files as
+`accounts/test/`. The `id` in `account.json` must match the directory name.
+Deployment automatically registers every valid fixture directory as a separate
+tenant and seeds its messages under that tenant ID.
+
+Create the tenant's first user with the admin endpoint. Keep the admin secret
+out of browser code and shell history:
+
+```text
+POST /api/v1/admin/accounts/<account-id>/users
+Authorization: Bearer <SOLVD_ADMIN_SECRET>
+Content-Type: application/json
+
+{
+  "username": "owner@examplegym.com",
+  "password": "a-long-unique-password",
+  "role": "owner"
+}
+```
+
+Create a distinct login identity for each gym. Usernames are unique across the
+service, and a login cannot be reassigned or switched to another tenant through
+the browser.
+
+For per-tenant email-provider webhooks, rotate a secret once:
+
+```text
+POST /api/v1/admin/accounts/<account-id>/webhook-secret
+Authorization: Bearer <SOLVD_ADMIN_SECRET>
+```
+
+The returned secret is shown only in that response. Send that tenant's email to
+`POST /api/v1/webhooks/<account-id>/email` with the returned Bearer secret.
 
 ## When OpenAI is called
 

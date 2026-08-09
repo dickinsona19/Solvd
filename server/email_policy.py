@@ -10,9 +10,12 @@ class ProcessingDecision:
     reason: str
 
 
-_AUTOMATED_SENDERS = re.compile(r"(?:^|[._+-])(no-?reply|do-?not-?reply|mailer-daemon|postmaster)(?:@|[._+-])", re.I)
+_AUTOMATED_SENDERS = re.compile(
+    r"(?:^|[._+-])(no-?reply|do-?not-?reply|mailer-daemon|postmaster)(?:@|[._+-])", re.I
+)
 _AUTOMATED_SUBJECTS = re.compile(
-    r"^(?:automatic reply|auto(?:matic)? response|out of office|delivery status notification|undeliverable|failure notice|receipt\b|invoice\b)",
+    r"^(?:automatic reply|auto(?:matic)? response|out of office|"
+    r"delivery status notification|undeliverable|failure notice|receipt\b|invoice\b)",
     re.I,
 )
 _ACTIONABLE = re.compile(
@@ -22,7 +25,8 @@ _ACTIONABLE = re.compile(
     re.I,
 )
 _ACK_ONLY = re.compile(
-    r"^(?:thanks|thank you|got it|okay|ok|sounds good|perfect|great|see you(?: then)?|will do|all set)"
+    r"^(?:thanks|thank you|got it|okay|ok|sounds good|perfect|great|"
+    r"see you(?: then)?|will do|all set)"
     r"[\s.!,-]*(?:thanks|thank you)?[\s.!]*$",
     re.I,
 )
@@ -52,7 +56,9 @@ def decide_email(message: dict, support_addresses: set[str] | None = None) -> Pr
     if _AUTOMATED_SENDERS.search(sender):
         return ProcessingDecision(False, "Automated sender")
 
-    headers = {str(key).lower(): str(value).strip() for key, value in message.get("headers", {}).items()}
+    headers = {
+        str(key).lower(): str(value).strip() for key, value in message.get("headers", {}).items()
+    }
     auto_submitted = headers.get("auto-submitted", "").lower()
     precedence = headers.get("precedence", "").lower()
     if auto_submitted and auto_submitted != "no":

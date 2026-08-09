@@ -23,7 +23,7 @@ import hashlib
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import dotenv
@@ -39,9 +39,7 @@ def read_json(path: Path) -> dict:
 
 
 def write_json(path: Path, data: dict) -> None:
-    path.write_text(
-        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def recipe_hash() -> str:
@@ -164,7 +162,7 @@ def main() -> int:
             sort, draft = state["sort"], state["draft"]
             results[email["id"]] = {
                 "fingerprint": fingerprint(email, models, recipe),
-                "processedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "processedAt": datetime.now(UTC).isoformat(timespec="seconds"),
                 "sort": sort,
                 "draft": draft,
             }
@@ -183,7 +181,7 @@ def main() -> int:
     write_json(
         CACHE,
         {
-            "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "generatedAt": datetime.now(UTC).isoformat(timespec="seconds"),
             "models": models,
             "recipe": recipe,
             "results": dict(sorted(results.items())),

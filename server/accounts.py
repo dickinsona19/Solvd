@@ -21,6 +21,20 @@ def _read(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def fixture_account_ids() -> tuple[str, ...]:
+    """Discover deploy-time account fixtures without trusting path input."""
+    accounts_root = ROOT / "accounts"
+    return tuple(
+        sorted(
+            folder.name
+            for folder in accounts_root.iterdir()
+            if folder.is_dir()
+            and _SAFE_ID.fullmatch(folder.name)
+            and (folder / "account.json").is_file()
+        )
+    )
+
+
 @lru_cache(maxsize=16)
 def static_account_data(account_id: str) -> dict:
     folder = _account_dir(account_id)

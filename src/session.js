@@ -9,6 +9,15 @@ import { apiUrl } from './api-config.js'
 
 const KEY = 'solvd.session'
 
+function storeSession(session) {
+  try {
+    sessionStorage.setItem(KEY, JSON.stringify(session))
+    return session
+  } catch {
+    return null
+  }
+}
+
 export async function signIn(username, password) {
   const response = await fetch(apiUrl('/api/v1/session'), {
     method: 'POST',
@@ -17,14 +26,7 @@ export async function signIn(username, password) {
   })
   if (response.status === 401) return null
   if (!response.ok) throw new Error(`Portal service returned ${response.status}`)
-
-  const session = await response.json()
-  try {
-    sessionStorage.setItem(KEY, JSON.stringify(session))
-  } catch {
-    return null
-  }
-  return session
+  return storeSession(await response.json())
 }
 
 export function currentSession() {

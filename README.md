@@ -29,7 +29,7 @@ browser, and the OpenAI key remains server-side.
 npm install
 npm run build
 python -m venv .venv
-.venv/Scripts/python -m pip install -r requirements.txt
+.venv/Scripts/python -m pip install -r requirements-dev.txt
 .venv/Scripts/python -m uvicorn server.app:app --reload
 npm run dev
 ```
@@ -106,9 +106,12 @@ ai/                   # the Smart Inbox graph, also usable as an offline generat
   prompts.py          #   gym facts, what the agent may promise, and the voice rules
   run.py              #   the runner and the cache. Writes demo/data/inbox-ai.json
   requirements.txt    #   langgraph, langchain-openai, pydantic, python-dotenv
-server/               # FastAPI auth, inbox persistence, ingestion, and AI workers
+server/               # FastAPI tenant auth, inbox persistence, ingestion, and AI workers
+migrations/           # Alembic production schema history
+alembic.ini            # migration runner configuration
 tests/                # policy, auth, parser, and API tests (no paid model calls)
-requirements.txt      # complete API service dependency set
+requirements.txt      # production API dependencies
+requirements-dev.txt  # production set plus tests and Python linting
 render.yaml           # Render API service + Postgres Blueprint
 DEPLOYMENT.md          # exact live deployment and mailbox setup
 public/               # served from the root: favicons, OG image, wordmark, photo, robots, sitemap
@@ -220,15 +223,19 @@ without recommending the next one. Those stay unbuilt on purpose.
 
 ## Authentication
 
-`/login/` posts credentials to `POST /api/v1/session`. The server compares them
-against environment-held secrets and issues a signed, expiring token. Every
-account and inbox endpoint verifies that token before returning data. The
-browser never receives the password, signing secret, mailbox credential,
-webhook secret, or OpenAI key.
+`/login/` posts credentials to `POST /api/v1/session`. Users, tenant accounts,
+and roles live in Postgres; passwords are stored as Argon2id hashes. Each login
+identity belongs to exactly one gym account. The signed, expiring session names
+both the user and that account, and every authorized request re-checks the
+assignment before returning tenant data. The browser never receives a password
+hash, signing secret, mailbox credential, webhook secret, admin secret, or
+OpenAI key.
 
-The service is intentionally single-tenant today. Supporting multiple gyms
-requires an account table with per-account password hashes and ownership rules,
-not additional credentials embedded in frontend code.
+The `SOLVD_ACCOUNT_*` environment values are bootstrap inputs. On deployment,
+they create or recover the first owner login for the test tenant. Future
+users are provisioned through the admin endpoint documented in
+`DEPLOYMENT.md`; they do not require new Render environment variables. Alembic
+migrations version the production schema and run before the API starts.
 
 ## The Smart Inbox agent
 
@@ -322,8 +329,6 @@ and static-site configuration.
 - Confirm the LinkedIn URL in the footer of `/` and `/custom/`.
 - `public/sitemap.xml` lists `/` and `/custom/` only. `/demo/` is excluded on
   purpose, since it is sample data.
-- Replace the single-tenant environment login with a real account store before
-  onboarding multiple gyms.
 
 ## Loose ends
 

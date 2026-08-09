@@ -5,7 +5,7 @@ import json
 import logging
 import threading
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select
 
@@ -47,10 +47,12 @@ def _received(value: str | datetime) -> datetime:
         parsed = value
     else:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
+    return parsed if parsed.tzinfo else parsed.replace(tzinfo=UTC)
 
 
-def ingest_message(account_id: str, message: dict, *, schedule: bool = True) -> tuple[EmailRecord, bool]:
+def ingest_message(
+    account_id: str, message: dict, *, schedule: bool = True
+) -> tuple[EmailRecord, bool]:
     normalized = dict(message)
     normalized.setdefault("labels", ["INBOX", "UNREAD"])
     normalized.setdefault("headers", {})
@@ -112,7 +114,7 @@ def _apply_cached_fixture_result(record_id: int, entry: dict) -> None:
             "draft": entry["draft"],
             "source": "fixture-cache",
         }
-        record.processed_at = datetime.now(timezone.utc)
+        record.processed_at = datetime.now(UTC)
         db.commit()
 
 
@@ -183,7 +185,7 @@ def _process(record_id: int) -> None:
                 return
             record.analysis = analysis
             record.status = "ready"
-            record.processed_at = datetime.now(timezone.utc)
+            record.processed_at = datetime.now(UTC)
             record.error = None
             db.commit()
     except Exception as error:  # noqa: BLE001 - keep worker alive and expose a safe retry state
@@ -268,13 +270,13 @@ def live_inbox(account_id: str) -> dict:
             if record.processed_at:
                 processed = record.processed_at
                 if processed.tzinfo is None:
-                    processed = processed.replace(tzinfo=timezone.utc)
-                entry["processedAt"] = processed.astimezone(timezone.utc).isoformat()
+                    processed = processed.replace(tzinfo=UTC)
+                entry["processedAt"] = processed.astimezone(UTC).isoformat()
             if record.status == "failed":
                 entry["error"] = "Draft generation failed. Retry when the service is available."
             results[record.message_id] = entry
     return {
-        "generatedAt": datetime.now(timezone.utc).isoformat(),
+        "generatedAt": datetime.now(UTC).isoformat(),
         "models": {"sort": SORT_MODEL, "draft": DRAFT_MODEL},
         "messages": messages,
         "inboxAi": {"results": results},

@@ -26,11 +26,11 @@ def test_skips_acknowledgements_without_calling_ai():
 
 def test_skips_automated_and_bulk_mail():
     assert not decide_email(
-        message("Your report is ready", **{"from": {"name": "Bot", "email": "no-reply@example.com"}})
+        message(
+            "Your report is ready", **{"from": {"name": "Bot", "email": "no-reply@example.com"}}
+        )
     ).should_process
-    assert not decide_email(
-        message("Newsletter", headers={"Precedence": "bulk"})
-    ).should_process
+    assert not decide_email(message("Newsletter", headers={"Precedence": "bulk"})).should_process
 
 
 def test_skips_messages_sent_by_the_gym():

@@ -5,6 +5,7 @@ services:
     plan: starter
     region: virginia
     buildCommand: pip install -r requirements.txt
+    preDeployCommand: alembic upgrade head
     startCommand: uvicorn server.app:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /healthz
     autoDeployTrigger: commit
@@ -26,6 +27,8 @@ services:
       - key: SOLVD_SESSION_SECRET
         generateValue: true
       - key: SOLVD_EMAIL_WEBHOOK_SECRET
+        generateValue: true
+      - key: SOLVD_ADMIN_SECRET
         generateValue: true
       - key: SOLVD_EMAIL_SOURCE
         value: auto

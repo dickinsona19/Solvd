@@ -39,6 +39,7 @@ def test_production_fixture_processing_requires_openai_key(monkeypatch):
         account_password="a-strong-password",
         session_secret="session-secret",
         webhook_secret="webhook-secret",
+        admin_secret="admin-secret",
         email_source_setting="fixture",
         fixture_ai_setting="process",
     )

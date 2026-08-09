@@ -6,7 +6,7 @@ import imaplib
 import logging
 import re
 import threading
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from email.header import decode_header, make_header
 from email.message import Message
 from email.utils import parseaddr, parsedate_to_datetime
@@ -53,13 +53,17 @@ def parse_email(raw: bytes, uid: str) -> dict:
     from_name, from_email = parseaddr(_header(message.get("From")))
     _, to_email = parseaddr(_header(message.get("To")))
     message_id = (message.get("Message-ID") or f"imap-{uid}").strip("<> ")
-    parent = (message.get("In-Reply-To") or message.get("References") or message_id).split()[0].strip("<> ")
+    parent = (
+        (message.get("In-Reply-To") or message.get("References") or message_id)
+        .split()[0]
+        .strip("<> ")
+    )
     try:
         received_at = parsedate_to_datetime(message.get("Date"))
     except (TypeError, ValueError):
-        received_at = datetime.now(timezone.utc)
+        received_at = datetime.now(UTC)
     if received_at.tzinfo is None:
-        received_at = received_at.replace(tzinfo=timezone.utc)
+        received_at = received_at.replace(tzinfo=UTC)
     tracked_headers = {
         name: _header(message.get(name))
         for name in ("Auto-Submitted", "Precedence", "List-Id", "X-Auto-Response-Suppress")
@@ -72,14 +76,14 @@ def parse_email(raw: bytes, uid: str) -> dict:
         "to": to_email,
         "subject": _header(message.get("Subject")),
         "body_text": _plain_body(message),
-        "received_at": received_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "received_at": received_at.astimezone(UTC).isoformat().replace("+00:00", "Z"),
         "labels": ["INBOX", "UNREAD"],
         "headers": tracked_headers,
     }
 
 
 def poll_once() -> int:
-    cutoff = datetime.now(timezone.utc) - timedelta(hours=settings.lookback_hours)
+    cutoff = datetime.now(UTC) - timedelta(hours=settings.lookback_hours)
     since = cutoff.strftime("%d-%b-%Y")
     inserted = 0
     with imaplib.IMAP4_SSL(settings.imap_host, settings.imap_port) as client:

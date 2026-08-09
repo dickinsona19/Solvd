@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import delete
 
@@ -37,7 +37,7 @@ def test_actionable_email_calls_graph_once_and_persists_result(monkeypatch):
         "to": "front@northsidebarbell.com",
         "subject": "Can I switch classes?",
         "body_text": "Can you move me to the 6am class next week?",
-        "received_at": datetime.now(timezone.utc).isoformat(),
+        "received_at": datetime.now(UTC).isoformat(),
         "labels": ["INBOX", "UNREAD"],
         "headers": {},
     }

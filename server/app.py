@@ -3,16 +3,22 @@ from __future__ import annotations
 import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
+from typing import Literal
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from pydantic import BaseModel, ConfigDict, Field
 
-from .auth import create_session, require_session, require_webhook
+from .auth import (
+    create_session,
+    require_account_webhook,
+    require_admin,
+    require_session,
+    require_webhook,
+)
 from .config import settings
 from .db import initialize_database
-from .ingest import start_poller, stop_poller
 from .inbox import (
     account_bundle,
     ingest_message,
@@ -21,6 +27,13 @@ from .inbox import (
     resume_queued,
     seed_fixture,
 )
+from .ingest import start_poller, stop_poller
+from .tenancy import (
+    bootstrap_configured_user,
+    create_account_user,
+    rotate_account_webhook_secret,
+    sync_fixture_accounts,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +41,12 @@ logger = logging.getLogger(__name__)
 class LoginRequest(BaseModel):
     username: str = Field(min_length=1, max_length=120)
     password: str = Field(min_length=1, max_length=500)
+
+
+class ProvisionUserRequest(BaseModel):
+    username: str = Field(min_length=1, max_length=120)
+    password: str = Field(min_length=12, max_length=500)
+    role: Literal["owner", "manager", "staff"] = "owner"
 
 
 class Sender(BaseModel):
@@ -68,10 +87,14 @@ class EmailEvent(BaseModel):
 async def lifespan(_: FastAPI):
     settings.validate()
     initialize_database()
+    fixture_accounts = sync_fixture_accounts()
+    bootstrap_configured_user()
     if settings.email_source == "fixture":
-        changed = seed_fixture(settings.account_id)
+        changed = sum(seed_fixture(account_id) for account_id in fixture_accounts)
         logger.info(
-            "Email source is temporary JSON (%s changed message(s), AI mode: %s)",
+            "Email source is temporary JSON across %s account(s) "
+            "(%s changed message(s), AI mode: %s)",
+            len(fixture_accounts),
             changed,
             settings.fixture_ai_mode,
         )
@@ -85,7 +108,7 @@ async def lifespan(_: FastAPI):
     stop_poller()
 
 
-app = FastAPI(title="SOLVD Smart Inbox API", version="1.1.0", lifespan=lifespan)
+app = FastAPI(title="SOLVD Smart Inbox API", version="2.0.0", lifespan=lifespan)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(
     CORSMiddleware,
@@ -129,7 +152,9 @@ def analyze(message_id: str, session: dict = Depends(require_session)) -> dict:
     try:
         state = request_analysis(session["account"], message_id)
     except KeyError as error:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Message not found") from error
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Message not found"
+        ) from error
     return {"id": message_id, "status": state}
 
 
@@ -142,3 +167,47 @@ def email_webhook(event: EmailEvent, _: None = Depends(require_webhook)) -> dict
         "accepted": changed,
         "reason": record.decision_reason,
     }
+
+
+@app.post("/api/v1/webhooks/{account_id}/email", status_code=status.HTTP_202_ACCEPTED)
+def account_email_webhook(
+    account_id: str,
+    event: EmailEvent,
+    _: None = Depends(require_account_webhook),
+) -> dict:
+    record, changed = ingest_message(account_id, event.as_message())
+    return {
+        "id": record.message_id,
+        "status": record.status,
+        "accepted": changed,
+        "reason": record.decision_reason,
+    }
+
+
+@app.post("/api/v1/admin/accounts/{account_id}/users", status_code=status.HTTP_201_CREATED)
+def provision_account_user(
+    account_id: str,
+    request: ProvisionUserRequest,
+    _: None = Depends(require_admin),
+) -> dict:
+    try:
+        return create_account_user(account_id, request.username, request.password, request.role)
+    except KeyError as error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Account not found"
+        ) from error
+    except ValueError as error:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT, detail="Username already exists"
+        ) from error
+
+
+@app.post("/api/v1/admin/accounts/{account_id}/webhook-secret")
+def rotate_webhook_secret(account_id: str, _: None = Depends(require_admin)) -> dict:
+    try:
+        secret = rotate_account_webhook_secret(account_id)
+    except KeyError as error:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Account not found"
+        ) from error
+    return {"account": account_id, "secret": secret}
